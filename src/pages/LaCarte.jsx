@@ -23,11 +23,25 @@ export default function LaCarte() {
             <div className="formules-row">
               {formules.items.map((f) => (
                 <div className="formule-col" key={f.name}>
-                  <div className="formule-col-head">
-                    <strong>{f.name}</strong>
-                    <span className="formule-price">{f.price}</span>
-                  </div>
-                  <p>{f.subtitle}</p>
+                  {f.lines ? (
+                    <>
+                      <strong>{f.name}</strong>
+                      {f.lines.map((line) => (
+                        <div className="formule-col-head" key={line.label}>
+                          <span>{line.label}</span>
+                          <span className="formule-price">{line.price}</span>
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      <div className="formule-col-head">
+                        <strong>{f.name}</strong>
+                        <span className="formule-price">{f.price}</span>
+                      </div>
+                      <p>{f.subtitle}</p>
+                    </>
+                  )}
                   <p className="formule-desc">{f.description}</p>
                   {f.note && <p className="formule-note">{f.note}</p>}
                 </div>

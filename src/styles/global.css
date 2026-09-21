@@ -627,7 +627,8 @@ button { font-family: inherit; cursor: pointer; }
 .formule-col:first-child { border-left: none; padding-left: 0; }
 .formule-col-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 4px; }
 .formule-col-head strong { font-size: 1.02rem; }
-.formule-price { font-weight: 800; }
+.formule-col > strong { display: block; font-size: 1.02rem; margin-bottom: 8px; }
+.formule-price { font-weight: 800; white-space: nowrap; flex-shrink: 0; }
 .formule-col p { margin: 2px 0; font-size: 0.9rem; color: #fbe2d3; }
 .formule-desc { font-style: italic; }
 .formule-note { color: var(--gold) !important; font-size: 0.8rem !important; }
@@ -649,13 +650,14 @@ button { font-family: inherit; cursor: pointer; }
   gap: 24px;
   align-items: start;
 }
-.menu-column { display: flex; flex-direction: column; gap: 24px; }
+.menu-column { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
 .menu-box {
   position: relative;
   background: var(--white);
   border: 1px solid var(--cream-line);
   padding: 26px 26px 8px;
   overflow: hidden;
+  min-width: 0;
 }
 .menu-box-dark {
   background: var(--forest);
@@ -696,8 +698,8 @@ button { font-family: inherit; cursor: pointer; }
   flex-shrink: 0;
 }
 .menu-item-body { flex: 1; min-width: 0; }
-.menu-item-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
-.menu-item-name { font-weight: 700; color: var(--espresso-dark); }
+.menu-item-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; min-width: 0; }
+.menu-item-name { font-weight: 700; color: var(--espresso-dark); min-width: 0; }
 .menu-box-dark .menu-item-name { color: var(--white); }
 .menu-item-desc { color: var(--brown-muted); font-size: 0.88rem; margin-top: 3px; }
 .menu-item-price {
@@ -730,8 +732,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .drinks-col h3 { font-size: 1rem; margin-bottom: 8px; }
 
-.wine-item { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--cream-line); }
-.wine-prices { display: flex; gap: 8px; }
+.wine-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--cream-line); }
+.wine-prices { display: flex; align-items: flex-start; gap: 8px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
 .wine-prices span {
   font-weight: 700;
   font-size: 0.8rem;

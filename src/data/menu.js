@@ -16,9 +16,11 @@ export const formules = {
     },
     {
       name: 'Formule du midi',
-      subtitle: 'Entrée + plat ou plat + dessert',
-      price: '25 €',
-      description: 'Entrée + plat + dessert : 30 €. Café ou thé gourmand : +2 €.',
+      lines: [
+        { label: 'Entrée + plat ou plat + dessert', price: '25 €' },
+        { label: 'Entrée + plat + dessert', price: '30 €' },
+      ],
+      description: 'Café ou thé gourmand : +2 €.',
     },
   ],
 }
