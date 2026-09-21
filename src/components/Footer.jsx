@@ -3,53 +3,86 @@ import { Link } from 'react-router-dom'
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <div className="shell">
-        <div className="footer-top">
+      <div className="shell footer-grid">
+        <div className="footer-brand-column">
           <img src="/images/logo-chez-lina-vertical.png" alt="Chez Lina" className="footer-logo" />
-          <h3>Une mère, quatre filles, un héritage.</h3>
-          <p>L&rsquo;héritage congolais de Mama Lina, porté par ses quatre filles à Brunoy.</p>
-        </div>
-
-        <div className="footer-grid">
           <div>
-            <h4>Découvrir</h4>
-            <ul>
-              <li><Link to="/la-carte">La carte</Link></li>
-              <li><Link to="/notre-histoire">Notre histoire</Link></li>
-              <li><Link to="/galerie">Galerie</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Chez Lina</h4>
-            <p>29 rue de Montgeron<br />91800 Brunoy</p>
-          </div>
-          <div>
-            <h4>Nous contacter</h4>
-            <ul>
-              <li><a href="https://wa.me/33651197751" target="_blank" rel="noreferrer"><strong>WhatsApp</strong><br />06 51 19 77 51</a></li>
-              <li><a href="mailto:restaurant.chezlina@gmail.com"><strong>E-mail</strong><br />restaurant.chezlina@gmail.com</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Nous suivre</h4>
-            <ul>
-              <li><a href="https://www.instagram.com/restaurant.chezlina/" target="_blank" rel="noreferrer">Chez Lina</a></li>
-              <li><a href="https://www.instagram.com/cuillere.dor/" target="_blank" rel="noreferrer">Cuillère d&rsquo;Or</a></li>
-            </ul>
+            <p className="footer-line">Une mère, quatre filles, un héritage.</p>
+            <p className="footer-brand-copy">L&rsquo;héritage congolais de Mama Lina, porté par ses quatre filles à Brunoy.</p>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Chez Lina</span>
-          <div className="footer-legal">
-            <Link to="/mentions-legales">Mentions légales</Link>
-            <Link to="/politique-confidentialite">Confidentialité</Link>
-            <Link to="/gestion-des-cookies">Cookies</Link>
-            <Link to="/accessibilite">Accessibilité</Link>
-            <a href="https://www.google.com/maps/search/?api=1&query=Chez+Lina+restaurant+29+rue+de+Montgeron+91800+Brunoy" target="_blank" rel="noreferrer">Donner un avis sur Google</a>
+        <nav className="footer-nav" aria-label="Navigation de pied de page">
+          <h2>Découvrir</h2>
+          <Link to="/la-carte">La carte</Link>
+          <Link to="/notre-histoire">Notre histoire</Link>
+          <Link to="/galerie">Galerie</Link>
+          <Link to="/contact">Contact</Link>
+        </nav>
+
+        <div className="footer-address">
+          <h2>Chez Lina</h2>
+          <a
+            className="footer-location-link"
+            href="https://www.google.com/maps/search/?api=1&query=Chez+Lina+restaurant+29+rue+de+Montgeron+91800+Brunoy"
+            target="_blank"
+            rel="noreferrer"
+          >
+            29 rue de Montgeron<br />91800 Brunoy
+          </a>
+        </div>
+
+        <div className="footer-contact">
+          <h2>Nous contacter</h2>
+          <a className="footer-contact-link footer-whatsapp-link" href="https://wa.me/33651197751" target="_blank" rel="noreferrer">
+            <span>WhatsApp</span>
+            <small>06 51 19 77 51</small>
+          </a>
+          <a className="footer-contact-link footer-email-link" href="mailto:restaurant.chezlina@gmail.com">
+            <span>E-mail</span>
+            <small>restaurant.chezlina@gmail.com</small>
+          </a>
+        </div>
+
+        <div className="footer-social">
+          <h2>Nous suivre</h2>
+          <div className="social-links" aria-label="Réseaux sociaux">
+            <a className="social-link" href="https://www.instagram.com/restaurant.chezlina/" target="_blank" rel="noreferrer" aria-label="Instagram de Chez Lina">
+              <span className="social-logo-frame">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                  <circle cx="12" cy="12" r="4.25" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                  <circle className="social-icon-dot" cx="17.5" cy="6.7" r="1" fill="currentColor" />
+                </svg>
+              </span>
+              <span>Chez Lina</span>
+            </a>
+            <a className="social-link social-link-partner" href="https://www.instagram.com/cuillere.dor/" target="_blank" rel="noreferrer" aria-label="Instagram de Cuillère d&rsquo;Or">
+              <span className="social-logo-frame social-logo-partner">
+                <img className="partner-social-logo" src="/images/logo-cuillere-dor.png" alt="" />
+              </span>
+              <span>Cuillère d&rsquo;Or</span>
+            </a>
           </div>
         </div>
+      </div>
+
+      <div className="shell footer-bottom">
+        <p>© {new Date().getFullYear()} Chez Lina</p>
+        <div className="footer-legal">
+          <Link to="/mentions-legales">Mentions légales</Link>
+          <Link to="/politique-confidentialite">Confidentialité</Link>
+          <Link to="/gestion-des-cookies">Cookies</Link>
+          <Link to="/accessibilite">Accessibilité</Link>
+        </div>
+        <a
+          className="footer-review-link"
+          href="https://www.google.com/maps/search/?api=1&query=Chez+Lina+restaurant+29+rue+de+Montgeron+91800+Brunoy"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Donner un avis sur Google
+        </a>
       </div>
     </footer>
   )
