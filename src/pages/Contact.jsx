@@ -9,6 +9,7 @@ export default function Contact() {
         eyebrow="Restaurant franco-africain · Brunoy"
         title="Chez Lina à Brunoy"
         lede="Préparez votre venue ou contactez-nous."
+        photo={{ src: '/images/table-partage.webp', tint: '#142c28', position: '50% 48%' }}
       />
 
       <section className="section">

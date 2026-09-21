@@ -25,35 +25,39 @@ export const formules = {
 
 export const menuSections = [
   {
-    eyebrow: 'POUR COMMENCER',
-    title: 'Les entrées',
-    items: [
-      { name: 'Tempura de manioc', description: 'Mayonnaise au basilic frais.', price: '7 €' },
-      { name: 'Aubergine braisée en brochette', description: 'Crème de maïs onctueuse, salade d’herbes fraîches et confiture de tamarin.', price: '7 €' },
-      { name: 'Tarte fine tomate et burrata', description: 'Saka-saka, sauce vierge à la tomate et au bissap, salade d’herbes fraîches et burrata crémeuse.', price: '10 €' },
-      { name: 'Planche à partager', description: 'Sélection du chef.', price: '10 pièces 15 € · 25 pièces 28 €' },
-    ],
-  },
-  {
     eyebrow: 'À TABLE',
     title: 'Les viandes',
+    column: 'left',
     items: [
-      { name: 'Suprême de volaille, sauce poulette', description: 'Accompagné d’un riz délicatement parfumé au gingembre, à la noix de coco et au citron.', price: '19 €' },
-      { name: 'Mouton braisé', description: 'Servi avec de la chikwangue.', price: '20 €' },
-      { name: 'Brochettes de bœuf', description: 'Servies avec de l’alloco.', price: '24 €' },
+      { name: 'Suprême de volaille, sauce poulette', description: 'Accompagné d’un riz délicatement parfumé au gingembre, à la noix de coco et au citron.', price: '19 €', image: '/images/poulet-braise-riz-rouge-detail.jpeg' },
+      { name: 'Mouton braisé', description: 'Servi avec de la chikwangue.', price: '20 €', image: '/images/mouton-braise.webp' },
+      { name: 'Brochettes de bœuf', description: 'Servies avec de l’alloco.', price: '24 €', image: '/images/brochettes-boeuf.webp' },
     ],
   },
   {
     eyebrow: 'À TABLE',
     title: 'Les poissons',
+    column: 'left',
     items: [
-      { name: 'Dorade braisée', description: 'Sauce vierge, tomate, mangue verte et herbes fraîches, accompagnée d’attiéké.', price: '20 €' },
-      { name: 'Panga braisé', description: 'Foutou banane et sauce aux trois poivrons.', price: '25 €' },
+      { name: 'Dorade braisée', description: 'Sauce vierge, tomate, mangue verte et herbes fraîches, accompagnée d’attiéké.', price: '20 €', image: '/images/dorade-braisee.webp' },
+      { name: 'Panga braisé', description: 'Foutou banane et sauce aux trois poivrons.', price: '25 €', image: '/images/panga-braise.jpg' },
+    ],
+  },
+  {
+    eyebrow: 'POUR COMMENCER',
+    title: 'Les entrées',
+    column: 'right',
+    items: [
+      { name: 'Tempura de manioc', description: 'Mayonnaise au basilic frais.', price: '7 €', image: '/images/morue-frite.webp' },
+      { name: 'Aubergine braisée en brochette', description: 'Crème de maïs onctueuse, salade d’herbes fraîches et confiture de tamarin.', price: '7 €', image: '/images/aubergine-signature.webp' },
+      { name: 'Tarte fine tomate et burrata', description: 'Saka-saka, sauce vierge à la tomate et au bissap, salade d’herbes fraîches et burrata crémeuse.', price: '10 €', image: '/images/entree-signature.webp' },
+      { name: 'Planche à partager', description: 'Sélection du chef.', price: '10 pièces 15 € · 25 pièces 28 €', image: '/images/plateau-bouchees-reportage.webp' },
     ],
   },
   {
     eyebrow: 'EN SUPPLÉMENT',
     title: 'Les accompagnements',
+    column: 'right',
     items: [
       { name: 'Riz blanc', price: '4 €' },
       { name: 'Chikwangue', price: '5 €' },
@@ -66,6 +70,8 @@ export const menuSections = [
   {
     eyebrow: 'LA NOTE DOUCE',
     title: 'Les desserts',
+    column: 'right',
+    dark: true,
     items: [
       { name: 'Beignets, sauce à l’arachide', description: 'Une douceur chaude à partager.', price: '6 €' },
       { name: 'Riz au lait revisité', description: 'Pâte filo croustillante, ananas rôti, mousse de riz, caramel et poivre blanc de Penja.', price: '8 €' },

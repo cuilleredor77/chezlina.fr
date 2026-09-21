@@ -22,6 +22,7 @@ export default function Galerie() {
         eyebrow="Cuisine, gestes, partage"
         title="La maison en images"
         lede="Les plats et les gestes de Chez Lina."
+        photo={{ src: '/images/plat-signature.webp', tint: '#1d1411', position: '50% 54%' }}
       />
 
       <section className="section">

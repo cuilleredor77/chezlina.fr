@@ -10,48 +10,85 @@ export default function LaCarte() {
         eyebrow="Braise, sauces et transmission"
         title="La carte du moment"
         lede="Une cuisine franco-africaine généreuse. Notre carte célèbre la braise, les sauces maison et les produits qui relient nos deux cultures. L’héritage de Mama Lina inspire l’esprit de la maison : accueillir, transmettre et partager."
+        photo={{ src: '/images/viande-braisee.webp', tint: '#1d1411', position: '50% 58%' }}
       />
 
-      <section className="section">
+      <section className="section" style={{ paddingBottom: 0 }}>
         <div className="shell">
           <span className="eyebrow">Chez Lina</span>
           <h2>Nos formules</h2>
-          <p style={{ maxWidth: 640, color: 'var(--brown-muted)' }}>{formules.note}</p>
-          <div className="grid grid-3" style={{ marginTop: 32 }}>
-            {formules.items.map((f) => (
-              <div className="formule-card" key={f.name}>
-                <h3 style={{ fontSize: '1.1rem' }}>{f.name}</h3>
-                <p style={{ color: 'var(--brown-muted)', margin: 0 }}>{f.subtitle}</p>
-                <div className="price">{f.price}</div>
-                <p style={{ fontSize: '0.9rem' }}>{f.description}</p>
-                {f.note && <p style={{ fontSize: '0.82rem', color: 'var(--rust)', margin: 0 }}>{f.note}</p>}
-              </div>
-            ))}
+
+          <div className="formules-card">
+            <p className="formules-note">{formules.note}</p>
+            <div className="formules-row">
+              {formules.items.map((f) => (
+                <div className="formule-col" key={f.name}>
+                  <div className="formule-col-head">
+                    <strong>{f.name}</strong>
+                    <span className="formule-price">{f.price}</span>
+                  </div>
+                  <p>{f.subtitle}</p>
+                  <p className="formule-desc">{f.description}</p>
+                  {f.note && <p className="formule-note">{f.note}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="section-divider" aria-hidden="true">
+            <span />
+            <span className="section-divider-mark">◇</span>
+            <span />
           </div>
         </div>
       </section>
 
-      <section className="section section-cream">
+      <section className="section section-cream" style={{ paddingTop: 0 }}>
         <div className="shell">
-          {menuSections.map((section) => (
-            <div className="menu-block" key={section.title}>
-              <div className="menu-block-head">
-                <div>
+          <div className="menu-columns">
+            <div className="menu-column">
+              {menuSections.filter((s) => s.column === 'left').map((section) => (
+                <div className={`menu-box ${section.dark ? 'menu-box-dark' : ''}`} key={section.title}>
+                  <span className="menu-box-corner" aria-hidden="true" />
                   <span className="eyebrow">{section.eyebrow}</span>
-                  <h2 style={{ margin: 0 }}>{section.title}</h2>
-                </div>
-              </div>
-              {section.items.map((item) => (
-                <div className="menu-item" key={item.name}>
-                  <div>
-                    <div className="menu-item-name">{item.name}</div>
-                    {item.description && <div className="menu-item-desc">{item.description}</div>}
-                  </div>
-                  <div className="menu-item-price">{item.price}</div>
+                  <h2>{section.title}</h2>
+                  {section.items.map((item) => (
+                    <div className="menu-item" key={item.name}>
+                      {item.image && <img className="menu-item-thumb" src={item.image} alt="" />}
+                      <div className="menu-item-body">
+                        <div className="menu-item-top">
+                          <span className="menu-item-name">{item.name}</span>
+                          <span className="menu-item-price">{item.price}</span>
+                        </div>
+                        {item.description && <div className="menu-item-desc">{item.description}</div>}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
-          ))}
+            <div className="menu-column">
+              {menuSections.filter((s) => s.column === 'right').map((section) => (
+                <div className={`menu-box ${section.dark ? 'menu-box-dark' : ''}`} key={section.title}>
+                  <span className="menu-box-corner" aria-hidden="true" />
+                  <span className="eyebrow">{section.eyebrow}</span>
+                  <h2>{section.title}</h2>
+                  {section.items.map((item) => (
+                    <div className="menu-item" key={item.name}>
+                      {item.image && <img className="menu-item-thumb" src={item.image} alt="" />}
+                      <div className="menu-item-body">
+                        <div className="menu-item-top">
+                          <span className="menu-item-name">{item.name}</span>
+                          <span className="menu-item-price">{item.price}</span>
+                        </div>
+                        {item.description && <div className="menu-item-desc">{item.description}</div>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -60,14 +97,14 @@ export default function LaCarte() {
           <span className="eyebrow">À boire</span>
           <h2>La carte des boissons</h2>
           <p style={{ color: 'var(--brown-muted)' }}>Boissons chaudes, boissons maison, softs, bières, vins et champagne.</p>
-          <div className="grid grid-2" style={{ marginTop: 24 }}>
+          <div className="drinks-panel">
             {drinksSections.map((section) => (
-              <div key={section.title}>
-                <h3 style={{ fontSize: '1.1rem' }}>{section.title}</h3>
+              <div className="drinks-col" key={section.title}>
+                <h3>{section.title}</h3>
                 {section.items.map((item) => (
-                  <div className="menu-item" key={item.name}>
-                    <div className="menu-item-name" style={{ fontWeight: 500 }}>{item.name}</div>
-                    <div className="menu-item-price">{item.price}</div>
+                  <div className="menu-item menu-item-plain" key={item.name}>
+                    <span className="menu-item-name" style={{ fontWeight: 500 }}>{item.name}</span>
+                    <span className="menu-item-price">{item.price}</span>
                   </div>
                 ))}
               </div>

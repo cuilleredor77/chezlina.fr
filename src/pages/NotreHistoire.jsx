@@ -21,6 +21,7 @@ export default function NotreHistoire() {
         eyebrow="Une mère, quatre filles, un héritage."
         title="Mama Lina, du Congo à Brunoy"
         lede="L’héritage congolais de Mama Lina, transmis à ses quatre filles."
+        photo={{ src: '/images/table-partage.webp', tint: '#2d1e1a', position: '70% 50%' }}
       />
 
       <section className="section split" style={{ padding: 0 }}>
