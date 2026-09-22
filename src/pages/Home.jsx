@@ -62,7 +62,9 @@ export default function Home() {
       <section className="origin-band">
         <div className="shell origin-band-grid">
           <figure className="mama-face-frame">
-            <span className="mama-face-visual" role="img" aria-label="Portrait illustré de Mama Lina" />
+            <div className="mama-face-circle">
+              <span className="mama-face-visual" role="img" aria-label="Portrait illustré de Mama Lina" />
+            </div>
             <figcaption>Mama Lina, à l&rsquo;origine de la maison.</figcaption>
           </figure>
           <div>

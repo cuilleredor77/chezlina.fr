@@ -415,34 +415,32 @@ button { font-family: inherit; cursor: pointer; }
 .origin-band-grid p { color: #f3e2dc; }
 .origin-band-grid h2 { color: var(--white); }
 .mama-face-frame {
-  position: relative;
   width: 100%;
   max-width: 420px;
+  margin: 0 auto;
+}
+.mama-face-circle {
+  position: relative;
+  width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto;
   padding: 10px;
   border: 2px solid var(--gold);
   background: var(--forest);
   box-shadow: 0 0 0 6px rgba(244, 215, 167, 0.15), 0 20px 45px rgba(0, 0, 0, 0.35);
 }
-.mama-face-frame .mama-face-visual { border-radius: 50%; }
 .mama-face-visual {
   position: absolute;
   inset: 0;
+  border-radius: 50%;
   background-image: url('/images/mama-lina-portrait-v2.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 .mama-face-frame figcaption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 14px 18px;
-  background: linear-gradient(0deg, rgba(18, 59, 53, 0.75), transparent);
+  margin-top: 16px;
   color: var(--white);
   font-size: 0.85rem;
   text-align: center;
