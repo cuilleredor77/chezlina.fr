@@ -223,9 +223,26 @@ export default function Reservation() {
                     <div className="field">
                       <label htmlFor="time">{data.service === 'table' ? 'Heure' : 'Heure de retrait'} <span className="req">*</span></label>
                       <select id="time" required value={data.time} disabled={availableTimeSlots.length === 0} onChange={(e) => update('time', e.target.value)}>
-                        {availableTimeSlots.length === 0
-                          ? <option value="">Plus de retrait disponible ce jour</option>
-                          : availableTimeSlots.map((slot) => <option key={slot} value={slot}>{formatBookingTime(slot)}</option>)}
+                        {availableTimeSlots.length === 0 ? (
+                          <option value="">Plus de retrait disponible ce jour</option>
+                        ) : (
+                          <>
+                            {availableTimeSlots.some((slot) => Number(slot.split(':')[0]) < 17) && (
+                              <optgroup label="Service du midi">
+                                {availableTimeSlots.filter((slot) => Number(slot.split(':')[0]) < 17).map((slot) => (
+                                  <option key={slot} value={slot}>{formatBookingTime(slot)}</option>
+                                ))}
+                              </optgroup>
+                            )}
+                            {availableTimeSlots.some((slot) => Number(slot.split(':')[0]) >= 17) && (
+                              <optgroup label="Service du soir">
+                                {availableTimeSlots.filter((slot) => Number(slot.split(':')[0]) >= 17).map((slot) => (
+                                  <option key={slot} value={slot}>{formatBookingTime(slot)}</option>
+                                ))}
+                              </optgroup>
+                            )}
+                          </>
+                        )}
                       </select>
                       <span style={{ fontSize: '0.78rem', color: 'var(--brown-muted)' }}>
                         {data.service === 'table'
