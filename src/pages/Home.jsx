@@ -59,20 +59,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="origin-band split">
-        <img src="/images/mama-lina-portrait-v2.png" alt="Portrait illustré de Mama Lina" />
-        <div className="split-copy">
-          <span className="eyebrow light">L&rsquo;origine de la maison</span>
-          <h2>Une mère, quatre filles, un héritage.</h2>
-          <p>
-            Cette maison porte le prénom de Mama Lina et prolonge sa manière de réunir les personnes autour d&rsquo;une table.
-          </p>
-          <p>
-            Ses quatre filles font aujourd&rsquo;hui vivre ses racines congolaises dans une cuisine franco-africaine
-            personnelle, généreuse et contemporaine.
-          </p>
-          <p style={{ fontStyle: 'italic' }}>De Mama Lina à ses quatre filles, un héritage vivant à Brunoy.</p>
-          <Link to="/notre-histoire" className="button button-primary" style={{ alignSelf: 'flex-start' }}>Découvrir son histoire</Link>
+      <section className="origin-band">
+        <div className="shell origin-band-grid">
+          <figure className="mama-face-frame">
+            <span className="mama-face-visual" role="img" aria-label="Portrait illustré de Mama Lina" />
+            <figcaption>Mama Lina, à l&rsquo;origine de la maison.</figcaption>
+          </figure>
+          <div>
+            <span className="eyebrow light">L&rsquo;origine de la maison</span>
+            <h2>Une mère, quatre filles, un héritage.</h2>
+            <p>
+              Cette maison porte le prénom de Mama Lina et prolonge sa manière de réunir les personnes autour d&rsquo;une table.
+            </p>
+            <p>
+              Ses quatre filles font aujourd&rsquo;hui vivre ses racines congolaises dans une cuisine franco-africaine
+              personnelle, généreuse et contemporaine.
+            </p>
+            <p style={{ fontStyle: 'italic' }}>De Mama Lina à ses quatre filles, un héritage vivant à Brunoy.</p>
+            <Link to="/notre-histoire" className="button button-primary" style={{ alignSelf: 'flex-start' }}>Découvrir son histoire</Link>
+          </div>
         </div>
       </section>
 
