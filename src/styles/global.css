@@ -724,6 +724,15 @@ button { font-family: inherit; cursor: pointer; }
   overflow: hidden;
   min-width: 0;
 }
+.menu-box-full { padding-bottom: 8px; }
+.menu-box-full .menu-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 40px;
+}
+@media (max-width: 720px) {
+  .menu-box-full .menu-items-grid { grid-template-columns: 1fr; }
+}
 .menu-box-dark {
   background: var(--forest);
   color: var(--white);
