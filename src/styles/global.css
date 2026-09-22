@@ -15,8 +15,8 @@
   --espresso: #3a271f;
   --espresso-dark: #261b16;
   --espresso-darker: #1d1411;
-  --rust: #9f321c;
-  --rust-dark: #7e3420;
+  --rust: #b95332;
+  --rust-dark: #984027;
   --rust-light: #a83f27;
   --maroon: #6d2433;
   --white: #ffffff;
@@ -68,7 +68,7 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--maroon);
   margin-bottom: 0.8em;
 }
 
@@ -154,12 +154,8 @@ button { font-family: inherit; cursor: pointer; }
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--forest);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gold);
-  font-size: 1.3rem;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 .brand-name {
   font-family: var(--font-serif);

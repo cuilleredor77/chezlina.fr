@@ -28,7 +28,7 @@ export default function Home() {
               </div>
             </div>
             <div className="card">
-              <img src="/images/entree-signature.webp" alt="Plat signature Chez Lina" />
+              <img src="/images/aubergine-signature.webp" alt="Plat signature Chez Lina" />
               <div className="card-body">
                 <h3>Plats signature</h3>
                 <p>Des assiettes guidées par la braise, les sauces maison et les produits de saison.</p>
@@ -36,7 +36,7 @@ export default function Home() {
               </div>
             </div>
             <div className="card">
-              <img src="/images/table-partage.webp" alt="Table à Chez Lina, Brunoy" />
+              <img src="/images/plat-porte.webp" alt="Table à Chez Lina, Brunoy" />
               <div className="card-body">
                 <h3>À Brunoy</h3>
                 <p>Une maison de cuisine située au 29 rue de Montgeron.</p>
@@ -77,7 +77,7 @@ export default function Home() {
       </section>
 
       <section className="split section-dark" style={{ padding: 0 }}>
-        <img src="/images/aubergine-signature.webp" alt="Aubergine braisée signature Chez Lina" />
+        <img src="/images/geste-service.webp" alt="Dressage d’une assiette Chez Lina" />
         <div className="split-copy">
           <span className="eyebrow light">Notre cuisine</span>
           <h2>Deux cultures.<br />Une cuisine.</h2>
@@ -124,7 +124,7 @@ export default function Home() {
           <p style={{ maxWidth: 480, color: '#f0e4d8' }}>Choisissez une table ou préparez une commande à emporter.</p>
           <div className="button-row">
             <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>
-            <a className="button button-ghost-light" href="https://wa.me/33651197751" target="_blank" rel="noreferrer">Écrire sur WhatsApp</a>
+            <a className="button button-ghost-light" href="https://wa.me/33651197751?text=Bonjour%20Chez%20Lina%2C%20je%20souhaite%20faire%20une%20demande." target="_blank" rel="noreferrer">Écrire sur WhatsApp</a>
           </div>
         </div>
       </section>

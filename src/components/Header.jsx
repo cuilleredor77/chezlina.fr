@@ -15,7 +15,7 @@ export default function Header() {
     <header className="site-header">
       <div className="site-header-inner">
         <NavLink to="/" className="brand" onClick={() => setOpen(false)}>
-          <span className="brand-mark" aria-hidden="true">✳</span>
+          <img className="brand-mark" src="/favicon.png" alt="" />
           <span>
             <span className="brand-name">Chezlina.fr</span>
             <span className="brand-tagline">Restaurant franco-africain · Brunoy</span>
