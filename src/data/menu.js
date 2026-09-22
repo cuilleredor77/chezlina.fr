@@ -53,7 +53,7 @@ export const menuSections = [
       { name: 'Tempura de manioc', description: 'Mayonnaise au basilic frais.', price: '7 €', image: '/images/morue-frite.webp' },
       { name: 'Aubergine braisée en brochette', description: 'Crème de maïs onctueuse, salade d’herbes fraîches et confiture de tamarin.', price: '7 €', image: '/images/aubergine-signature.webp' },
       { name: 'Tarte fine tomate et burrata', description: 'Saka-saka, sauce vierge à la tomate et au bissap, salade d’herbes fraîches et burrata crémeuse.', price: '10 €', image: '/images/entree-signature.webp' },
-      { name: 'Planche à partager', description: 'Sélection du chef.', price: '10 pièces 15 € · 25 pièces 28 €', image: '/images/plateau-bouchees-reportage.webp' },
+      { name: 'Planche à partager', description: 'Sélection du chef.', priceOptions: [{ label: '10 pièces', price: '15 €' }, { label: '25 pièces', price: '28 €' }], image: '/images/plateau-bouchees-reportage.webp' },
     ],
   },
   {

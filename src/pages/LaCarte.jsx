@@ -77,9 +77,19 @@ export default function LaCarte() {
                       <div className="menu-item-body">
                         <div className="menu-item-top">
                           <span className="menu-item-name">{item.name}</span>
-                          <span className="menu-item-price">{item.price}</span>
+                          {!item.priceOptions && <span className="menu-item-price">{item.price}</span>}
                         </div>
                         {item.description && <div className="menu-item-desc">{item.description}</div>}
+                        {item.priceOptions && (
+                          <div className="menu-price-stack">
+                            {item.priceOptions.map((opt) => (
+                              <span className="menu-price-option" key={opt.label}>
+                                <small>{opt.label}</small>
+                                <strong>{opt.price}</strong>
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -98,9 +108,19 @@ export default function LaCarte() {
                       <div className="menu-item-body">
                         <div className="menu-item-top">
                           <span className="menu-item-name">{item.name}</span>
-                          <span className="menu-item-price">{item.price}</span>
+                          {!item.priceOptions && <span className="menu-item-price">{item.price}</span>}
                         </div>
                         {item.description && <div className="menu-item-desc">{item.description}</div>}
+                        {item.priceOptions && (
+                          <div className="menu-price-stack">
+                            {item.priceOptions.map((opt) => (
+                              <span className="menu-price-option" key={opt.label}>
+                                <small>{opt.label}</small>
+                                <strong>{opt.price}</strong>
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
