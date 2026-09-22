@@ -41,14 +41,22 @@ function getParisDate() {
   return `${value.year}-${value.month}-${value.day}`
 }
 
-function getTakeawayTimeSlots(date) {
+function getAvailableTimeSlots(date, leadMinutes) {
   const now = getParisNow()
   if (date !== now.date) return reservationTimeSlots
-  const firstPossibleMinute = Math.ceil((now.minutes + 30) / STEP_MINUTES) * STEP_MINUTES
+  const firstPossibleMinute = Math.ceil((now.minutes + leadMinutes) / STEP_MINUTES) * STEP_MINUTES
   return reservationTimeSlots.filter((slot) => {
     const [hours, minutes] = slot.split(':').map(Number)
     return hours * 60 + minutes >= firstPossibleMinute
   })
+}
+
+function getTableTimeSlots(date) {
+  return getAvailableTimeSlots(date, 1)
+}
+
+function getTakeawayTimeSlots(date) {
+  return getAvailableTimeSlots(date, 30)
 }
 
 function formatBookingDate(date) {
@@ -83,7 +91,7 @@ export default function Reservation() {
   const [prepared, setPrepared] = useState(false)
 
   const availableTimeSlots = useMemo(
-    () => (data.service === 'takeaway' ? getTakeawayTimeSlots(data.date) : reservationTimeSlots),
+    () => (data.service === 'takeaway' ? getTakeawayTimeSlots(data.date) : getTableTimeSlots(data.date)),
     [data.date, data.service],
   )
 
