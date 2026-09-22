@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
@@ -6,9 +6,19 @@ import FloatingReserve from './FloatingReserve'
 
 export default function Layout() {
   const { pathname } = useLocation()
+  const isFirstPageView = useRef(true)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+  }, [pathname])
+
+  useEffect(() => {
+    if (isFirstPageView.current) {
+      isFirstPageView.current = false
+      return
+    }
+    if (typeof window.gtag !== 'function') return
+    window.gtag('event', 'page_view', { page_path: pathname })
   }, [pathname])
 
   useEffect(() => {
