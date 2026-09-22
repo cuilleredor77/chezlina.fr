@@ -15,12 +15,12 @@ export const formules = {
       description: 'Sur présentation de la carte étudiante.',
     },
     {
-      name: 'Formule du midi',
+      name: 'Formule du midi *',
       lines: [
         { label: 'Entrée + plat ou plat + dessert', price: '25 €' },
         { label: 'Entrée + plat + dessert', price: '30 €' },
       ],
-      description: 'Café ou thé gourmand : +2 €.',
+      description: '* Café ou thé gourmand : +2 €.',
     },
   ],
 }
