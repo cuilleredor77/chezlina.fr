@@ -176,7 +176,6 @@ export default function Reservation() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="shell">
           <div className="reservation-card">
-            <h2>Réserver ou commander</h2>
             <p style={{ color: 'var(--brown-muted)' }}>Deux étapes rapides pour préparer votre demande dans WhatsApp.</p>
 
             <div className="steps">
