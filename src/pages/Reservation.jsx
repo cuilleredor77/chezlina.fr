@@ -74,7 +74,7 @@ function formatBookingTime(time) {
 const initial = {
   service: 'table',
   date: '',
-  time: '18:30',
+  time: '',
   guests: '',
   firstName: '',
   phone: '',
