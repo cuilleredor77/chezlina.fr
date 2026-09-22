@@ -2,6 +2,38 @@ import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import { formules, menuSections, drinksSections, wineSections } from '../data/menu'
 
+function MenuBox({ section, style }) {
+  return (
+    <div className={`menu-box ${section.dark ? 'menu-box-dark' : ''}`} style={style}>
+      <span className="menu-box-corner" aria-hidden="true" />
+      <span className="eyebrow">{section.eyebrow}</span>
+      <h2>{section.title}</h2>
+      {section.items.map((item) => (
+        <div className="menu-item" key={item.name}>
+          {item.image && <img className="menu-item-thumb" src={item.image} alt="" />}
+          <div className="menu-item-body">
+            <div className="menu-item-top">
+              <span className="menu-item-name">{item.name}</span>
+              {!item.priceOptions && <span className="menu-item-price">{item.price}</span>}
+            </div>
+            {item.description && <div className="menu-item-desc">{item.description}</div>}
+            {item.priceOptions && (
+              <div className="menu-price-stack">
+                {item.priceOptions.map((opt) => (
+                  <span className="menu-price-option" key={opt.label}>
+                    <small>{opt.label}</small>
+                    <strong>{opt.price}</strong>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function LaCarte() {
   return (
     <>
@@ -65,98 +97,23 @@ export default function LaCarte() {
       <section className="section section-cream" style={{ paddingTop: 0 }}>
         <div className="shell">
           {menuSections.filter((s) => s.title === 'Les entrées').map((section) => (
-            <div className={`menu-box ${section.dark ? 'menu-box-dark' : ''}`} key={section.title} style={{ marginBottom: 36 }}>
-              <span className="menu-box-corner" aria-hidden="true" />
-              <span className="eyebrow">{section.eyebrow}</span>
-              <h2>{section.title}</h2>
-              {section.items.map((item) => (
-                <div className="menu-item" key={item.name}>
-                  {item.image && <img className="menu-item-thumb" src={item.image} alt="" />}
-                  <div className="menu-item-body">
-                    <div className="menu-item-top">
-                      <span className="menu-item-name">{item.name}</span>
-                      {!item.priceOptions && <span className="menu-item-price">{item.price}</span>}
-                    </div>
-                    {item.description && <div className="menu-item-desc">{item.description}</div>}
-                    {item.priceOptions && (
-                      <div className="menu-price-stack">
-                        {item.priceOptions.map((opt) => (
-                          <span className="menu-price-option" key={opt.label}>
-                            <small>{opt.label}</small>
-                            <strong>{opt.price}</strong>
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <MenuBox section={section} key={section.title} style={{ marginBottom: 36 }} />
           ))}
           <div className="menu-columns">
             <div className="menu-column">
               {menuSections.filter((s) => s.column === 'left').map((section) => (
-                <div className={`menu-box ${section.dark ? 'menu-box-dark' : ''}`} key={section.title}>
-                  <span className="menu-box-corner" aria-hidden="true" />
-                  <span className="eyebrow">{section.eyebrow}</span>
-                  <h2>{section.title}</h2>
-                  {section.items.map((item) => (
-                    <div className="menu-item" key={item.name}>
-                      {item.image && <img className="menu-item-thumb" src={item.image} alt="" />}
-                      <div className="menu-item-body">
-                        <div className="menu-item-top">
-                          <span className="menu-item-name">{item.name}</span>
-                          {!item.priceOptions && <span className="menu-item-price">{item.price}</span>}
-                        </div>
-                        {item.description && <div className="menu-item-desc">{item.description}</div>}
-                        {item.priceOptions && (
-                          <div className="menu-price-stack">
-                            {item.priceOptions.map((opt) => (
-                              <span className="menu-price-option" key={opt.label}>
-                                <small>{opt.label}</small>
-                                <strong>{opt.price}</strong>
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <MenuBox section={section} key={section.title} />
               ))}
             </div>
             <div className="menu-column">
-              {menuSections.filter((s) => s.column === 'right' && s.title !== 'Les entrées').map((section) => (
-                <div className={`menu-box ${section.dark ? 'menu-box-dark' : ''}`} key={section.title}>
-                  <span className="menu-box-corner" aria-hidden="true" />
-                  <span className="eyebrow">{section.eyebrow}</span>
-                  <h2>{section.title}</h2>
-                  {section.items.map((item) => (
-                    <div className="menu-item" key={item.name}>
-                      {item.image && <img className="menu-item-thumb" src={item.image} alt="" />}
-                      <div className="menu-item-body">
-                        <div className="menu-item-top">
-                          <span className="menu-item-name">{item.name}</span>
-                          {!item.priceOptions && <span className="menu-item-price">{item.price}</span>}
-                        </div>
-                        {item.description && <div className="menu-item-desc">{item.description}</div>}
-                        {item.priceOptions && (
-                          <div className="menu-price-stack">
-                            {item.priceOptions.map((opt) => (
-                              <span className="menu-price-option" key={opt.label}>
-                                <small>{opt.label}</small>
-                                <strong>{opt.price}</strong>
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              {menuSections.filter((s) => s.column === 'right' && s.title !== 'Les entrées' && s.title !== 'Les desserts').map((section) => (
+                <MenuBox section={section} key={section.title} />
               ))}
             </div>
           </div>
+          {menuSections.filter((s) => s.title === 'Les desserts').map((section) => (
+            <MenuBox section={section} key={section.title} style={{ marginTop: 36 }} />
+          ))}
         </div>
       </section>
 
