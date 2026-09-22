@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 
 const featured = [
-  { src: '/images/table-partage.webp', alt: 'Plusieurs saveurs, un même moment de partage', caption: 'La table', title: 'Plusieurs saveurs, un même moment de partage' },
+  { src: '/images/table-reportage.webp', alt: 'Une table réunissant plusieurs plats Chez Lina', caption: 'La table', title: 'Plusieurs saveurs, un même moment de partage' },
   { src: '/images/dorade-braisee.webp', alt: 'Dorade braisée et condiment frais', caption: 'La braise', title: 'Dorade braisée et condiment frais' },
   { src: '/images/brochettes-boeuf.webp', alt: 'Brochettes, alloco et sauce maison', caption: 'À partager', title: 'Brochettes, alloco et sauce maison' },
 ]
 
 const more = [
   { src: '/images/mouton-braise.webp', alt: 'Mouton braisé servi avec de la chikwangue', title: 'Mouton braisé' },
-  { src: '/images/plateau-bouchees-reportage.webp', alt: 'Entrée signature portée à deux mains', title: 'Entrée signature' },
+  { src: '/images/entree-signature.webp', alt: 'Entrée signature portée à deux mains', title: 'Entrée signature' },
   { src: '/images/aubergine-signature.webp', alt: 'Aubergine grillée sur sauce crémeuse', title: 'Création végétale' },
   { src: '/images/panga-braise.jpg', alt: 'Panga entier braisé, garni d’herbes fraîches et servi avec un citron grillé', title: 'Panga braisé' },
 ]
@@ -42,7 +42,7 @@ export default function Galerie() {
       </section>
 
       <section className="section split" style={{ padding: 0 }}>
-        <img src="/images/plateau-partage.webp" alt="Le geste de service Chez Lina" />
+        <img src="/images/geste-service.webp" alt="Main servant une bouchée sur un plateau à partager" />
         <div className="split-copy">
           <span className="eyebrow">Le geste</span>
           <h2>Le soin jusque dans le dernier geste.</h2>

@@ -9,12 +9,17 @@ export default function LaCarte() {
         crumb="La carte du moment"
         eyebrow="Braise, sauces et transmission"
         title="La carte du moment"
-        lede="Une cuisine franco-africaine généreuse. Notre carte célèbre la braise, les sauces maison et les produits qui relient nos deux cultures. L’héritage de Mama Lina inspire l’esprit de la maison : accueillir, transmettre et partager."
+        lede="Une cuisine franco-africaine généreuse."
         photo={{ src: '/images/viande-braisee.webp', tint: '#1d1411', position: '50% 58%' }}
       />
 
       <section className="section" style={{ paddingBottom: 0 }}>
         <div className="shell">
+          <p>Notre carte célèbre la braise, les sauces maison et les produits qui relient nos deux cultures.</p>
+          <p style={{ fontStyle: 'italic', color: 'var(--brown-muted)' }}>
+            L&rsquo;héritage de Mama Lina inspire l&rsquo;esprit de la maison : accueillir, transmettre et partager.
+          </p>
+
           <span className="eyebrow">Chez Lina</span>
           <h2>Nos formules</h2>
 

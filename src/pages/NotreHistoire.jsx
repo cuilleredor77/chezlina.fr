@@ -25,7 +25,7 @@ export default function NotreHistoire() {
       />
 
       <section className="section split" style={{ padding: 0 }}>
-        <img src="/images/mama-lina-portrait.jpeg" alt="Mama Lina, le visage et le prénom à l’origine de la maison" />
+        <img src="/images/mama-lina-portrait-v2.png" alt="Mama Lina, le visage et le prénom à l’origine de la maison" />
         <div className="split-copy">
           <span className="eyebrow">À l&rsquo;origine</span>
           <h2>Une mère, un prénom, une manière de recevoir.</h2>
@@ -88,8 +88,11 @@ export default function NotreHistoire() {
         </div>
       </section>
 
-      <section className="section split" style={{ padding: 0 }}>
-        <img src="/images/poulet-braise-riz-rouge.jpeg" alt="Suprême de volaille et riz rouge Chez Lina" />
+      <section className="section split-photos" style={{ padding: 0 }}>
+        <div className="split-photos-media">
+          <img src="/images/table-reportage.webp" alt="Plusieurs plats Chez Lina réunis autour d’une table" />
+          <img src="/images/geste-service.webp" alt="Un geste de service autour d’un plateau à partager" />
+        </div>
         <div className="split-copy">
           <span className="eyebrow">Aujourd&rsquo;hui, à Brunoy</span>
           <h2>L&rsquo;histoire continue dans l&rsquo;assiette.</h2>
