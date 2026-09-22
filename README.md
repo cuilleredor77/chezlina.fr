@@ -34,5 +34,6 @@ une conversation WhatsApp pré-remplie (`wa.me`), exactement comme le site d'ori
 
 ## Déploiement
 
-Prévu sur Cloudflare Pages, connecté à un dépôt GitHub. Build command : `npm run build`,
-dossier de sortie : `dist`.
+Hébergé sur Cloudflare Pages, connecté au dépôt GitHub `cuilleredor77/chezlina.fr`.
+Chaque push sur `main` déclenche un build automatique (build command : `npm run build`,
+dossier de sortie : `dist`).
