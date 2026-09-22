@@ -787,7 +787,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .menu-box-dark .menu-item-price { background: rgba(255, 255, 255, 0.12); color: var(--gold); }
 .menu-item-plain { justify-content: space-between; }
-.menu-price-stack { display: flex; gap: 8px; margin-top: 8px; }
+.menu-price-stack { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
 .menu-price-option {
   display: flex;
   flex-direction: column;
