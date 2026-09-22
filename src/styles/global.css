@@ -423,8 +423,12 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+  padding: 10px;
+  border: 2px solid var(--gold);
+  background: var(--forest);
+  box-shadow: 0 0 0 6px rgba(244, 215, 167, 0.15), 0 20px 45px rgba(0, 0, 0, 0.35);
 }
+.mama-face-frame .mama-face-visual { border-radius: 50%; }
 .mama-face-visual {
   position: absolute;
   inset: 0;
