@@ -24,31 +24,19 @@ export default function Contact() {
 
             <div className="button-row" style={{ marginTop: 20 }}>
               <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>
-              <a className="button button-ghost" href="https://www.google.com/maps/dir/?api=1&destination=29+rue+de+Montgeron+91800+Brunoy" target="_blank" rel="noreferrer">Google Maps</a>
-              <a className="button button-ghost" href="https://www.waze.com/ul?q=29%20rue%20de%20Montgeron%2C%2091800%20Brunoy&navigate=yes" target="_blank" rel="noreferrer">Waze</a>
+              <a className="button button-outline" href="https://www.google.com/maps/dir/?api=1&destination=29+rue+de+Montgeron+91800+Brunoy" target="_blank" rel="noreferrer">Google Maps</a>
+              <a className="button button-outline" href="https://www.waze.com/ul?q=29%20rue%20de%20Montgeron%2C%2091800%20Brunoy&navigate=yes" target="_blank" rel="noreferrer">Waze</a>
             </div>
           </div>
 
           <div>
             <span className="eyebrow">Nous contacter</span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-              <a className="card-body" style={{ background: 'var(--cream-card)', borderRadius: 14, padding: 20 }} href="tel:+33651197751">
-                <strong>Appeler</strong>
-                <div>06 51 19 77 51</div>
-              </a>
-              <a className="card-body" style={{ background: 'var(--cream-card)', borderRadius: 14, padding: 20 }} href="https://wa.me/33651197751" target="_blank" rel="noreferrer">
-                <strong>Écrire</strong>
-                <div>WhatsApp</div>
-              </a>
-              <a className="card-body" style={{ background: 'var(--cream-card)', borderRadius: 14, padding: 20 }} href="mailto:restaurant.chezlina@gmail.com">
-                <strong>Écrire</strong>
-                <div>E-mail</div>
-              </a>
-              <a className="card-body" style={{ background: 'var(--cream-card)', borderRadius: 14, padding: 20 }} href="https://www.instagram.com/restaurant.chezlina/" target="_blank" rel="noreferrer">
-                <strong>Nous suivre</strong>
-                <div>Instagram</div>
-              </a>
-            </div>
+            <nav className="contact-secondary" aria-label="Contacter Chez Lina">
+              <a href="tel:+33651197751"><span>Appeler</span><strong>06 51 19 77 51</strong></a>
+              <a href="https://wa.me/33651197751" target="_blank" rel="noreferrer"><span>Écrire</span><strong>WhatsApp</strong></a>
+              <a href="mailto:restaurant.chezlina@gmail.com"><span>Écrire</span><strong>E-mail</strong></a>
+              <a href="https://www.instagram.com/restaurant.chezlina/" target="_blank" rel="noreferrer"><span>Nous suivre</span><strong>Instagram</strong></a>
+            </nav>
           </div>
         </div>
       </section>

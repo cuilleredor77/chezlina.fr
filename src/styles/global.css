@@ -330,6 +330,23 @@ button { font-family: inherit; cursor: pointer; }
 .card-body h3 { font-size: 1.2rem; margin-bottom: 0.3em; }
 .card-body p { color: var(--brown-muted); margin-bottom: 0; font-size: 0.95rem; }
 
+.contact-secondary { display: flex; flex-direction: column; }
+.contact-secondary a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--cream-line);
+}
+.contact-secondary a:last-child { border-bottom: none; }
+.contact-secondary a span { color: var(--brown-muted); font-size: 0.9rem; }
+.contact-secondary a strong { color: var(--espresso-dark); font-size: 1.02rem; }
+.contact-secondary a:hover strong { color: var(--rust); }
+
+.button-outline { background: transparent; border: 2px solid var(--forest); color: var(--forest); }
+.button-outline:hover { background: var(--forest); color: var(--white); }
+
 .split {
   display: grid;
   grid-template-columns: 1fr 1fr;
