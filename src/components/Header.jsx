@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 
 const links = [
   { to: '/la-carte', label: 'La carte' },
-  { to: '/notre-histoire', label: 'Les 4 sœurs Lina' },
-  { to: '/galerie', label: 'Galerie' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/notre-histoire', label: 'Mama Lina & ses filles' },
+  { to: '/galerie', label: 'La maison en images' },
+  { to: '/contact', label: 'Nous trouver' },
 ]
 
 export default function Header() {

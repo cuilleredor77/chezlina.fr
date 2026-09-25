@@ -25,7 +25,7 @@ export default function NotreHistoire() {
       />
 
       <section className="section split" style={{ padding: 0 }}>
-        <img src="/images/mama-lina-portrait-v2.png" alt="Mama Lina, le visage et le prénom à l’origine de la maison" />
+        <img className="portrait-medallion" src="/images/mama-lina-portrait-v2.png" alt="Mama Lina, le visage et le prénom à l’origine de la maison" />
         <div className="split-copy">
           <span className="eyebrow">À l&rsquo;origine</span>
           <h2>Une mère, un prénom, une manière de recevoir.</h2>
