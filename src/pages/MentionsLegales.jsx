@@ -11,7 +11,7 @@ export default function MentionsLegales() {
         Date d&rsquo;immatriculation : 9 septembre 2026<br />
         Siège social : 29 rue de Montgeron, 91800 Brunoy<br />
         Téléphone : 06 51 19 77 51<br />
-        restaurant.chezlina@gmail.com
+        contact@chezlina.fr
       </p>
 
       <h2>Responsable de publication</h2>
@@ -37,7 +37,7 @@ export default function MentionsLegales() {
       </p>
 
       <h2>Contact</h2>
-      <p><a href="mailto:restaurant.chezlina@gmail.com">Écrire à Chez Lina</a></p>
+      <p><a href="mailto:contact@chezlina.fr">Écrire à Chez Lina</a></p>
     </LegalLayout>
   )
 }

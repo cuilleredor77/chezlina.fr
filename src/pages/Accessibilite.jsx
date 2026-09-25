@@ -27,7 +27,7 @@ export default function Accessibilite() {
 
       <h2>Signaler un problème</h2>
       <p>
-        Si vous rencontrez une difficulté, écrivez à <a href="mailto:restaurant.chezlina@gmail.com">restaurant.chezlina@gmail.com</a> en
+        Si vous rencontrez une difficulté, écrivez à <a href="mailto:contact@chezlina.fr">contact@chezlina.fr</a> en
         indiquant la page concernée et le problème rencontré.
       </p>
     </LegalLayout>

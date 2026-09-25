@@ -9,7 +9,7 @@ export default function PolitiqueConfidentialite() {
       <h2>Responsable du traitement</h2>
       <p>
         Chez Lina, SAS au capital social de 1 000 €, SIREN 109 488 429, immatriculée le 9 septembre 2026, dont le siège
-        social est situé au 29 rue de Montgeron, 91800 Brunoy — restaurant.chezlina@gmail.com — 06 51 19 77 51.
+        social est situé au 29 rue de Montgeron, 91800 Brunoy — contact@chezlina.fr — 06 51 19 77 51.
       </p>
 
       <h2>Données et finalités</h2>
@@ -46,7 +46,7 @@ export default function PolitiqueConfidentialite() {
       <p>
         Vous pouvez demander l&rsquo;accès, la rectification, l&rsquo;effacement ou la limitation de vos données, vous opposer à
         certains traitements et retirer à tout moment votre consentement commercial en écrivant à
-        restaurant.chezlina@gmail.com. Vous pouvez également introduire une réclamation auprès de la CNIL.
+        contact@chezlina.fr. Vous pouvez également introduire une réclamation auprès de la CNIL.
       </p>
 
       <h2>Services externes</h2>

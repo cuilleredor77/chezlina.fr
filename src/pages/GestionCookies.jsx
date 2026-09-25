@@ -28,7 +28,7 @@ export default function GestionCookies() {
       </p>
 
       <h2>Nous contacter</h2>
-      <p>Pour toute question : <a href="mailto:restaurant.chezlina@gmail.com">restaurant.chezlina@gmail.com</a>.</p>
+      <p>Pour toute question : <a href="mailto:contact@chezlina.fr">contact@chezlina.fr</a>.</p>
     </LegalLayout>
   )
 }
