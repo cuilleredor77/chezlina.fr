@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const links = [
   { to: '/la-carte', label: 'La carte' },
-  { to: '/notre-histoire', label: 'Notre histoire' },
+  { to: '/notre-histoire', label: 'Les 4 sœurs Lina' },
   { to: '/galerie', label: 'Galerie' },
   { to: '/contact', label: 'Contact' },
 ]

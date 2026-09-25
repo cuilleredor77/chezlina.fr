@@ -15,7 +15,7 @@ export default function Footer() {
         <nav className="footer-nav" aria-label="Navigation de pied de page">
           <h2>Découvrir</h2>
           <Link to="/la-carte">La carte</Link>
-          <Link to="/notre-histoire">Notre histoire</Link>
+          <Link to="/notre-histoire">Les 4 sœurs Lina</Link>
           <Link to="/galerie">Galerie</Link>
           <Link to="/contact">Contact</Link>
         </nav>

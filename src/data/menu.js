@@ -126,6 +126,7 @@ export const cocktailSections = [
       { name: 'Sex on the Beach', tag: 'Sucré et solaire.', price: '12 €', image: '/images/cocktails/sex-on-the-beach.jpg' },
       { name: 'Joséphine Baker', tag: 'Passion, fraîcheur, caractère.', price: '12 €', image: '/images/cocktails/josephine-baker.jpg' },
       { name: 'Mimosa', tag: 'L’élégance à toute heure.', price: '9 €', image: '/images/cocktails/mimosa.jpg' },
+      { name: 'Punch maison', tag: 'Généreux et convivial.', price: '8 €', image: '/images/cocktails/punch-maison.jpg' },
     ],
   },
   {
@@ -134,12 +135,6 @@ export const cocktailSections = [
       { name: 'Mojito sans alcool', tag: 'Fraîcheur sans excès.', price: '9 €', image: '/images/cocktails/mojito-sans-alcool.jpg' },
       { name: 'Piña Colada sans alcool', tag: 'Douceur tropicale, sans alcool.', price: '9 €', image: '/images/cocktails/pina-colada-sans-alcool.jpg' },
       { name: 'Sex on the Beach sans alcool', tag: 'Plaisir sans alcool.', price: '9 €', image: '/images/cocktails/sex-on-the-beach-sans-alcool.jpg' },
-    ],
-  },
-  {
-    title: 'Fait maison',
-    items: [
-      { name: 'Punch maison', tag: 'Généreux et convivial.', price: '8 €', image: '/images/cocktails/punch-maison.jpg' },
       { name: 'Gingembre maison', tag: 'Piquant et vivifiant.', price: '7 €', image: '/images/cocktails/gingembre-maison.jpg' },
       { name: 'Bissap maison', tag: 'L’authenticité autrement.', price: '7 €', image: '/images/cocktails/bissap-maison.jpg' },
     ],
