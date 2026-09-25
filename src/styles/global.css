@@ -521,9 +521,12 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 480px;
   margin: 20px 0;
   padding: 14px 18px;
-  border: 1px solid rgba(244, 215, 167, 0.4);
+  border: 1px solid rgba(244, 215, 167, 0.45);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(20, 12, 8, 0.55);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
   color: #f0e4d8;
   font-size: 0.92rem;
   line-height: 1.6;
