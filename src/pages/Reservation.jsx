@@ -14,7 +14,8 @@ function createTimeSlots(startHour, startMinute, count) {
   })
 }
 
-const reservationTimeSlots = [...createTimeSlots(11, 45, 13), ...createTimeSlots(18, 30, 22)]
+const weekdayTimeSlots = [...createTimeSlots(11, 45, 13), ...createTimeSlots(18, 30, 22)]
+const sundayTimeSlots = createTimeSlots(11, 45, 16)
 
 function getParisNow() {
   const parts = new Intl.DateTimeFormat('fr-FR', {
@@ -41,11 +42,20 @@ function getParisDate() {
   return `${value.year}-${value.month}-${value.day}`
 }
 
+function getDaySlots(date) {
+  const [year, month, day] = date.split('-').map(Number)
+  const dayOfWeek = new Date(year, month - 1, day).getDay() // 0 = dimanche, 1 = lundi
+  if (dayOfWeek === 1) return [] // fermé le lundi
+  if (dayOfWeek === 0) return sundayTimeSlots // dimanche : midi uniquement, jusqu'à 15h30
+  return weekdayTimeSlots
+}
+
 function getAvailableTimeSlots(date, leadMinutes) {
+  const daySlots = getDaySlots(date)
   const now = getParisNow()
-  if (date !== now.date) return reservationTimeSlots
+  if (date !== now.date) return daySlots
   const firstPossibleMinute = Math.ceil((now.minutes + leadMinutes) / STEP_MINUTES) * STEP_MINUTES
-  return reservationTimeSlots.filter((slot) => {
+  return daySlots.filter((slot) => {
     const [hours, minutes] = slot.split(':').map(Number)
     return hours * 60 + minutes >= firstPossibleMinute
   })
@@ -223,7 +233,9 @@ export default function Reservation() {
                       <label htmlFor="time">{data.service === 'table' ? 'Heure' : 'Heure de retrait'} <span className="req">*</span></label>
                       <select id="time" required value={data.time} disabled={availableTimeSlots.length === 0} onChange={(e) => update('time', e.target.value)}>
                         {availableTimeSlots.length === 0 ? (
-                          <option value="">Plus de retrait disponible ce jour</option>
+                          <option value="">
+                            {getDaySlots(data.date).length === 0 ? 'Fermé ce jour-là' : (data.service === 'table' ? 'Plus de créneau disponible ce jour' : 'Plus de retrait disponible ce jour')}
+                          </option>
                         ) : (
                           <>
                             {availableTimeSlots.some((slot) => Number(slot.split(':')[0]) < 17) && (
