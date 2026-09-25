@@ -33,7 +33,7 @@ export const menuSections = [
     items: [
       { name: 'Suprême de volaille, sauce poulette', description: 'Accompagné d’un riz délicatement parfumé au gingembre, à la noix de coco et au citron.', price: '19 €', image: '/images/poulet-braise-riz-rouge-detail.jpeg' },
       { name: 'Mouton braisé', description: 'Servi avec de la chikwangue.', price: '20 €', image: '/images/mouton-braise.webp' },
-      { name: 'Brochettes de bœuf', description: 'Servies avec de l’alloco.', price: '24 €', image: '/images/brochettes-boeuf.webp' },
+      { name: '4 brochettes de bœuf', description: 'Riz rouge, sauce aux trois poivrons.', price: '18 €', image: '/images/brochettes-boeuf.webp' },
     ],
   },
   {
