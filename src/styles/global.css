@@ -548,6 +548,19 @@ button { font-family: inherit; cursor: pointer; }
 .footer-line { color: var(--gold); font-family: var(--font-serif); font-size: 1.05rem; margin: 0; }
 .footer-brand-copy { color: #cbb8ab; margin: 2px 0 0; max-width: 420px; }
 
+.footer-hours { margin-top: 14px; }
+.footer-hours strong {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.footer-hours p { margin: 0 0 6px; line-height: 1.4; }
+.footer-hours-closed { color: #a8988c; font-style: italic; }
+
 .footer-location-link { display: inline-flex; align-items: center; gap: 6px; }
 .footer-location-link::after {
   content: '';

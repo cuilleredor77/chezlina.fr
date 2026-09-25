@@ -30,6 +30,12 @@ export default function Footer() {
           >
             29 rue de Montgeron<br />91800 Brunoy
           </a>
+          <div className="footer-hours">
+            <strong>Horaires</strong>
+            <p>Mardi–samedi<br />11 h 45–15 h · 18 h 30–23 h 45</p>
+            <p>Dimanche<br />11 h 45–15 h 30 (midi uniquement)</p>
+            <p className="footer-hours-closed">Fermé le lundi</p>
+          </div>
         </div>
 
         <div className="footer-contact">

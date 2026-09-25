@@ -129,6 +129,10 @@ export default function Home() {
           <span className="eyebrow light">Votre prochaine table</span>
           <h2>Préparer votre venue</h2>
           <p style={{ maxWidth: 480, color: '#f0e4d8' }}>Choisissez une table ou préparez une commande à emporter.</p>
+          <p style={{ maxWidth: 480, color: '#f0e4d8', fontWeight: 700 }}>
+            Mardi–samedi : 11 h 45–15 h · 18 h 30–23 h 45<br />
+            Dimanche : 11 h 45–15 h 30 (midi uniquement) · Fermé le lundi
+          </p>
           <div className="button-row">
             <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>
             <a className="button button-ghost-light" href="https://wa.me/33651197751?text=Bonjour%20Chez%20Lina%2C%20je%20souhaite%20faire%20une%20demande." target="_blank" rel="noreferrer">Écrire sur WhatsApp</a>
