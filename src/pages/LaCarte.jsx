@@ -131,7 +131,8 @@ export default function LaCarte() {
                   <figure className="cocktail-card" key={item.name}>
                     <img src={item.image} alt={item.name} loading="lazy" />
                     <figcaption>
-                      <span>{item.name}</span>
+                      <span className="cocktail-name">{item.name}</span>
+                      {item.tag && <span className="cocktail-tag">{item.tag}</span>}
                       <strong>{item.price}</strong>
                     </figcaption>
                   </figure>
