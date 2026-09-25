@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const links = [
   { to: '/la-carte', label: 'La carte' },
-  { to: '/notre-histoire', label: 'Mama Lina & ses filles' },
+  { to: '/notre-histoire', label: 'L’histoire de Mama Lina' },
   { to: '/galerie', label: 'La maison en images' },
   { to: '/contact', label: 'Nous trouver' },
 ]
