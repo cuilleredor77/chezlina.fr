@@ -12,6 +12,14 @@ const more = [
   { src: '/images/entree-signature.webp', alt: 'Entrée signature portée à deux mains', title: 'Entrée signature' },
   { src: '/images/aubergine-signature.webp', alt: 'Aubergine grillée sur sauce crémeuse', title: 'Création végétale' },
   { src: '/images/panga-braise.jpg', alt: 'Panga entier braisé, garni d’herbes fraîches et servi avec un citron grillé', title: 'Panga braisé' },
+  { src: '/images/entrecote-grillee.jpg', alt: 'Entrecôte grillée et frites maison', title: 'Entrecôte grillée' },
+  { src: '/images/mouton-chikwangue.jpg', alt: 'Mouton braisé et chikwangue en gros plan', title: 'Mouton et chikwangue' },
+  { src: '/images/poisson-braise-taboule.jpg', alt: 'Poisson entier braisé et son taboulé frais', title: 'Poisson braisé' },
+  { src: '/images/aubergine-brochette-detail.jpg', alt: 'Aubergine braisée en brochette, sauce crémeuse', title: 'Aubergine en brochette' },
+  { src: '/images/tempura-manioc-detail.jpg', alt: 'Tempura de manioc et sa sauce verte', title: 'Tempura de manioc' },
+  { src: '/images/poulet-grille-riz-olives.jpg', alt: 'Poulet grillé, riz épicé et olives', title: 'Poulet grillé' },
+  { src: '/images/planche-partager-detail.jpg', alt: 'Assortiment de bouchées de la planche à partager', title: 'Planche à partager' },
+  { src: '/images/moment-partage.jpg', alt: 'Une bouchée trempée dans la sauce maison', title: 'À déguster ensemble' },
 ]
 
 export default function Galerie() {
