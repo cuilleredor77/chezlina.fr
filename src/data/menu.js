@@ -91,15 +91,6 @@ export const drinksSections = [
     ],
   },
   {
-    title: 'Boissons maison',
-    items: [
-      { name: 'Bissap', price: '7 €' },
-      { name: 'Gingembre', price: '7 €' },
-      { name: 'Punch avec alcool', price: '8 €' },
-      { name: 'Joséphine Baker', price: '8 €' },
-    ],
-  },
-  {
     title: 'Softs',
     items: [
       { name: 'Coca', price: '4 €' },
@@ -115,6 +106,42 @@ export const drinksSections = [
       { name: 'Guinness 33 cl', price: '5 €' },
       { name: 'Bière pression 25 cl', price: '5 €' },
       { name: 'Bière pression 50 cl', price: '9 €' },
+    ],
+  },
+]
+
+export const cocktailSections = [
+  {
+    title: 'Cocktails',
+    items: [
+      { name: 'Daiquiri', price: '11 €', image: '/images/cocktails/daiquiri.jpg' },
+      { name: 'Mojito', price: '11 €', image: '/images/cocktails/mojito.jpg' },
+      { name: 'Piña Colada', price: '12 €', image: '/images/cocktails/pina-colada.jpg' },
+      { name: 'Hawaïen Blue', price: '12 €', image: '/images/cocktails/hawaien-blue.jpg' },
+      { name: 'Tequila Sunrise', price: '11 €', image: '/images/cocktails/tequila-sunrise.jpg' },
+      { name: 'Moscow Mule', price: '11 €', image: '/images/cocktails/moscow-mule.jpg' },
+      { name: 'Spritz Aperol', price: '11 €', image: '/images/cocktails/spritz-aperol.jpg' },
+      { name: 'Spritz Campari', price: '11 €', image: '/images/cocktails/spritz-campari.jpg' },
+      { name: 'Pornstar Martini', price: '13 €', image: '/images/cocktails/pornstar.jpg' },
+      { name: 'Sex on the Beach', price: '12 €', image: '/images/cocktails/sex-on-the-beach.jpg' },
+      { name: 'Joséphine Baker', price: '12 €', image: '/images/cocktails/josephine-baker.jpg' },
+      { name: 'Mimosa', price: '9 €', image: '/images/cocktails/mimosa.jpg' },
+    ],
+  },
+  {
+    title: 'Mocktails (sans alcool)',
+    items: [
+      { name: 'Mojito sans alcool', price: '9 €', image: '/images/cocktails/mojito-sans-alcool.jpg' },
+      { name: 'Piña Colada sans alcool', price: '9 €', image: '/images/cocktails/pina-colada-sans-alcool.jpg' },
+      { name: 'Sex on the Beach sans alcool', price: '9 €', image: '/images/cocktails/sex-on-the-beach-sans-alcool.jpg' },
+    ],
+  },
+  {
+    title: 'Fait maison',
+    items: [
+      { name: 'Punch maison', price: '8 €', image: '/images/cocktails/punch-maison.jpg' },
+      { name: 'Gingembre maison', price: '7 €', image: '/images/cocktails/gingembre-maison.jpg' },
+      { name: 'Bissap maison', price: '7 €', image: '/images/cocktails/bissap-maison.jpg' },
     ],
   },
 ]

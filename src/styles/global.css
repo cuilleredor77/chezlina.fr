@@ -834,6 +834,32 @@ button { font-family: inherit; cursor: pointer; }
 }
 .drinks-col h3 { font-size: 1rem; margin-bottom: 8px; }
 
+.cocktail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.cocktail-card {
+  margin: 0;
+  background: var(--white);
+  border: 1px solid var(--cream-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.cocktail-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+.cocktail-card figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+}
+.cocktail-card figcaption span { font-weight: 600; font-size: 0.9rem; }
+.cocktail-card figcaption strong { color: var(--rust); font-size: 0.9rem; white-space: nowrap; }
+@media (max-width: 720px) {
+  .cocktail-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 .wine-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--cream-line); }
 .wine-prices { display: flex; align-items: flex-start; gap: 8px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
 .wine-prices span {

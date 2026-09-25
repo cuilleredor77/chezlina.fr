@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
-import { formules, menuSections, drinksSections, wineSections } from '../data/menu'
+import { formules, menuSections, drinksSections, cocktailSections, wineSections } from '../data/menu'
 
 function MenuBox({ section, style, full }) {
   return (
@@ -119,11 +119,34 @@ export default function LaCarte() {
         </div>
       </section>
 
+      <section className="section section-cream">
+        <div className="shell">
+          <span className="eyebrow">À siroter</span>
+          <h2>Cocktails &amp; mocktails</h2>
+          {cocktailSections.map((section) => (
+            <div key={section.title} style={{ marginTop: 32 }}>
+              <h3 style={{ fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--rust)' }}>{section.title}</h3>
+              <div className="cocktail-grid" style={{ marginTop: 16 }}>
+                {section.items.map((item) => (
+                  <figure className="cocktail-card" key={item.name}>
+                    <img src={item.image} alt={item.name} loading="lazy" />
+                    <figcaption>
+                      <span>{item.name}</span>
+                      <strong>{item.price}</strong>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="section">
         <div className="shell">
           <span className="eyebrow">À boire</span>
           <h2>La carte des boissons</h2>
-          <p style={{ color: 'var(--brown-muted)' }}>Boissons chaudes, boissons maison, softs, bières, vins et champagne.</p>
+          <p style={{ color: 'var(--brown-muted)' }}>Boissons chaudes, softs, bières, vins et champagne.</p>
           <div className="drinks-panel">
             {drinksSections.map((section) => (
               <div className="drinks-col" key={section.title}>
