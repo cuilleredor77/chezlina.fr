@@ -188,14 +188,15 @@ button { font-family: inherit; cursor: pointer; }
 }
 .site-nav {
   display: flex;
-  gap: 28px;
+  gap: 22px;
 }
 .site-nav a {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--espresso-dark);
   padding: 6px 0;
   border-bottom: 2px solid transparent;
+  white-space: nowrap;
 }
 .site-nav a:hover,
 .site-nav a.active { border-color: var(--rust); }
