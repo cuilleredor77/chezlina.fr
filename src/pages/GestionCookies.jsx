@@ -3,12 +3,13 @@ import LegalLayout from '../components/LegalLayout'
 export default function GestionCookies() {
   return (
     <LegalLayout crumb="Cookies et services tiers" eyebrow="Navigation et confidentialité" title="Cookies et services tiers" lede="Notre utilisation des cookies et services tiers.">
-      <p><em>Dernière mise à jour : 31 août 2026.</em></p>
+      <p><em>Dernière mise à jour : 25 septembre 2026.</em></p>
 
       <h2>Situation actuelle</h2>
       <p>
-        Chez Lina ne dépose actuellement aucun cookie publicitaire, traceur de profilage ou outil de mesure
-        d&rsquo;audience. Le site n&rsquo;intègre ni carte Google, ni vidéo, ni publication Instagram susceptible de charger un
+        Chez Lina utilise Google Analytics pour mesurer la fréquentation du site (pages consultées, provenance des
+        visites). Ce service dépose des cookies de mesure d&rsquo;audience. Le site ne dépose aucun cookie publicitaire ni
+        traceur de profilage, et n&rsquo;intègre ni carte Google, ni vidéo, ni publication Instagram susceptible de charger un
         traceur tiers avant votre action.
       </p>
 

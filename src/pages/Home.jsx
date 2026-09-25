@@ -12,7 +12,7 @@ export default function Home() {
       <section className="section">
         <div className="shell">
           <span className="eyebrow">Le restaurant</span>
-          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', maxWidth: 640 }}>Un héritage de famille, à table.</h1>
+          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', maxWidth: 640 }}>Un héritage de famille, à table.</h2>
           <p style={{ maxWidth: 620, fontSize: '1.05rem' }}>
             Chez Lina vous accueille à Brunoy autour d&rsquo;une cuisine généreuse et contemporaine, héritée de Mama Lina
             et portée aujourd&rsquo;hui par ses quatre filles.

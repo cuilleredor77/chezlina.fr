@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom'
 import LegalLayout from '../components/LegalLayout'
 
 export default function PolitiqueConfidentialite() {
   return (
     <LegalLayout crumb="Politique de confidentialité" eyebrow="Vos données" title="Politique de confidentialité" lede="L’essentiel sur vos données.">
-      <p><em>Dernière mise à jour : 16 septembre 2026.</em></p>
+      <p><em>Dernière mise à jour : 25 septembre 2026.</em></p>
 
       <h2>Responsable du traitement</h2>
       <p>
@@ -53,6 +54,11 @@ export default function PolitiqueConfidentialite() {
         Le site propose des liens vers WhatsApp, Google Maps et Instagram. Aucun contenu provenant de ces services
         n&rsquo;est chargé avant que l&rsquo;utilisateur choisisse de suivre le lien. Ces services appliquent ensuite leurs
         propres politiques de confidentialité.
+      </p>
+      <p>
+        Le site utilise également Google Analytics pour mesurer sa fréquentation (pages consultées, provenance des
+        visites). Ce service, fourni par Google Ireland Limited, dépose des cookies de mesure d&rsquo;audience dès le
+        chargement du site. Voir notre page <Link to="/gestion-des-cookies">Cookies et services tiers</Link>.
       </p>
     </LegalLayout>
   )
