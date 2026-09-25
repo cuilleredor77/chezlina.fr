@@ -62,7 +62,7 @@ export default function Galerie() {
 
       <section className="section">
         <div className="shell">
-          <span className="eyebrow">{photos.length} photos</span>
+          <span className="eyebrow">En images</span>
           <h2>Les assiettes de la maison.</h2>
           <div className="gallery-grid" style={{ marginTop: 20 }}>
             {photos.map((f, i) => (

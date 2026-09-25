@@ -54,7 +54,7 @@ export default function LaCarte() {
             L&rsquo;héritage de Mama Lina inspire l&rsquo;esprit de la maison : accueillir, transmettre et partager.
           </p>
 
-          <span className="eyebrow">Chez Lina</span>
+          <span className="eyebrow">Pour toutes les faims</span>
           <h2>Nos formules</h2>
 
           <div className="formules-card">
