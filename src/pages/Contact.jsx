@@ -35,7 +35,7 @@ export default function Contact() {
               <a href="tel:+33651197751"><span>Appeler</span><strong>06 51 19 77 51</strong></a>
               <a href="https://wa.me/33651197751" target="_blank" rel="noreferrer"><span>Écrire</span><strong>WhatsApp</strong></a>
               <a href="mailto:contact@chezlina.fr"><span>Écrire</span><strong>E-mail</strong></a>
-              <a href="https://www.instagram.com/restaurant.chezlina/" target="_blank" rel="noreferrer"><span>Nous suivre</span><strong>Instagram</strong></a>
+              <a href="https://www.instagram.com/chezlina.brunoy/" target="_blank" rel="noreferrer"><span>Nous suivre</span><strong>Instagram</strong></a>
             </nav>
           </div>
         </div>

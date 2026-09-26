@@ -53,7 +53,7 @@ export default function Footer() {
         <div className="footer-social">
           <h2>Nous suivre</h2>
           <div className="social-links" aria-label="Réseaux sociaux">
-            <a className="social-link" href="https://www.instagram.com/restaurant.chezlina/" target="_blank" rel="noreferrer" aria-label="Instagram de Chez Lina">
+            <a className="social-link" href="https://www.instagram.com/chezlina.brunoy/" target="_blank" rel="noreferrer" aria-label="Instagram de Chez Lina">
               <span className="social-logo-frame">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="1.6" />
@@ -63,13 +63,13 @@ export default function Footer() {
               </span>
               <span>Chez Lina</span>
             </a>
-            <a className="social-link social-link-partner" href="https://www.instagram.com/cuillere.dor/" target="_blank" rel="noreferrer" aria-label="Cuillère d&rsquo;Or, l&rsquo;agence qui a conçu ce site (Instagram)">
+            <a className="social-link social-link-partner" href="https://www.instagram.com/cuillere.dor/" target="_blank" rel="noreferrer" aria-label="Cuillère d&rsquo;Or, traiteur événementiel (Instagram)">
               <span className="social-logo-frame social-logo-partner">
                 <img className="partner-social-logo" src="/images/logo-cuillere-dor.png" alt="" />
               </span>
               <span>
                 Cuillère d&rsquo;Or
-                <small style={{ display: 'block', fontWeight: 400, opacity: 0.75 }}>Site conçu par</small>
+                <small style={{ display: 'block', fontWeight: 400, opacity: 0.75 }}>Traiteur événementiel</small>
               </span>
             </a>
           </div>
@@ -77,7 +77,7 @@ export default function Footer() {
       </div>
 
       <div className="shell footer-bottom">
-        <p>© {new Date().getFullYear()} Chez Lina</p>
+        <p>© {new Date().getFullYear()} Chez Lina · Site conçu par Snap-me</p>
         <div className="footer-legal">
           <Link to="/mentions-legales">Mentions légales</Link>
           <Link to="/politique-confidentialite">Confidentialité</Link>
