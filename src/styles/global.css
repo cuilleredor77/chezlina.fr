@@ -221,14 +221,6 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--white);
   overflow: hidden;
 }
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(10, 7, 6, 0.55) 0%, rgba(10, 7, 6, 0.15) 35%, rgba(10, 7, 6, 0) 55%);
-  pointer-events: none;
-  z-index: 1;
-}
 .hero-copy, .hero-carousel-controls { position: relative; z-index: 2; }
 .hero-slides { position: absolute; inset: 0; }
 .hero-slide {
@@ -244,7 +236,7 @@ button { font-family: inherit; cursor: pointer; }
 .hero-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 12, 8, 0.35) 0%, rgba(20, 12, 8, 0.55) 55%, rgba(20, 12, 8, 0.88) 100%);
+  background: linear-gradient(0deg, rgba(10, 7, 6, 0.5) 0%, rgba(10, 7, 6, 0.15) 40%, rgba(10, 7, 6, 0) 62%);
 }
 .hero-copy {
   position: relative;
@@ -306,7 +298,7 @@ button { font-family: inherit; cursor: pointer; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0) 52%, rgba(23, 16, 13, 0.3) 100%);
+  background: linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(23, 16, 13, 0.18) 100%);
   z-index: 0;
 }
 .page-hero-photo .shell {

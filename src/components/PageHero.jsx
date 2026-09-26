@@ -4,7 +4,7 @@ export default function PageHero({ crumb, eyebrow, title, lede, photo }) {
   usePageTitle(title, lede)
   const style = photo
     ? {
-        background: `linear-gradient(90deg, ${photo.tint}b8 0%, ${photo.tint}78 48%, ${photo.tint}20 100%), url(${photo.src}) ${photo.position || '50% 50%'}/cover no-repeat`,
+        background: `linear-gradient(90deg, ${photo.tint}8c 0%, ${photo.tint}40 48%, ${photo.tint}00 100%), url(${photo.src}) ${photo.position || '50% 50%'}/cover no-repeat`,
       }
     : undefined
   return (
