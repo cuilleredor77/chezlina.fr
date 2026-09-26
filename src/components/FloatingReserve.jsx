@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { trackEvent } from '../lib/analytics'
 
 export default function FloatingReserve() {
   const [showTop, setShowTop] = useState(false)
+  const { pathname } = useLocation()
 
   useEffect(() => {
     const update = () => setShowTop(window.scrollY > 520)
@@ -11,6 +12,8 @@ export default function FloatingReserve() {
     window.addEventListener('scroll', update, { passive: true })
     return () => window.removeEventListener('scroll', update)
   }, [])
+
+  if (pathname === '/reservation') return null
 
   return (
     <div className="floating-reserve">
