@@ -798,6 +798,7 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--forest);
   color: var(--white);
 }
+.menu-box-dark .eyebrow { color: var(--gold); }
 .menu-box-dark h2 { color: var(--white); }
 .menu-box-dark .menu-item-desc { color: rgba(255, 255, 255, 0.7); }
 .menu-box-dark .menu-item { border-color: rgba(255, 255, 255, 0.15); }
@@ -820,14 +821,15 @@ button { font-family: inherit; cursor: pointer; }
 .menu-box h2 { font-size: 1.5rem; margin-bottom: 18px; }
 .menu-item {
   display: flex;
-  gap: 14px;
-  padding: 14px 0;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 0;
   border-bottom: 1px solid var(--cream-line);
 }
 .menu-item:last-child { border-bottom: none; }
 .menu-item-thumb {
-  width: 56px;
-  height: 56px;
+  width: 96px;
+  height: 96px;
   border-radius: var(--radius-sm);
   object-fit: cover;
   flex-shrink: 0;
