@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import { formules, menuSections, drinksSections, cocktailSections, wineSections } from '../data/menu'
 
-function MenuBox({ section, style, full }) {
+function MenuBox({ section, style, full, id }) {
   return (
-    <div className={`menu-box ${section.dark ? 'menu-box-dark' : ''} ${full ? 'menu-box-full' : ''}`} style={style}>
+    <div id={id} className={`menu-box ${section.dark ? 'menu-box-dark' : ''} ${full ? 'menu-box-full' : ''}`} style={style}>
       <span className="menu-box-corner" aria-hidden="true" />
       <span className="eyebrow">{section.eyebrow}</span>
       <h2>{section.title}</h2>
@@ -47,7 +47,16 @@ export default function LaCarte() {
         photo={{ src: '/images/viande-braisee.webp', tint: '#1d1411', position: '50% 58%' }}
       />
 
-      <section className="section" style={{ paddingBottom: 0 }}>
+      <nav className="menu-quicknav" aria-label="Navigation rapide de la carte">
+        <a href="#formules">Formules</a>
+        <a href="#entrees">Entrées</a>
+        <a href="#plats">Plats</a>
+        <a href="#desserts">Desserts</a>
+        <a href="#cocktails">Cocktails</a>
+        <a href="#vins">Vins</a>
+      </nav>
+
+      <section className="section" id="formules" style={{ paddingBottom: 0 }}>
         <div className="shell">
           <p>Notre carte célèbre la braise, les sauces maison et les produits qui relient nos deux cultures.</p>
           <p style={{ fontStyle: 'italic', color: 'var(--brown-muted)' }}>
@@ -96,12 +105,12 @@ export default function LaCarte() {
         </div>
       </section>
 
-      <section className="section section-cream" style={{ paddingTop: 0 }}>
+      <section className="section section-cream" id="entrees" style={{ paddingTop: 0 }}>
         <div className="shell">
           {menuSections.filter((s) => s.title === 'Les entrées').map((section) => (
             <MenuBox section={section} key={section.title} style={{ marginBottom: 36 }} full />
           ))}
-          <div className="menu-columns">
+          <div className="menu-columns" id="plats">
             <div className="menu-column">
               {menuSections.filter((s) => s.column === 'left').map((section) => (
                 <MenuBox section={section} key={section.title} />
@@ -117,12 +126,12 @@ export default function LaCarte() {
             <MenuBox section={section} key={section.title} style={{ marginTop: 36 }} full />
           ))}
           {menuSections.filter((s) => s.title === 'Les desserts').map((section) => (
-            <MenuBox section={section} key={section.title} style={{ marginTop: 36 }} full />
+            <MenuBox section={section} key={section.title} id="desserts" style={{ marginTop: 36 }} full />
           ))}
         </div>
       </section>
 
-      <section className="section section-cream">
+      <section className="section section-cream" id="cocktails">
         <div className="shell">
           <span className="eyebrow">À siroter</span>
           <h2>Cocktails &amp; mocktails</h2>
@@ -167,7 +176,7 @@ export default function LaCarte() {
         </div>
       </section>
 
-      <section className="section section-dark">
+      <section className="section section-dark" id="vins">
         <div className="shell">
           <span className="eyebrow light">La cave</span>
           <h2>Vins et champagne</h2>

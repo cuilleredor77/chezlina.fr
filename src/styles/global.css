@@ -777,6 +777,39 @@ button { font-family: inherit; cursor: pointer; }
 .section-divider span:not(.section-divider-mark) { width: 60px; height: 1px; background: var(--cream-line); }
 .section-divider-mark { font-size: 0.9rem; }
 
+.menu-quicknav {
+  position: sticky;
+  top: 73px;
+  z-index: 30;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 20px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--cream-line);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.menu-quicknav::-webkit-scrollbar { display: none; }
+.menu-quicknav a {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--cream-soft);
+  color: var(--espresso-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--cream-line);
+  white-space: nowrap;
+}
+.menu-quicknav a:hover, .menu-quicknav a:focus-visible {
+  background: var(--rust);
+  color: var(--white);
+  border-color: var(--rust);
+}
+#formules, #entrees, #plats, #desserts, #cocktails, #vins { scroll-margin-top: 141px; }
+
 .menu-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
