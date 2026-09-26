@@ -44,6 +44,13 @@ function getParisDate() {
   return `${value.year}-${value.month}-${value.day}`
 }
 
+function addDays(dateStr, days) {
+  const [year, month, day] = dateStr.split('-').map(Number)
+  const date = new Date(year, month - 1, day)
+  date.setDate(date.getDate() + days)
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+}
+
 function getDaySlots(date) {
   const [year, month, day] = date.split('-').map(Number)
   const dayOfWeek = new Date(year, month - 1, day).getDay() // 0 = dimanche, 1 = lundi
@@ -112,7 +119,11 @@ function presetServiceFromUrl() {
 
 export default function Reservation() {
   const minimumDate = getParisDate()
-  const [data, setData] = useState({ ...initial, date: minimumDate, service: presetServiceFromUrl() })
+  const minimumPrivatisationDate = addDays(minimumDate, 3)
+  const [data, setData] = useState(() => {
+    const service = presetServiceFromUrl()
+    return { ...initial, date: service === 'privatisation' ? minimumPrivatisationDate : minimumDate, service }
+  })
   const [step, setStep] = useState(1)
   const [error, setError] = useState('')
   const [prepared, setPrepared] = useState(false)
@@ -128,6 +139,13 @@ export default function Reservation() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableTimeSlots])
+
+  useEffect(() => {
+    if (data.service === 'privatisation' && data.date < minimumPrivatisationDate) {
+      setData((old) => ({ ...old, date: minimumPrivatisationDate }))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data.service])
 
   const update = (key, value) => {
     setPrepared(false)
@@ -152,6 +170,8 @@ export default function Reservation() {
   }, [data, notesLabel, requestLabel, visitDetails, privatisationDetails, isPrivatisation])
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+  const mailtoUrl = `mailto:contact@chezlina.fr?subject=${encodeURIComponent('Demande de privatisation - Chez Lina')}&body=${encodeURIComponent(message)}`
+  const submitUrl = isPrivatisation ? mailtoUrl : whatsappUrl
 
   const validateVisit = () => {
     if (isPrivatisation) {
@@ -163,8 +183,8 @@ export default function Reservation() {
         setError('Merci d’indiquer un nombre d’invités valide.')
         return false
       }
-      if (data.date < minimumDate) {
-        setError('Merci de choisir une date à partir du jour même.')
+      if (data.date < minimumPrivatisationDate) {
+        setError('Les demandes de privatisation doivent être faites au moins 72 h à l’avance. Pour un besoin urgent, merci de nous appeler directement au 06 51 19 77 51.')
         return false
       }
       return true
@@ -211,7 +231,7 @@ export default function Reservation() {
     setError('')
     setPrepared(true)
     trackEvent('reservation_submit', { type: data.service })
-    window.location.href = whatsappUrl
+    window.location.href = submitUrl
   }
 
   return (
@@ -226,7 +246,9 @@ export default function Reservation() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="shell">
           <div className="reservation-card">
-            <p style={{ color: 'var(--brown-muted)' }}>Deux étapes rapides pour préparer votre demande dans WhatsApp.</p>
+            <p style={{ color: 'var(--brown-muted)' }}>
+              Deux étapes rapides pour préparer votre demande {isPrivatisation ? 'par e-mail' : 'dans WhatsApp'}.
+            </p>
 
             <div className="steps">
               <div className={`step ${step === 1 ? 'active' : ''}`}>
@@ -275,6 +297,7 @@ export default function Reservation() {
                   {isPrivatisation && (
                     <div className="form-note" style={{ marginBottom: 20 }}>
                       Location de salle à partir de 450 €, repas en supplément selon le menu choisi. Devis personnalisé sous 48 h.
+                      <br />Demande à faire au moins 72 h à l&rsquo;avance. Besoin urgent ? Appelez-nous directement au <a href="tel:+33651197751">06 51 19 77 51</a>.
                     </div>
                   )}
 
@@ -283,7 +306,7 @@ export default function Reservation() {
                       <div className="form-row">
                         <div className="field">
                           <label htmlFor="date">Date souhaitée <span className="req">*</span></label>
-                          <input id="date" type="date" required min={minimumDate} value={data.date} onChange={(e) => update('date', e.target.value)} />
+                          <input id="date" type="date" required min={minimumPrivatisationDate} value={data.date} onChange={(e) => update('date', e.target.value)} />
                         </div>
                         <div className="field">
                           <label htmlFor="period">Créneau <span className="req">*</span></label>
@@ -403,28 +426,34 @@ export default function Reservation() {
                     />
                   </div>
 
-                  <label className="checkbox-row" htmlFor="marketingOptIn">
-                    <input
-                      id="marketingOptIn"
-                      type="checkbox"
-                      checked={data.marketingOptIn}
-                      onChange={(e) => update('marketingOptIn', e.target.checked)}
-                      aria-label="Recevoir les actualités de Chez Lina sur WhatsApp (facultatif)"
-                    />
-                    <span aria-hidden="true">
-                      Recevoir les actualités de Chez Lina sur WhatsApp.
-                      <br /><span style={{ color: 'var(--brown-muted)', fontSize: '0.85rem' }}>Facultatif.</span>
-                    </span>
-                  </label>
+                  {!isPrivatisation && (
+                    <label className="checkbox-row" htmlFor="marketingOptIn">
+                      <input
+                        id="marketingOptIn"
+                        type="checkbox"
+                        checked={data.marketingOptIn}
+                        onChange={(e) => update('marketingOptIn', e.target.checked)}
+                        aria-label="Recevoir les actualités de Chez Lina sur WhatsApp (facultatif)"
+                      />
+                      <span aria-hidden="true">
+                        Recevoir les actualités de Chez Lina sur WhatsApp.
+                        <br /><span style={{ color: 'var(--brown-muted)', fontSize: '0.85rem' }}>Facultatif.</span>
+                      </span>
+                    </label>
+                  )}
 
                   <div className="form-note">
-                    Rien n&rsquo;est transmis avant que vous ouvriez WhatsApp. <Link to="/politique-confidentialite" style={{ textDecoration: 'underline' }}>Données personnelles</Link>.
+                    Rien n&rsquo;est transmis avant que vous {isPrivatisation ? 'envoyiez l’e-mail' : 'ouvriez WhatsApp'}. <Link to="/politique-confidentialite" style={{ textDecoration: 'underline' }}>Données personnelles</Link>.
                   </div>
 
                   <div className="form-actions">
                     <button type="button" className="button button-ghost" onClick={() => { setError(''); setStep(1) }}>Retour</button>
                     <button type="submit" className="button button-primary" style={{ flex: 1 }}>
-                      💬 Confirmer ma demande <span style={{ fontWeight: 400, opacity: 0.85 }}>via WhatsApp</span>
+                      {isPrivatisation ? (
+                        <>✉️ Envoyer ma demande <span style={{ fontWeight: 400, opacity: 0.85 }}>par e-mail</span></>
+                      ) : (
+                        <>💬 Confirmer ma demande <span style={{ fontWeight: 400, opacity: 0.85 }}>via WhatsApp</span></>
+                      )}
                     </button>
                   </div>
                   <p style={{ marginTop: 16, fontSize: '0.82rem', color: 'var(--brown-muted)', textAlign: 'center' }}>
@@ -433,8 +462,17 @@ export default function Reservation() {
                   {prepared && (
                     <div className="reservation-prepared" role="status">
                       <strong>Votre message est prêt.</strong>
-                      <span>Dans WhatsApp, vérifiez votre demande puis appuyez sur « Envoyer ». Si l&rsquo;application ne s&rsquo;est pas ouverte, utilisez le lien ci-dessous.</span>
-                      <a href={whatsappUrl}>Ouvrir WhatsApp</a>
+                      {isPrivatisation ? (
+                        <>
+                          <span>Dans votre messagerie, vérifiez votre demande puis appuyez sur « Envoyer ». Si elle ne s&rsquo;est pas ouverte, utilisez le lien ci-dessous.</span>
+                          <a href={mailtoUrl}>Ouvrir ma messagerie</a>
+                        </>
+                      ) : (
+                        <>
+                          <span>Dans WhatsApp, vérifiez votre demande puis appuyez sur « Envoyer ». Si l&rsquo;application ne s&rsquo;est pas ouverte, utilisez le lien ci-dessous.</span>
+                          <a href={whatsappUrl}>Ouvrir WhatsApp</a>
+                        </>
+                      )}
                     </div>
                   )}
                 </>
