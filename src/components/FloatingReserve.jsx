@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { trackEvent } from '../lib/analytics'
 
 export default function FloatingReserve() {
   const [showTop, setShowTop] = useState(false)
@@ -23,6 +24,14 @@ export default function FloatingReserve() {
           ↑
         </button>
       )}
+      <a
+        href="tel:+33651197751"
+        className="back-to-top floating-call"
+        aria-label="Appeler Chez Lina"
+        onClick={() => trackEvent('click_tel')}
+      >
+        📞
+      </a>
       <Link to="/reservation" className="button button-primary">
         ✳ Réserver
       </Link>

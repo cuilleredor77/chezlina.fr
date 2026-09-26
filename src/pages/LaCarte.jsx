@@ -97,6 +97,13 @@ export default function LaCarte() {
             </div>
           </div>
 
+          <div className="button-row" style={{ marginTop: 20 }}>
+            <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>
+          </div>
+          <p style={{ marginTop: 16, fontSize: '0.9rem', color: 'var(--brown-muted)' }}>
+            Groupes et privatisation : nous consulter.
+          </p>
+
           <div className="section-divider" aria-hidden="true">
             <span />
             <span className="section-divider-mark">◇</span>

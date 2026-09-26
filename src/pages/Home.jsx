@@ -1,14 +1,73 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import HeroCarousel from '../components/HeroCarousel'
 import RandomGoogleReviews from '../components/RandomGoogleReviews'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { trackEvent } from '../lib/analytics'
 
+function getParisDayAndMinutes() {
+  const parts = new Intl.DateTimeFormat('fr-FR', {
+    timeZone: 'Europe/Paris',
+    weekday: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  }).formatToParts(new Date())
+  const value = Object.fromEntries(parts.map(({ type, value: v }) => [type, v]))
+  const weekdayMap = { lun: 1, mar: 2, mer: 3, jeu: 4, ven: 5, sam: 6, dim: 0 }
+  const day = weekdayMap[value.weekday.replace('.', '').slice(0, 3).toLowerCase()]
+  return { day, minutes: Number(value.hour) * 60 + Number(value.minute) }
+}
+
+function getTodayStatus() {
+  const { day, minutes } = getParisDayAndMinutes()
+  if (day === 1) return 'Fermé aujourd’hui (lundi) · réouvre demain à 11 h 45'
+  if (day === 0) {
+    if (minutes < 11 * 60 + 45) return 'Ouvre aujourd’hui à 11 h 45'
+    if (minutes <= 15 * 60 + 30) return 'Ouvert aujourd’hui · jusqu’à 15 h 30'
+    return 'Fermé pour aujourd’hui · réouvre mardi à 11 h 45'
+  }
+  if (minutes < 11 * 60 + 45) return 'Ouvre aujourd’hui à 11 h 45'
+  if (minutes <= 15 * 60) return 'Ouvert aujourd’hui · jusqu’à 15 h'
+  if (minutes < 18 * 60 + 30) return 'Réouvre ce soir à 18 h 30'
+  if (minutes <= 23 * 60 + 45) return 'Ouvert aujourd’hui · jusqu’à 23 h 45'
+  return day === 6 ? 'Fermé pour aujourd’hui · réouvre dimanche à 11 h 45' : 'Fermé pour aujourd’hui · réouvre demain à 11 h 45'
+}
+
+function TodayStatusBar() {
+  const [status, setStatus] = useState('')
+
+  useEffect(() => {
+    setStatus(getTodayStatus())
+    const id = window.setInterval(() => setStatus(getTodayStatus()), 60000)
+    return () => window.clearInterval(id)
+  }, [])
+
+  if (!status) return null
+
+  return (
+    <div className="today-status-bar">
+      <div className="shell today-status-inner">
+        <span className="today-status-text"><span aria-hidden="true">🕒</span> {status}</span>
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=29+rue+de+Montgeron+91800+Brunoy"
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => trackEvent('click_itineraire')}
+        >
+          Itinéraire ↗
+        </a>
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   usePageTitle(null, "L'héritage congolais de Mama Lina, porté par ses quatre filles dans un restaurant franco-africain contemporain à Brunoy.")
   return (
     <>
       <HeroCarousel />
+      <TodayStatusBar />
 
       <section className="section">
         <div className="shell">
@@ -124,6 +183,20 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section section-dark">
+        <div className="shell privatisation-block">
+          <span className="eyebrow light">Événements privés</span>
+          <h2>Privatiser Chez Lina</h2>
+          <p style={{ maxWidth: 560 }}>Un anniversaire, un baptême, un repas d&rsquo;entreprise ? Réservez la salle rien que pour vous.</p>
+          <p className="privatisation-price">Location de salle à partir de <strong>450 €</strong>, repas en supplément selon le menu choisi.</p>
+          <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>Disponibilités et capacité sur demande.</p>
+          <div className="button-row" style={{ marginTop: 8 }}>
+            <Link to="/reservation?type=privatisation" className="button button-primary" onClick={() => trackEvent('click_privatisation')}>Demander un devis</Link>
+            <a className="button button-ghost-light" href="tel:+33651197751" onClick={() => trackEvent('click_tel')}>Appeler</a>
+          </div>
+        </div>
+      </section>
+
       <section className="cta-band">
         <img src="/images/plateau-bouchees-reportage.webp" alt="Planche à partager Chez Lina" />
         <div className="shell">
@@ -140,7 +213,8 @@ export default function Home() {
             </div>
           </div>
           <div className="button-row">
-            <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>
+            <Link to="/reservation?type=table" className="button button-primary">Réserver une table</Link>
+            <Link to="/reservation?type=emporter" className="button button-primary">Commander à emporter</Link>
             <a className="button button-ghost-light" href="tel:+33651197751" onClick={() => trackEvent('click_tel')}>Appeler</a>
             <a className="button button-ghost-light" href="https://wa.me/33651197751?text=Bonjour%20Chez%20Lina%2C%20je%20souhaite%20faire%20une%20demande." target="_blank" rel="noreferrer" onClick={() => trackEvent('click_whatsapp')}>Écrire sur WhatsApp</a>
           </div>

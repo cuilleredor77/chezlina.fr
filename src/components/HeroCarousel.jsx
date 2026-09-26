@@ -72,6 +72,7 @@ export default function HeroCarousel() {
         <div className="shell hero-copy">
           <p className="eyebrow light">Restaurant · Brunoy</p>
           <h1 id="hero-title">Chez Lina</h1>
+          <div className="hero-rating-badge">★ 5,0 · 29 avis Google</div>
           <p className="hero-signature">Deux cultures, une même table.</p>
           <div className="button-row">
             <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>

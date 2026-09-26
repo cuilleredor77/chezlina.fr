@@ -87,7 +87,9 @@ const initial = {
   service: 'table',
   date: '',
   time: '',
+  period: 'midi',
   guests: '',
+  eventType: '',
   firstName: '',
   phone: '',
   email: '',
@@ -95,9 +97,16 @@ const initial = {
   marketingOptIn: false,
 }
 
+function presetServiceFromUrl() {
+  const type = new URLSearchParams(window.location.search).get('type')
+  if (type === 'emporter') return 'takeaway'
+  if (type === 'privatisation') return 'privatisation'
+  return 'table'
+}
+
 export default function Reservation() {
   const minimumDate = getParisDate()
-  const [data, setData] = useState({ ...initial, date: minimumDate })
+  const [data, setData] = useState({ ...initial, date: minimumDate, service: presetServiceFromUrl() })
   const [step, setStep] = useState(1)
   const [error, setError] = useState('')
   const [prepared, setPrepared] = useState(false)
@@ -119,20 +128,41 @@ export default function Reservation() {
     setData((old) => ({ ...old, [key]: value }))
   }
 
-  const quantityLabel = 'Nombre de personnes'
-  const requestLabel = data.service === 'table' ? 'réserver une table' : 'passer une commande à emporter'
-  const notesLabel = data.service === 'table' ? 'Précisions' : 'Commande souhaitée'
-  const visitDetails = data.service === 'table' ? `\n${quantityLabel} : ${data.guests}` : ''
+  const isPrivatisation = data.service === 'privatisation'
+  const quantityLabel = isPrivatisation ? 'Nombre d’invités' : 'Nombre de personnes'
+  const requestLabel = data.service === 'table' ? 'réserver une table' : data.service === 'takeaway' ? 'passer une commande à emporter' : 'privatiser la salle'
+  const notesLabel = data.service === 'table' ? 'Précisions' : data.service === 'takeaway' ? 'Commande souhaitée' : 'Précisions sur l’événement'
+  const visitDetails = data.service === 'table' || isPrivatisation ? `\n${quantityLabel} : ${data.guests}` : ''
+  const privatisationDetails = isPrivatisation ? `\nType d’événement : ${data.eventType}` : ''
 
   const message = useMemo(() => {
     const emailLine = data.email.trim() ? `\nE-mail : ${data.email}` : ''
-    return `Bonjour Chez Lina,\n\nJe souhaite ${requestLabel}.\n\n${data.service === 'table' ? 'Date souhaitée' : 'Date de retrait souhaitée'} : ${formatBookingDate(data.date)}\n${data.service === 'table' ? 'Heure souhaitée' : 'Heure de retrait souhaitée'} : ${formatBookingTime(data.time)}${visitDetails}\n\nNom : ${data.firstName}\nTéléphone : ${data.phone}${emailLine}\n\n${notesLabel} : ${data.notes || 'Aucune'}${data.marketingOptIn ? '\n\nJe souhaite recevoir par WhatsApp les actualités et offres de Chez Lina.' : ''}\n\nMerci de me confirmer ma demande.\n\n${data.firstName}`
+    const dateLabel = data.service === 'table' ? 'Date souhaitée' : data.service === 'takeaway' ? 'Date de retrait souhaitée' : 'Date souhaitée'
+    const timeLabel = isPrivatisation ? 'Créneau souhaité' : data.service === 'table' ? 'Heure souhaitée' : 'Heure de retrait souhaitée'
+    const timeValue = isPrivatisation ? (data.period === 'midi' ? 'Midi' : 'Soir') : formatBookingTime(data.time)
+    const privatisationNote = isPrivatisation ? '\n\nLocation de salle à partir de 450 €, repas en supplément selon le menu choisi. Devis personnalisé sous 48 h.' : ''
+    return `Bonjour Chez Lina,\n\nJe souhaite ${requestLabel}.\n\n${dateLabel} : ${formatBookingDate(data.date)}\n${timeLabel} : ${timeValue}${visitDetails}${privatisationDetails}\n\nNom : ${data.firstName}\nTéléphone : ${data.phone}${emailLine}\n\n${notesLabel} : ${data.notes || 'Aucune'}${data.marketingOptIn ? '\n\nJe souhaite recevoir par WhatsApp les actualités et offres de Chez Lina.' : ''}${privatisationNote}\n\nMerci de me confirmer ma demande.\n\n${data.firstName}`
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, notesLabel, requestLabel, visitDetails])
+  }, [data, notesLabel, requestLabel, visitDetails, privatisationDetails, isPrivatisation])
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 
   const validateVisit = () => {
+    if (isPrivatisation) {
+      if (!data.date || !data.guests || !data.eventType.trim()) {
+        setError('Choisissez une date, indiquez le nombre d’invités et le type d’événement.')
+        return false
+      }
+      if (Number(data.guests) < 1) {
+        setError('Merci d’indiquer un nombre d’invités valide.')
+        return false
+      }
+      if (data.date < minimumDate) {
+        setError('Merci de choisir une date à partir du jour même.')
+        return false
+      }
+      return true
+    }
     if (!data.date || !data.time || (data.service === 'table' && !data.guests)) {
       setError(data.service === 'table' ? 'Choisissez une date, une heure et indiquez le nombre de personnes.' : 'Choisissez une date et un horaire de retrait.')
       return false
@@ -182,9 +212,9 @@ export default function Reservation() {
     <>
       <PageHero
         crumb="Réserver ou commander"
-        eyebrow="Sur place ou à emporter"
+        eyebrow="Sur place, à emporter ou en privatisation"
         title="Réserver ou commander"
-        lede="Réservez une table ou commandez à emporter."
+        lede="Réservez une table, commandez à emporter ou privatisez la salle."
       />
 
       <section className="section" style={{ paddingTop: 0 }}>
@@ -225,53 +255,98 @@ export default function Reservation() {
                           <div style={{ fontSize: '0.85rem', color: 'var(--brown-muted)' }}>Retirer votre commande chez Lina</div>
                         </span>
                       </label>
+                      <label className={`service-option ${isPrivatisation ? 'selected' : ''}`}>
+                        <input type="radio" name="service" value="privatisation" checked={isPrivatisation} onChange={() => update('service', 'privatisation')} style={{ display: 'none' }} />
+                        <span className="service-icon" aria-hidden="true">🎉</span>
+                        <span>
+                          <strong>Privatiser la salle</strong>
+                          <div style={{ fontSize: '0.85rem', color: 'var(--brown-muted)' }}>Anniversaire, baptême, repas d’entreprise…</div>
+                        </span>
+                      </label>
                     </div>
                   </div>
 
-                  <div className="form-row">
-                    <div className="field">
-                      <label htmlFor="date">{data.service === 'table' ? 'Date' : 'Date de retrait'} <span className="req">*</span></label>
-                      <input id="date" type="date" required min={minimumDate} value={data.date} onChange={(e) => update('date', e.target.value)} />
+                  {isPrivatisation && (
+                    <div className="form-note" style={{ marginBottom: 20 }}>
+                      Location de salle à partir de 450 €, repas en supplément selon le menu choisi. Devis personnalisé sous 48 h.
                     </div>
-                    <div className="field">
-                      <label htmlFor="time">{data.service === 'table' ? 'Heure' : 'Heure de retrait'} <span className="req">*</span></label>
-                      <select id="time" required value={data.time} disabled={availableTimeSlots.length === 0} onChange={(e) => update('time', e.target.value)}>
-                        {availableTimeSlots.length === 0 ? (
-                          <option value="">
-                            {getDaySlots(data.date).length === 0 ? 'Fermé ce jour-là' : (data.service === 'table' ? 'Plus de créneau disponible ce jour' : 'Plus de retrait disponible ce jour')}
-                          </option>
-                        ) : (
-                          <>
-                            {availableTimeSlots.some((slot) => Number(slot.split(':')[0]) < 17) && (
-                              <optgroup label="Service du midi">
-                                {availableTimeSlots.filter((slot) => Number(slot.split(':')[0]) < 17).map((slot) => (
-                                  <option key={slot} value={slot}>{formatBookingTime(slot)}</option>
-                                ))}
-                              </optgroup>
-                            )}
-                            {availableTimeSlots.some((slot) => Number(slot.split(':')[0]) >= 17) && (
-                              <optgroup label="Service du soir">
-                                {availableTimeSlots.filter((slot) => Number(slot.split(':')[0]) >= 17).map((slot) => (
-                                  <option key={slot} value={slot}>{formatBookingTime(slot)}</option>
-                                ))}
-                              </optgroup>
-                            )}
-                          </>
-                        )}
-                      </select>
-                      <span style={{ fontSize: '0.78rem', color: 'var(--brown-muted)' }}>
-                        {data.service === 'table'
-                          ? 'Créneaux proposés toutes les 15 minutes.'
-                          : 'Premier retrait au minimum 30 minutes après la demande, puis toutes les 15 minutes. Horaire soumis à confirmation.'}
-                      </span>
-                    </div>
-                  </div>
+                  )}
 
-                  {data.service === 'table' && (
-                    <div className="field" style={{ marginBottom: 24 }}>
-                      <label htmlFor="guests">{quantityLabel} <span className="req">*</span></label>
-                      <input id="guests" type="number" inputMode="numeric" min="1" max="30" required value={data.guests} onChange={(e) => update('guests', e.target.value)} />
-                    </div>
+                  {isPrivatisation ? (
+                    <>
+                      <div className="form-row">
+                        <div className="field">
+                          <label htmlFor="date">Date souhaitée <span className="req">*</span></label>
+                          <input id="date" type="date" required min={minimumDate} value={data.date} onChange={(e) => update('date', e.target.value)} />
+                        </div>
+                        <div className="field">
+                          <label htmlFor="period">Créneau <span className="req">*</span></label>
+                          <select id="period" required value={data.period} onChange={(e) => update('period', e.target.value)}>
+                            <option value="midi">Midi</option>
+                            <option value="soir">Soir</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="form-row">
+                        <div className="field">
+                          <label htmlFor="guests">{quantityLabel} <span className="req">*</span></label>
+                          <input id="guests" type="number" inputMode="numeric" min="1" required value={data.guests} onChange={(e) => update('guests', e.target.value)} />
+                        </div>
+                        <div className="field">
+                          <label htmlFor="eventType">Type d’événement <span className="req">*</span></label>
+                          <input id="eventType" type="text" required placeholder="Anniversaire, baptême, repas d’entreprise…" value={data.eventType} onChange={(e) => update('eventType', e.target.value)} />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="form-row">
+                        <div className="field">
+                          <label htmlFor="date">{data.service === 'table' ? 'Date' : 'Date de retrait'} <span className="req">*</span></label>
+                          <input id="date" type="date" required min={minimumDate} value={data.date} onChange={(e) => update('date', e.target.value)} />
+                        </div>
+                        <div className="field">
+                          <label htmlFor="time">{data.service === 'table' ? 'Heure' : 'Heure de retrait'} <span className="req">*</span></label>
+                          <select id="time" required value={data.time} disabled={availableTimeSlots.length === 0} onChange={(e) => update('time', e.target.value)}>
+                            {availableTimeSlots.length === 0 ? (
+                              <option value="">
+                                {getDaySlots(data.date).length === 0 ? 'Fermé ce jour-là' : (data.service === 'table' ? 'Plus de créneau disponible ce jour' : 'Plus de retrait disponible ce jour')}
+                              </option>
+                            ) : (
+                              <>
+                                {availableTimeSlots.some((slot) => Number(slot.split(':')[0]) < 17) && (
+                                  <optgroup label="Service du midi">
+                                    {availableTimeSlots.filter((slot) => Number(slot.split(':')[0]) < 17).map((slot) => (
+                                      <option key={slot} value={slot}>{formatBookingTime(slot)}</option>
+                                    ))}
+                                  </optgroup>
+                                )}
+                                {availableTimeSlots.some((slot) => Number(slot.split(':')[0]) >= 17) && (
+                                  <optgroup label="Service du soir">
+                                    {availableTimeSlots.filter((slot) => Number(slot.split(':')[0]) >= 17).map((slot) => (
+                                      <option key={slot} value={slot}>{formatBookingTime(slot)}</option>
+                                    ))}
+                                  </optgroup>
+                                )}
+                              </>
+                            )}
+                          </select>
+                          <span style={{ fontSize: '0.78rem', color: 'var(--brown-muted)' }}>
+                            {data.service === 'table'
+                              ? 'Créneaux proposés toutes les 15 minutes.'
+                              : 'Premier retrait au minimum 30 minutes après la demande, puis toutes les 15 minutes. Horaire soumis à confirmation.'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {data.service === 'table' && (
+                        <div className="field" style={{ marginBottom: 24 }}>
+                          <label htmlFor="guests">{quantityLabel} <span className="req">*</span></label>
+                          <input id="guests" type="number" inputMode="numeric" min="1" max="30" required value={data.guests} onChange={(e) => update('guests', e.target.value)} />
+                        </div>
+                      )}
+                    </>
                   )}
 
                   <button type="submit" className="button button-primary button-block">Continuer</button>
@@ -280,9 +355,9 @@ export default function Reservation() {
                 <>
                   <div className="reservation-summary">
                     <div>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--brown-muted)' }}>{data.service === 'table' ? 'Table' : 'Retrait à emporter'}</span>
-                      <strong style={{ display: 'block' }}>{formatBookingDate(data.date)} · {formatBookingTime(data.time)}</strong>
-                      {data.service === 'table' && <small style={{ color: 'var(--brown-muted)' }}>{quantityLabel} : {data.guests}</small>}
+                      <span style={{ fontSize: '0.8rem', color: 'var(--brown-muted)' }}>{data.service === 'table' ? 'Table' : data.service === 'takeaway' ? 'Retrait à emporter' : 'Privatisation de la salle'}</span>
+                      <strong style={{ display: 'block' }}>{formatBookingDate(data.date)} · {isPrivatisation ? (data.period === 'midi' ? 'Midi' : 'Soir') : formatBookingTime(data.time)}</strong>
+                      {(data.service === 'table' || isPrivatisation) && <small style={{ color: 'var(--brown-muted)' }}>{quantityLabel} : {data.guests}</small>}
                     </div>
                     <button type="button" className="button button-ghost" style={{ minHeight: 'auto', padding: '8px 16px' }} onClick={() => { setError(''); setStep(1) }}>Modifier</button>
                   </div>
@@ -315,7 +390,7 @@ export default function Reservation() {
                     <textarea
                       id="notes"
                       required={data.service === 'takeaway'}
-                      placeholder={data.service === 'table' ? 'Allergies ou demande particulière…' : 'Ex. 2 suprêmes de volaille, 1 panga, 2 bissaps…'}
+                      placeholder={data.service === 'table' ? 'Allergies ou demande particulière…' : isPrivatisation ? 'Menu envisagé, horaires, disposition de la salle…' : 'Ex. 2 suprêmes de volaille, 1 panga, 2 bissaps…'}
                       value={data.notes}
                       onChange={(e) => update('notes', e.target.value)}
                     />
