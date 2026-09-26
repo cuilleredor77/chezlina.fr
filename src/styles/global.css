@@ -302,16 +302,25 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 1.1rem;
 }
 .carousel-play { width: auto; border-radius: 999px; padding: 0 14px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
-.carousel-dots { display: flex; gap: 8px; }
+.carousel-dots { display: flex; }
 .carousel-dots button {
+  width: 22px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+.carousel-dots button::after {
+  content: '';
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  border: none;
   background: rgba(255, 255, 255, 0.4);
-  padding: 0;
 }
-.carousel-dots button[aria-current="true"] { background: var(--gold); width: 22px; border-radius: 6px; }
+.carousel-dots button[aria-current="true"]::after { background: var(--gold); width: 22px; border-radius: 6px; }
 
 .page-hero {
   background: var(--forest);
@@ -1244,8 +1253,9 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 620px) {
   .hero { flex-direction: column; align-items: stretch; }
   .hero-carousel-controls { width: 100%; justify-content: space-between; padding-bottom: 20px; }
-  .carousel-dots button { width: 11px; height: 11px; }
-  .carousel-dots button[aria-current="true"] { width: 26px; }
+  .carousel-dots button { width: 34px; height: 44px; }
+  .carousel-dots button::after { width: 11px; height: 11px; }
+  .carousel-dots button[aria-current="true"]::after { width: 26px; }
   .footer-grid { grid-template-columns: 1fr; text-align: center; }
   .footer-grid > div, .footer-grid > nav { align-items: center; }
   .footer-brand-column { flex-direction: column !important; text-align: center; }
