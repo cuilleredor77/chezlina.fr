@@ -14,8 +14,9 @@ function createTimeSlots(startHour, startMinute, count) {
   })
 }
 
-const weekdayTimeSlots = [...createTimeSlots(11, 45, 13), ...createTimeSlots(18, 30, 22)]
-const sundayTimeSlots = createTimeSlots(11, 45, 16)
+// Dernier créneau env. 30 min avant la fermeture effective (11h45-15h / 18h30-23h45 en semaine, 11h45-15h30 le dimanche)
+const weekdayTimeSlots = [...createTimeSlots(11, 45, 12), ...createTimeSlots(18, 30, 20)]
+const sundayTimeSlots = createTimeSlots(11, 45, 14)
 
 function getParisNow() {
   const parts = new Intl.DateTimeFormat('fr-FR', {
@@ -123,7 +124,8 @@ export default function Reservation() {
   const visitDetails = data.service === 'table' ? `\n${quantityLabel} : ${data.guests}` : ''
 
   const message = useMemo(() => {
-    return `Bonjour Chez Lina,\n\nJe souhaite ${requestLabel}.\n\n${data.service === 'table' ? 'Date souhaitée' : 'Date de retrait souhaitée'} : ${formatBookingDate(data.date)}\n${data.service === 'table' ? 'Heure souhaitée' : 'Heure de retrait souhaitée'} : ${formatBookingTime(data.time)}${visitDetails}\n\nNom : ${data.firstName}\nTéléphone : ${data.phone}\nE-mail : ${data.email}\n\n${notesLabel} : ${data.notes || 'Aucune'}${data.marketingOptIn ? '\n\nJe souhaite recevoir par WhatsApp les actualités et offres de Chez Lina.' : ''}\n\nMerci de me confirmer ma demande.\n\n${data.firstName}`
+    const emailLine = data.email.trim() ? `\nE-mail : ${data.email}` : ''
+    return `Bonjour Chez Lina,\n\nJe souhaite ${requestLabel}.\n\n${data.service === 'table' ? 'Date souhaitée' : 'Date de retrait souhaitée'} : ${formatBookingDate(data.date)}\n${data.service === 'table' ? 'Heure souhaitée' : 'Heure de retrait souhaitée'} : ${formatBookingTime(data.time)}${visitDetails}\n\nNom : ${data.firstName}\nTéléphone : ${data.phone}${emailLine}\n\n${notesLabel} : ${data.notes || 'Aucune'}${data.marketingOptIn ? '\n\nJe souhaite recevoir par WhatsApp les actualités et offres de Chez Lina.' : ''}\n\nMerci de me confirmer ma demande.\n\n${data.firstName}`
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, notesLabel, requestLabel, visitDetails])
 
@@ -161,8 +163,8 @@ export default function Reservation() {
       setStep(2)
       return
     }
-    if (!data.firstName.trim() || !data.phone.trim() || !data.email.trim()) {
-      setError('Indiquez votre nom, votre numéro de téléphone et votre adresse e-mail.')
+    if (!data.firstName.trim() || !data.phone.trim()) {
+      setError('Indiquez votre nom et votre numéro de téléphone.')
       return
     }
     if (data.service === 'takeaway' && !data.notes.trim()) {
@@ -294,13 +296,20 @@ export default function Reservation() {
                       <input id="phone" type="tel" required autoComplete="tel" placeholder="Votre numéro" value={data.phone} onChange={(e) => update('phone', e.target.value)} />
                     </div>
                     <div className="field">
-                      <label htmlFor="email">Adresse e-mail <span className="req">*</span></label>
-                      <input id="email" type="email" required autoComplete="email" placeholder="Votre adresse e-mail" value={data.email} onChange={(e) => update('email', e.target.value)} />
+                      <label htmlFor="email">Adresse e-mail <span style={{ color: 'var(--brown-muted)', fontWeight: 400 }}>(facultatif)</span></label>
+                      <input id="email" type="email" autoComplete="email" placeholder="Votre adresse e-mail" value={data.email} onChange={(e) => update('email', e.target.value)} />
                     </div>
                   </div>
 
                   <div className="field" style={{ marginBottom: 20 }}>
-                    <label htmlFor="notes">{notesLabel}{data.service === 'takeaway' && <span className="req"> *</span>}</label>
+                    <label htmlFor="notes" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
+                      <span>{notesLabel}{data.service === 'takeaway' && <span className="req"> *</span>}</span>
+                      {data.service === 'takeaway' && (
+                        <Link to="/la-carte" target="_blank" rel="noreferrer" style={{ fontSize: '0.82rem', fontWeight: 400, textDecoration: 'underline' }}>
+                          Voir la carte ↗
+                        </Link>
+                      )}
+                    </label>
                     <textarea
                       id="notes"
                       required={data.service === 'takeaway'}
@@ -310,9 +319,15 @@ export default function Reservation() {
                     />
                   </div>
 
-                  <label className="checkbox-row">
-                    <input type="checkbox" checked={data.marketingOptIn} onChange={(e) => update('marketingOptIn', e.target.checked)} />
-                    <span>
+                  <label className="checkbox-row" htmlFor="marketingOptIn">
+                    <input
+                      id="marketingOptIn"
+                      type="checkbox"
+                      checked={data.marketingOptIn}
+                      onChange={(e) => update('marketingOptIn', e.target.checked)}
+                      aria-label="Recevoir les actualités de Chez Lina sur WhatsApp (facultatif)"
+                    />
+                    <span aria-hidden="true">
                       Recevoir les actualités de Chez Lina sur WhatsApp.
                       <br /><span style={{ color: 'var(--brown-muted)', fontSize: '0.85rem' }}>Facultatif.</span>
                     </span>
