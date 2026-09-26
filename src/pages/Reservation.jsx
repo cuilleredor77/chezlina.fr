@@ -83,6 +83,12 @@ function formatBookingTime(time) {
   return minutes === '00' ? `${Number(hours)} h` : `${Number(hours)} h ${minutes}`
 }
 
+function formatPeriod(period) {
+  if (period === 'soir') return 'Soir'
+  if (period === 'journee') return 'Toute la journée'
+  return 'Midi'
+}
+
 const initial = {
   service: 'table',
   date: '',
@@ -139,7 +145,7 @@ export default function Reservation() {
     const emailLine = data.email.trim() ? `\nE-mail : ${data.email}` : ''
     const dateLabel = data.service === 'table' ? 'Date souhaitée' : data.service === 'takeaway' ? 'Date de retrait souhaitée' : 'Date souhaitée'
     const timeLabel = isPrivatisation ? 'Créneau souhaité' : data.service === 'table' ? 'Heure souhaitée' : 'Heure de retrait souhaitée'
-    const timeValue = isPrivatisation ? (data.period === 'midi' ? 'Midi' : 'Soir') : formatBookingTime(data.time)
+    const timeValue = isPrivatisation ? formatPeriod(data.period) : formatBookingTime(data.time)
     const privatisationNote = isPrivatisation ? '\n\nLocation de salle à partir de 450 €, repas en supplément selon le menu choisi. Devis personnalisé sous 48 h.' : ''
     return `Bonjour Chez Lina,\n\nJe souhaite ${requestLabel}.\n\n${dateLabel} : ${formatBookingDate(data.date)}\n${timeLabel} : ${timeValue}${visitDetails}${privatisationDetails}\n\nNom : ${data.firstName}\nTéléphone : ${data.phone}${emailLine}\n\n${notesLabel} : ${data.notes || 'Aucune'}${data.marketingOptIn ? '\n\nJe souhaite recevoir par WhatsApp les actualités et offres de Chez Lina.' : ''}${privatisationNote}\n\nMerci de me confirmer ma demande.\n\n${data.firstName}`
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -284,6 +290,7 @@ export default function Reservation() {
                           <select id="period" required value={data.period} onChange={(e) => update('period', e.target.value)}>
                             <option value="midi">Midi</option>
                             <option value="soir">Soir</option>
+                            <option value="journee">Toute la journée</option>
                           </select>
                         </div>
                       </div>
@@ -356,7 +363,7 @@ export default function Reservation() {
                   <div className="reservation-summary">
                     <div>
                       <span style={{ fontSize: '0.8rem', color: 'var(--brown-muted)' }}>{data.service === 'table' ? 'Table' : data.service === 'takeaway' ? 'Retrait à emporter' : 'Privatisation de la salle'}</span>
-                      <strong style={{ display: 'block' }}>{formatBookingDate(data.date)} · {isPrivatisation ? (data.period === 'midi' ? 'Midi' : 'Soir') : formatBookingTime(data.time)}</strong>
+                      <strong style={{ display: 'block' }}>{formatBookingDate(data.date)} · {isPrivatisation ? formatPeriod(data.period) : formatBookingTime(data.time)}</strong>
                       {(data.service === 'table' || isPrivatisation) && <small style={{ color: 'var(--brown-muted)' }}>{quantityLabel} : {data.guests}</small>}
                     </div>
                     <button type="button" className="button button-ghost" style={{ minHeight: 'auto', padding: '8px 16px' }} onClick={() => { setError(''); setStep(1) }}>Modifier</button>
