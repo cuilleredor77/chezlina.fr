@@ -1,5 +1,5 @@
 export const formules = {
-  note: 'Formules étudiante et du midi : du mardi au vendredi, le midi uniquement. Formule enfant : à chaque service.',
+  note: 'Formules collégien & lycéen, étudiante et du midi : du mardi au vendredi, le midi uniquement. Formule enfant : à chaque service.',
   items: [
     {
       name: 'Formule enfant',
@@ -7,6 +7,12 @@ export const formules = {
       price: '12 €',
       description: 'Suprême de volaille & frites · Boisson soft au choix · 1 boule de glace ou moelleux au chocolat',
       note: 'Jusqu’à 12 ans · À chaque service.',
+    },
+    {
+      name: 'Menu collégien & lycéen',
+      subtitle: 'Plat + boisson + dessert',
+      price: '9 €',
+      description: 'Poulet braisé · Frites ou riz · Canette au choix · Petit moelleux au chocolat',
     },
     {
       name: 'Formule étudiante',

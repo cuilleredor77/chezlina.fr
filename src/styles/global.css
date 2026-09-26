@@ -720,8 +720,8 @@ button { font-family: inherit; cursor: pointer; }
 .formules-note { color: #fbe2d3; font-size: 0.92rem; margin-bottom: 20px; }
 .formules-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 .formule-col {
   border-left: 1px solid rgba(255, 255, 255, 0.35);
