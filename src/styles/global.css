@@ -691,6 +691,29 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   gap: 10px;
 }
+.consent-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--espresso-darker);
+  color: #f0e4d8;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.25);
+}
+.consent-banner p { margin: 0; max-width: 640px; font-size: 0.88rem; }
+.consent-banner a { color: var(--gold); text-decoration: underline; }
+.consent-banner-actions { display: flex; gap: 10px; flex-shrink: 0; }
+.consent-banner-actions .button { padding: 8px 18px; min-height: auto; font-size: 0.85rem; }
+@media (max-width: 720px) {
+  .consent-banner { padding-bottom: 90px; justify-content: flex-start; }
+}
 .back-to-top {
   width: 44px;
   height: 44px;

@@ -3,10 +3,16 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import FloatingReserve from './FloatingReserve'
+import ConsentBanner from './ConsentBanner'
+import { initAnalyticsIfConsented, trackPageView } from '../lib/analytics'
 
 export default function Layout() {
   const { pathname } = useLocation()
   const isFirstPageView = useRef(true)
+
+  useEffect(() => {
+    initAnalyticsIfConsented()
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -17,8 +23,7 @@ export default function Layout() {
       isFirstPageView.current = false
       return
     }
-    if (typeof window.gtag !== 'function') return
-    window.gtag('event', 'page_view', { page_path: pathname })
+    trackPageView(pathname)
   }, [pathname])
 
   useEffect(() => {
@@ -51,6 +56,7 @@ export default function Layout() {
       </main>
       <Footer />
       <FloatingReserve />
+      <ConsentBanner />
     </>
   )
 }
