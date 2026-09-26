@@ -33,7 +33,7 @@ export default function RandomGoogleReviews() {
                 <div className="proof-stars" aria-label="5 étoiles sur 5">★★★★★</div>
               </div>
               <blockquote>« {r.text} »</blockquote>
-              <figcaption><span>Avis Google · Visité en août</span></figcaption>
+              <figcaption><span>Avis Google</span></figcaption>
             </figure>
           )
         })}

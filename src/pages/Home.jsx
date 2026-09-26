@@ -105,12 +105,12 @@ export default function Home() {
       <section className="section section-maroon">
         <div className="shell">
           <span className="eyebrow light">Ils parlent de Chez Lina</span>
-          <h2 style={{ color: '#fff' }}>Les premiers avis.</h2>
+          <h2 style={{ color: '#fff' }}>Ce qu&rsquo;ils en disent.</h2>
           <div className="proof-summary">
             <span className="proof-score">5,0/5</span>
             <div>
               <div className="proof-stars">★★★★★</div>
-              <span>14 avis Google</span>
+              <span>29 avis Google</span>
             </div>
           </div>
           <RandomGoogleReviews />
