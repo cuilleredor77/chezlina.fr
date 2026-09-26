@@ -45,7 +45,7 @@ export const menuSections = [
   {
     eyebrow: 'À TABLE',
     title: 'Les poissons',
-    column: 'left',
+    column: 'right',
     items: [
       { name: 'Dorade braisée', description: 'Sauce vierge, tomate, mangue verte et herbes fraîches, attiéké.', price: '20 €', image: '/images/dorade-braisee.webp' },
       { name: 'Panga braisé', description: 'Sauce aux trois poivrons, foutou banane.', price: '25 €', image: '/images/panga-braise.jpg' },

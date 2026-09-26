@@ -108,11 +108,14 @@ export default function LaCarte() {
               ))}
             </div>
             <div className="menu-column">
-              {menuSections.filter((s) => s.column === 'right' && s.title !== 'Les entrées' && s.title !== 'Les desserts').map((section) => (
+              {menuSections.filter((s) => s.column === 'right' && s.title !== 'Les entrées' && s.title !== 'Les accompagnements' && s.title !== 'Les desserts').map((section) => (
                 <MenuBox section={section} key={section.title} />
               ))}
             </div>
           </div>
+          {menuSections.filter((s) => s.title === 'Les accompagnements').map((section) => (
+            <MenuBox section={section} key={section.title} style={{ marginTop: 36 }} full />
+          ))}
           {menuSections.filter((s) => s.title === 'Les desserts').map((section) => (
             <MenuBox section={section} key={section.title} style={{ marginTop: 36 }} full />
           ))}
