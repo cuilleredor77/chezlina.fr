@@ -110,23 +110,23 @@ const initial = {
   marketingOptIn: false,
 }
 
-function presetServiceFromUrl() {
-  const type = new URLSearchParams(window.location.search).get('type')
-  if (type === 'emporter') return 'takeaway'
-  if (type === 'privatisation') return 'privatisation'
-  return 'table'
-}
-
 export default function Reservation() {
   const minimumDate = getParisDate()
   const minimumPrivatisationDate = addDays(minimumDate, 3)
-  const [data, setData] = useState(() => {
-    const service = presetServiceFromUrl()
-    return { ...initial, date: service === 'privatisation' ? minimumPrivatisationDate : minimumDate, service }
-  })
+  const [data, setData] = useState({ ...initial, date: minimumDate })
   const [step, setStep] = useState(1)
   const [error, setError] = useState('')
   const [prepared, setPrepared] = useState(false)
+
+  useEffect(() => {
+    const type = new URLSearchParams(window.location.search).get('type')
+    if (type === 'emporter') {
+      setData((old) => ({ ...old, service: 'takeaway' }))
+    } else if (type === 'privatisation') {
+      setData((old) => ({ ...old, service: 'privatisation', date: minimumPrivatisationDate }))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const availableTimeSlots = useMemo(
     () => (data.service === 'takeaway' ? getTakeawayTimeSlots(data.date) : getTableTimeSlots(data.date)),

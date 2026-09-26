@@ -50,9 +50,9 @@ export default function Footer() {
             <span>WhatsApp</span>
             <small>06 51 19 77 51</small>
           </a>
-          <a className="footer-contact-link footer-email-link" href="mailto:contact@chezlina.fr">
+          <a className="footer-contact-link footer-email-link" href="mailto:contact@chezlina.fr" suppressHydrationWarning>
             <span>E-mail</span>
-            <small>contact@chezlina.fr</small>
+            <small suppressHydrationWarning>contact@chezlina.fr</small>
           </a>
         </div>
 
