@@ -11,7 +11,7 @@ function MenuBox({ section, style, full, id }) {
       <div className={full ? 'menu-items-grid' : undefined}>
         {section.items.map((item) => (
           <div className={`menu-item ${item.image ? 'menu-item-photo' : ''}`} key={item.name}>
-            {item.image && <img className="menu-item-thumb" src={item.image} alt="" loading="lazy" />}
+            {item.image && <img className="menu-item-thumb" src={item.image} alt={item.name} loading="lazy" />}
             <div className="menu-item-body">
               <div className="menu-item-top">
                 <span className="menu-item-name">{item.name}</span>

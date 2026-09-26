@@ -42,9 +42,9 @@ export default function GestionCookies() {
 
       <h2>Évolution du site</h2>
       <p>
-        Si un outil soumis au consentement est ajouté ultérieurement, il restera désactivé jusqu&rsquo;au choix de
-        l&rsquo;utilisateur. Le refus sera proposé aussi simplement que l&rsquo;acceptation et le choix pourra être modifié à tout
-        moment.
+        Si un nouvel outil soumis au consentement est ajouté à l&rsquo;avenir, il restera désactivé jusqu&rsquo;au choix de
+        l&rsquo;utilisateur, avec un refus aussi simple que l&rsquo;acceptation et modifiable à tout moment — comme c&rsquo;est déjà le
+        cas pour Google Analytics.
       </p>
 
       <h2>Nous contacter</h2>

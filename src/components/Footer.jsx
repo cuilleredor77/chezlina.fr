@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { trackEvent } from '../lib/analytics'
 
 export default function Footer() {
   return (
@@ -27,6 +28,7 @@ export default function Footer() {
             href="https://www.google.com/maps/search/?api=1&query=Chez+Lina+restaurant+29+rue+de+Montgeron+91800+Brunoy"
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackEvent('click_itineraire')}
           >
             29 rue de Montgeron<br />91800 Brunoy
           </a>
@@ -40,11 +42,11 @@ export default function Footer() {
 
         <div className="footer-contact">
           <h2>Nous contacter</h2>
-          <a className="footer-contact-link footer-call-link" href="tel:+33651197751">
+          <a className="footer-contact-link footer-call-link" href="tel:+33651197751" onClick={() => trackEvent('click_tel')}>
             <span>Appeler</span>
             <small>06 51 19 77 51</small>
           </a>
-          <a className="footer-contact-link footer-whatsapp-link" href="https://wa.me/33651197751" target="_blank" rel="noreferrer">
+          <a className="footer-contact-link footer-whatsapp-link" href="https://wa.me/33651197751" target="_blank" rel="noreferrer" onClick={() => trackEvent('click_whatsapp')}>
             <span>WhatsApp</span>
             <small>06 51 19 77 51</small>
           </a>

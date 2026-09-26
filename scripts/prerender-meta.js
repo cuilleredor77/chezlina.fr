@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -7,15 +7,15 @@ const distDir = join(__dirname, '..', 'dist')
 const siteUrl = 'https://chezlina.fr'
 
 const routes = [
-  { path: '/la-carte', title: 'La carte du moment', description: 'Une cuisine franco-africaine généreuse.' },
-  { path: '/notre-histoire', title: 'Mama Lina, du Congo à Brunoy', description: 'L’héritage congolais de Mama Lina, transmis à ses quatre filles.' },
-  { path: '/galerie', title: 'La maison en images', description: 'Les plats et les gestes de Chez Lina.' },
-  { path: '/contact', title: 'Chez Lina à Brunoy', description: 'Préparez votre venue ou contactez-nous.' },
-  { path: '/reservation', title: 'Réserver ou commander', description: 'Réservez une table ou commandez à emporter.' },
-  { path: '/mentions-legales', title: 'Mentions légales', description: 'Les informations légales du site.' },
-  { path: '/politique-confidentialite', title: 'Politique de confidentialité', description: 'L’essentiel sur vos données.' },
-  { path: '/gestion-des-cookies', title: 'Cookies et services tiers', description: 'Notre utilisation des cookies et services tiers.' },
-  { path: '/accessibilite', title: 'Accessibilité', description: 'Notre démarche d’accessibilité.' },
+  { path: '/la-carte', title: 'La carte du moment', description: 'La carte du restaurant franco-africain Chez Lina à Brunoy : viandes et poissons braisés, entrées, cocktails maison et vins. Formules dès 9 €.' },
+  { path: '/notre-histoire', title: 'Mama Lina, du Congo à Brunoy', description: 'Mama Lina a apporté sa cuisine congolaise à Brunoy ; ses quatre filles perpétuent aujourd’hui son héritage au restaurant Chez Lina.' },
+  { path: '/galerie', title: 'La maison en images', description: 'Découvrez en images les plats, l’ambiance et les gestes du restaurant franco-africain Chez Lina à Brunoy.' },
+  { path: '/contact', title: 'Nous trouver à Brunoy', description: 'Adresse, horaires et moyens de contact du restaurant Chez Lina, 29 rue de Montgeron à Brunoy. Réservez une table ou commandez à emporter.' },
+  { path: '/reservation', title: 'Réserver ou commander', description: 'Réservez une table ou commandez à emporter au restaurant Chez Lina à Brunoy, en quelques clics via WhatsApp.' },
+  { path: '/mentions-legales', title: 'Mentions légales', description: 'Mentions légales du restaurant Chez Lina à Brunoy : identité de l’entreprise, hébergement et informations réglementaires du site.' },
+  { path: '/politique-confidentialite', title: 'Politique de confidentialité', description: 'Politique de confidentialité du restaurant Chez Lina à Brunoy : données collectées, finalités, durée de conservation et vos droits.' },
+  { path: '/gestion-des-cookies', title: 'Cookies et services tiers', description: 'Cookies et services tiers utilisés sur le site du restaurant Chez Lina à Brunoy : Google Analytics, soumis à votre consentement.' },
+  { path: '/accessibilite', title: 'Accessibilité', description: 'La démarche d’accessibilité numérique du site du restaurant Chez Lina à Brunoy.' },
 ]
 
 const template = readFileSync(join(distDir, 'index.html'), 'utf-8')
@@ -35,9 +35,7 @@ for (const route of routes) {
     .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${escapeHtml(route.description)}" />`)
     .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${canonicalUrl}" />`)
 
-  const outDir = join(distDir, route.path)
-  mkdirSync(outDir, { recursive: true })
-  writeFileSync(join(outDir, 'index.html'), html)
+  writeFileSync(join(distDir, `${route.path}.html`), html)
   console.log(`Prerendered ${route.path} -> ${fullTitle}`)
 }
 

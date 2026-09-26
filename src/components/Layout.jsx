@@ -1,14 +1,13 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import FloatingReserve from './FloatingReserve'
 import ConsentBanner from './ConsentBanner'
-import { initAnalyticsIfConsented, trackPageView } from '../lib/analytics'
+import { initAnalyticsIfConsented } from '../lib/analytics'
 
 export default function Layout() {
   const { pathname } = useLocation()
-  const isFirstPageView = useRef(true)
 
   useEffect(() => {
     initAnalyticsIfConsented()
@@ -16,14 +15,6 @@ export default function Layout() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [pathname])
-
-  useEffect(() => {
-    if (isFirstPageView.current) {
-      isFirstPageView.current = false
-      return
-    }
-    trackPageView(pathname)
   }, [pathname])
 
   useEffect(() => {

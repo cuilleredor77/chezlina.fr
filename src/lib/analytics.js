@@ -43,8 +43,8 @@ export function initAnalyticsIfConsented() {
   if (getConsent() === 'granted') loadGtag()
 }
 
-export function trackPageView(path) {
+export function trackEvent(name, params = {}) {
   if (getConsent() === 'granted' && typeof window.gtag === 'function') {
-    window.gtag('event', 'page_view', { page_path: path })
+    window.gtag('event', name, params)
   }
 }

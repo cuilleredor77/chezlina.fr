@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import { trackEvent } from '../lib/analytics'
 
 const WHATSAPP_NUMBER = '33651197751'
 const STEP_MINUTES = 15
@@ -173,6 +174,7 @@ export default function Reservation() {
     }
     setError('')
     setPrepared(true)
+    trackEvent('reservation_submit', { type: data.service })
     window.location.href = whatsappUrl
   }
 
