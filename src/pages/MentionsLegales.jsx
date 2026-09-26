@@ -5,9 +5,10 @@ export default function MentionsLegales() {
     <LegalLayout crumb="Mentions légales" eyebrow="Informations légales" title="Mentions légales" lede="Les informations légales du site.">
       <h2>Éditeur du site</h2>
       <p>
-        Chez Lina — Société par actions simplifiée (SAS)<br />
+        LES QUATRE FILLES LINA — Société par actions simplifiée (SAS), exploitant l&rsquo;enseigne « Chez Lina »<br />
         Capital social : 1 000 €<br />
-        SIREN : 109 488 429<br />
+        SIREN : 109 488 429 · SIRET : 109 488 429 00019<br />
+        Code APE/NAF : 5610A (Restauration traditionnelle)<br />
         Date d&rsquo;immatriculation : 9 septembre 2026<br />
         Siège social : 29 rue de Montgeron, 91800 Brunoy<br />
         Téléphone : 06 51 19 77 51<br />

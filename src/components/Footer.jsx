@@ -63,11 +63,14 @@ export default function Footer() {
               </span>
               <span>Chez Lina</span>
             </a>
-            <a className="social-link social-link-partner" href="https://www.instagram.com/cuillere.dor/" target="_blank" rel="noreferrer" aria-label="Instagram de Cuillère d&rsquo;Or">
+            <a className="social-link social-link-partner" href="https://www.instagram.com/cuillere.dor/" target="_blank" rel="noreferrer" aria-label="Cuillère d&rsquo;Or, l&rsquo;agence qui a conçu ce site (Instagram)">
               <span className="social-logo-frame social-logo-partner">
                 <img className="partner-social-logo" src="/images/logo-cuillere-dor.png" alt="" />
               </span>
-              <span>Cuillère d&rsquo;Or</span>
+              <span>
+                Cuillère d&rsquo;Or
+                <small style={{ display: 'block', fontWeight: 400, opacity: 0.75 }}>Site conçu par</small>
+              </span>
             </a>
           </div>
         </div>

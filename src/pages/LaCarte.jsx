@@ -182,6 +182,9 @@ export default function LaCarte() {
               ))}
             </div>
           ))}
+          <p style={{ marginTop: 24, fontSize: '0.8rem', opacity: 0.7 }}>
+            Prix TTC, service compris. Liste des allergènes disponible sur demande auprès de notre équipe.
+          </p>
         </div>
       </section>
 

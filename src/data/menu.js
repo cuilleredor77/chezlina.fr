@@ -37,9 +37,9 @@ export const menuSections = [
     title: 'Les viandes',
     column: 'left',
     items: [
-      { name: 'Suprême de volaille, sauce poulette', description: 'Accompagné d’un riz délicatement parfumé au gingembre, à la noix de coco et au citron.', price: '19 €', image: '/images/poulet-braise-riz-rouge-detail.jpeg' },
-      { name: 'Mouton braisé', description: 'Servi avec de la chikwangue.', price: '20 €', image: '/images/mouton-braise.webp' },
-      { name: '4 brochettes de bœuf', description: 'Riz rouge, sauce aux trois poivrons.', price: '18 €', image: '/images/brochettes-boeuf.webp' },
+      { name: 'Suprême de volaille', description: 'Sauce poulette, riz délicatement parfumé au gingembre, à la noix de coco et au citron.', price: '19 €', image: '/images/poulet-braise-riz-rouge-detail.jpeg' },
+      { name: 'Mouton braisé', description: 'Chikwangue.', price: '20 €', image: '/images/mouton-braise.webp' },
+      { name: '4 brochettes de bœuf', description: 'Sauce aux trois poivrons, riz rouge.', price: '18 €', image: '/images/brochettes-boeuf.webp' },
     ],
   },
   {
@@ -47,8 +47,8 @@ export const menuSections = [
     title: 'Les poissons',
     column: 'left',
     items: [
-      { name: 'Dorade braisée', description: 'Sauce vierge, tomate, mangue verte et herbes fraîches, accompagnée d’attiéké.', price: '20 €', image: '/images/dorade-braisee.webp' },
-      { name: 'Panga braisé', description: 'Foutou banane et sauce aux trois poivrons.', price: '25 €', image: '/images/panga-braise.jpg' },
+      { name: 'Dorade braisée', description: 'Sauce vierge, tomate, mangue verte et herbes fraîches, attiéké.', price: '20 €', image: '/images/dorade-braisee.webp' },
+      { name: 'Panga braisé', description: 'Sauce aux trois poivrons, foutou banane.', price: '25 €', image: '/images/panga-braise.jpg' },
     ],
   },
   {
