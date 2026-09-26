@@ -31,6 +31,14 @@ export function setConsent(value) {
   if (value === 'granted') loadGtag()
 }
 
+export function resetConsent() {
+  try {
+    localStorage.removeItem(CONSENT_KEY)
+  } catch {
+    // ignore storage errors (private browsing, etc.)
+  }
+}
+
 export function initAnalyticsIfConsented() {
   if (getConsent() === 'granted') loadGtag()
 }

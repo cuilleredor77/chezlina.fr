@@ -712,6 +712,12 @@ button { font-family: inherit; cursor: pointer; }
 .consent-banner a { color: var(--gold); text-decoration: underline; }
 .consent-banner-actions { display: flex; gap: 10px; flex-shrink: 0; }
 .consent-banner-actions .button { padding: 8px 18px; min-height: auto; font-size: 0.85rem; }
+.button-consent-decline {
+  background: var(--white);
+  color: var(--espresso-darker);
+  border-color: var(--white);
+}
+.button-consent-decline:hover { background: var(--cream-soft); }
 @media (max-width: 720px) {
   .consent-banner { padding-bottom: 90px; justify-content: flex-start; }
 }

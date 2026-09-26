@@ -23,7 +23,7 @@ export default function ConsentBanner() {
         tout moment. <Link to="/gestion-des-cookies">En savoir plus</Link>.
       </p>
       <div className="consent-banner-actions">
-        <button type="button" className="button button-ghost" onClick={() => choose('denied')}>Refuser</button>
+        <button type="button" className="button button-consent-decline" onClick={() => choose('denied')}>Refuser</button>
         <button type="button" className="button button-primary" onClick={() => choose('granted')}>Accepter</button>
       </div>
     </div>
