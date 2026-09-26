@@ -10,8 +10,8 @@ function MenuBox({ section, style, full }) {
       <h2>{section.title}</h2>
       <div className={full ? 'menu-items-grid' : undefined}>
         {section.items.map((item) => (
-          <div className="menu-item" key={item.name}>
-            {item.image && <img className="menu-item-thumb" src={item.image} alt="" />}
+          <div className={`menu-item ${item.image ? 'menu-item-photo' : ''}`} key={item.name}>
+            {item.image && <img className="menu-item-thumb" src={item.image} alt="" loading="lazy" />}
             <div className="menu-item-body">
               <div className="menu-item-top">
                 <span className="menu-item-name">{item.name}</span>
