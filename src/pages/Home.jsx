@@ -140,6 +140,7 @@ export default function Home() {
           </div>
           <div className="button-row">
             <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>
+            <a className="button button-ghost-light" href="tel:+33651197751">Appeler</a>
             <a className="button button-ghost-light" href="https://wa.me/33651197751?text=Bonjour%20Chez%20Lina%2C%20je%20souhaite%20faire%20une%20demande." target="_blank" rel="noreferrer">Écrire sur WhatsApp</a>
           </div>
         </div>

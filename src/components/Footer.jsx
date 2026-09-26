@@ -40,6 +40,10 @@ export default function Footer() {
 
         <div className="footer-contact">
           <h2>Nous contacter</h2>
+          <a className="footer-contact-link footer-call-link" href="tel:+33651197751">
+            <span>Appeler</span>
+            <small>06 51 19 77 51</small>
+          </a>
           <a className="footer-contact-link footer-whatsapp-link" href="https://wa.me/33651197751" target="_blank" rel="noreferrer">
             <span>WhatsApp</span>
             <small>06 51 19 77 51</small>
