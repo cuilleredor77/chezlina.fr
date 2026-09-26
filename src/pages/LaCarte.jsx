@@ -43,6 +43,7 @@ export default function LaCarte() {
         crumb="La carte du moment"
         eyebrow="Braise, sauces et transmission"
         title="La carte du moment"
+        titleNote="Cuisine congolaise et grillades à Brunoy"
         lede="Une cuisine franco-africaine généreuse."
         photo={{ src: '/images/viande-braisee.webp', tint: '#1d1411', position: '50% 58%' }}
       />

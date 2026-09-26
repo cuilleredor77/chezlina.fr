@@ -1,6 +1,6 @@
 import { usePageTitle } from '../hooks/usePageTitle'
 
-export default function PageHero({ crumb, eyebrow, title, lede, photo }) {
+export default function PageHero({ crumb, eyebrow, title, titleNote, lede, photo }) {
   usePageTitle(title, lede)
   const style = photo
     ? {
@@ -12,7 +12,15 @@ export default function PageHero({ crumb, eyebrow, title, lede, photo }) {
       <div className="shell">
         <span className="breadcrumb">Accueil / {crumb}</span>
         {eyebrow && <span className="eyebrow light">{eyebrow}</span>}
-        <h1>{title}</h1>
+        <h1>
+          {title}
+          {titleNote && (
+            <>
+              <span className="sr-only"> — </span>
+              <span className="eyebrow light hero-title-note">{titleNote}</span>
+            </>
+          )}
+        </h1>
         {lede && <p className="lede">{lede}</p>}
       </div>
       {photo && <span className="page-hero-deco" aria-hidden="true" />}

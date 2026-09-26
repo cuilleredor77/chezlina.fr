@@ -70,8 +70,10 @@ export default function HeroCarousel() {
         </div>
       ) : (
         <div className="shell hero-copy">
-          <p className="eyebrow light">Restaurant · Brunoy</p>
-          <h1 id="hero-title">Chez Lina</h1>
+          <h1 id="hero-title">
+            Chez Lina<span className="sr-only">, </span>
+            <span className="eyebrow light hero-title-note">Restaurant franco-africain à Brunoy</span>
+          </h1>
           <div className="hero-rating-badge">★ 5,0 · 29 avis Google</div>
           <p className="hero-signature">Deux cultures, une même table.</p>
           <div className="button-row">

@@ -37,6 +37,7 @@ export default function Contact() {
               <a href="https://wa.me/33651197751" target="_blank" rel="noreferrer" onClick={() => trackEvent('click_whatsapp')}><span>Écrire</span><strong>WhatsApp</strong></a>
               <a href="mailto:contact@chezlina.fr"><span>Écrire</span><strong>E-mail</strong></a>
               <a href="https://www.instagram.com/chezlina.brunoy/" target="_blank" rel="noreferrer"><span>Nous suivre</span><strong>Instagram</strong></a>
+              <a href="https://www.tiktok.com/@chezlina.brunoy" target="_blank" rel="noreferrer"><span>Nous suivre</span><strong>TikTok</strong></a>
             </nav>
           </div>
         </div>
