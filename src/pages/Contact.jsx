@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import { trackEvent } from '../lib/analytics'
+import FaqList from '../components/FaqList'
 
 export default function Contact() {
   return (
@@ -40,6 +41,14 @@ export default function Contact() {
               <a href="https://www.tiktok.com/@chezlina.brunoy" target="_blank" rel="noreferrer"><span>Nous suivre</span><strong>TikTok</strong></a>
             </nav>
           </div>
+        </div>
+      </section>
+
+      <section className="section section-cream">
+        <div className="shell">
+          <span className="eyebrow">Avant de venir</span>
+          <h2>Questions fréquentes</h2>
+          <FaqList />
         </div>
       </section>
     </>

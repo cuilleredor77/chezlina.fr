@@ -6,6 +6,8 @@ import NotreHistoire from './pages/NotreHistoire'
 import Galerie from './pages/Galerie'
 import Contact from './pages/Contact'
 import Reservation from './pages/Reservation'
+import CuisineCongolaise from './pages/CuisineCongolaise'
+import AEmporter from './pages/AEmporter'
 import MentionsLegales from './pages/MentionsLegales'
 import PolitiqueConfidentialite from './pages/PolitiqueConfidentialite'
 import GestionCookies from './pages/GestionCookies'
@@ -22,6 +24,8 @@ export default function App() {
         <Route path="galerie" element={<Galerie />} />
         <Route path="contact" element={<Contact />} />
         <Route path="reservation" element={<Reservation />} />
+        <Route path="cuisine-congolaise-essonne" element={<CuisineCongolaise />} />
+        <Route path="a-emporter-brunoy" element={<AEmporter />} />
         <Route path="mentions-legales" element={<MentionsLegales />} />
         <Route path="politique-confidentialite" element={<PolitiqueConfidentialite />} />
         <Route path="gestion-des-cookies" element={<GestionCookies />} />

@@ -19,6 +19,8 @@ export default function Footer() {
           <Link to="/notre-histoire">L’histoire de Mama Lina</Link>
           <Link to="/galerie">La maison en images</Link>
           <Link to="/contact">Nous trouver</Link>
+          <Link to="/cuisine-congolaise-essonne">Cuisine congolaise en Essonne</Link>
+          <Link to="/a-emporter-brunoy">À emporter à Brunoy</Link>
         </nav>
 
         <div className="footer-address">

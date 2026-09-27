@@ -83,7 +83,7 @@ export default function Home() {
               <img src="/images/morue-frite.webp" alt="Croquettes de morue Chez Lina" />
               <div className="card-body">
                 <h3>Cuisine franco-africaine</h3>
-                <p>Des saveurs africaines travaillées avec les gestes de la cuisine française.</p>
+                <p>Des saveurs africaines travaillées avec les gestes de la cuisine française, héritées d&rsquo;une <Link to="/cuisine-congolaise-essonne">cuisine congolaise</Link> familiale.</p>
                 <Link to="/la-carte" className="button button-ghost" style={{ marginTop: 16 }}>Découvrir la carte</Link>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function Home() {
               <img src="/images/plat-porte.webp" alt="Table à Chez Lina, Brunoy" />
               <div className="card-body">
                 <h3>À Brunoy</h3>
-                <p>Une maison de cuisine située au 29 rue de Montgeron.</p>
+                <p>Une maison de cuisine située au 29 rue de Montgeron, sur place ou <Link to="/a-emporter-brunoy">à emporter</Link>.</p>
                 <Link to="/contact" className="button button-ghost" style={{ marginTop: 16 }}>Nous trouver</Link>
               </div>
             </div>

@@ -102,7 +102,9 @@ export default function LaCarte() {
             <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>
           </div>
           <p style={{ marginTop: 16, fontSize: '0.9rem', color: 'var(--brown-muted)' }}>
-            Groupes et privatisation : nous consulter.
+            Groupes et privatisation : nous consulter. Nos plats se commandent aussi{' '}
+            <Link to="/a-emporter-brunoy">à emporter</Link>. Découvrez les racines de notre{' '}
+            <Link to="/cuisine-congolaise-essonne">cuisine congolaise</Link>.
           </p>
 
           <div className="section-divider" aria-hidden="true">
