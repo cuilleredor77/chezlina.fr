@@ -193,6 +193,7 @@ export default function Home() {
           <div className="button-row" style={{ marginTop: 8 }}>
             <Link to="/reservation?type=privatisation" className="button button-primary" onClick={() => trackEvent('click_privatisation')}>Demander un devis</Link>
             <a className="button button-ghost-light" href="tel:+33651197751" onClick={() => trackEvent('click_tel')}>Appeler</a>
+            <Link to="/privatisation-brunoy" className="button button-ghost-light">En savoir plus</Link>
           </div>
         </div>
       </section>

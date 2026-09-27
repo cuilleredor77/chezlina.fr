@@ -21,6 +21,7 @@ export default function Footer() {
           <Link to="/contact">Nous trouver</Link>
           <Link to="/cuisine-congolaise-essonne">Cuisine congolaise en Essonne</Link>
           <Link to="/a-emporter-brunoy">À emporter à Brunoy</Link>
+          <Link to="/privatisation-brunoy">Privatisation et événements</Link>
         </nav>
 
         <div className="footer-address">

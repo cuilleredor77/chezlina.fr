@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import Reservation from './pages/Reservation'
 import CuisineCongolaise from './pages/CuisineCongolaise'
 import AEmporter from './pages/AEmporter'
+import Privatisation from './pages/Privatisation'
 import MentionsLegales from './pages/MentionsLegales'
 import PolitiqueConfidentialite from './pages/PolitiqueConfidentialite'
 import GestionCookies from './pages/GestionCookies'
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="reservation" element={<Reservation />} />
         <Route path="cuisine-congolaise-essonne" element={<CuisineCongolaise />} />
         <Route path="a-emporter-brunoy" element={<AEmporter />} />
+        <Route path="privatisation-brunoy" element={<Privatisation />} />
         <Route path="mentions-legales" element={<MentionsLegales />} />
         <Route path="politique-confidentialite" element={<PolitiqueConfidentialite />} />
         <Route path="gestion-des-cookies" element={<GestionCookies />} />
