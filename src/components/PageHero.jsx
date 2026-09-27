@@ -1,7 +1,4 @@
-import { usePageTitle } from '../hooks/usePageTitle'
-
 export default function PageHero({ crumb, eyebrow, title, titleNote, lede, photo }) {
-  usePageTitle(title, lede)
   const style = photo
     ? {
         background: `linear-gradient(90deg, ${photo.tint}8c 0%, ${photo.tint}40 48%, ${photo.tint}00 100%), url(${photo.src}) ${photo.position || '50% 50%'}/cover no-repeat`,

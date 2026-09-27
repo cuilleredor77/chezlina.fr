@@ -8,6 +8,7 @@ const distDir = join(rootDir, 'dist')
 const siteUrl = 'https://chezlina.fr'
 
 const { render } = await import(pathToFileURL(join(rootDir, 'dist-ssr', 'entry-server.js')).href)
+const { pageMeta, fullTitle } = await import(pathToFileURL(join(rootDir, 'src', 'data', 'pageMeta.js')).href)
 const { faq } = await import(pathToFileURL(join(rootDir, 'src', 'data', 'faq.js')).href)
 const { formules, menuSections } = await import(pathToFileURL(join(rootDir, 'src', 'data', 'menu.js')).href)
 
@@ -58,21 +59,27 @@ const faqJsonLd = {
   })),
 }
 
-const routes = [
-  { path: '/' },
-  { path: '/la-carte', title: 'La carte du moment', description: 'La carte du restaurant franco-africain Chez Lina à Brunoy : viandes et poissons braisés, entrées, cocktails maison et vins. Formules dès 9 €.', jsonLd: menuJsonLd },
-  { path: '/notre-histoire', title: 'Mama Lina, du Congo à Brunoy', description: 'Mama Lina a apporté sa cuisine congolaise à Brunoy ; ses quatre filles perpétuent aujourd’hui son héritage au restaurant Chez Lina.' },
-  { path: '/galerie', title: 'La maison en images', description: 'Découvrez en images les plats, l’ambiance et les gestes du restaurant franco-africain Chez Lina à Brunoy.' },
-  { path: '/contact', title: 'Nous trouver à Brunoy', description: 'Adresse, horaires et moyens de contact du restaurant Chez Lina, 29 rue de Montgeron à Brunoy. Réservez une table ou commandez à emporter.', jsonLd: faqJsonLd },
-  { path: '/cuisine-congolaise-essonne', title: 'Restaurant congolais en Essonne', description: 'Chez Lina, restaurant congolais et franco-africain à Brunoy (91) : mouton braisé, chikwangue, saka-saka, attiéké, foutou banane. La cuisine de Mama Lina dans le Val d’Yerres.' },
-  { path: '/a-emporter-brunoy', title: 'Plats à emporter à Brunoy', description: 'Commandez vos plats à emporter chez Chez Lina, 29 rue de Montgeron à Brunoy : viandes et poissons braisés, formules dès 9 €. Retrait du mardi au dimanche.' },
-  { path: '/privatisation-brunoy', title: 'Privatiser un restaurant à Brunoy', description: 'Privatisez la salle de Chez Lina à Brunoy pour un anniversaire, un baptême ou un repas d’entreprise : location à partir de 450 €, devis sous 48 h, cuisine franco-africaine.' },
-  { path: '/reservation', title: 'Réserver ou commander', description: 'Réservez une table ou commandez à emporter au restaurant Chez Lina à Brunoy, en quelques clics via WhatsApp.' },
-  { path: '/mentions-legales', title: 'Mentions légales', description: 'Mentions légales du restaurant Chez Lina à Brunoy : identité de l’entreprise, hébergement et informations réglementaires du site.' },
-  { path: '/politique-confidentialite', title: 'Politique de confidentialité', description: 'Politique de confidentialité du restaurant Chez Lina à Brunoy : données collectées, finalités, durée de conservation et vos droits.' },
-  { path: '/gestion-des-cookies', title: 'Cookies et services tiers', description: 'Cookies et services tiers utilisés sur le site du restaurant Chez Lina à Brunoy : Google Analytics, soumis à votre consentement.' },
-  { path: '/accessibilite', title: 'Accessibilité', description: 'La démarche d’accessibilité numérique du site du restaurant Chez Lina à Brunoy.' },
-]
+const extraJsonLd = {
+  '/la-carte': menuJsonLd,
+  '/contact': faqJsonLd,
+}
+
+const routes = Object.entries(pageMeta).map(([path, meta]) => ({ path, ...meta, jsonLd: extraJsonLd[path] }))
+
+function breadcrumbJsonLd(route) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: route.crumb, item: `${siteUrl}${route.path}` },
+    ],
+  }
+}
+
+function jsonLdScript(data) {
+  return `    <script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>\n  </head>`
+}
 
 const template = readFileSync(join(distDir, 'index.html'), 'utf-8')
 
@@ -86,27 +93,21 @@ function injectApp(html, appHtml) {
 
 for (const route of routes) {
   const appHtml = render(route.path)
+  const title = fullTitle(route.path)
+  const canonicalUrl = `${siteUrl}${route.path}`
   let html = injectApp(template, appHtml)
+    .replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`)
+    .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${canonicalUrl}" />`)
+    .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${escapeHtml(route.description)}" />`)
+    .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${escapeHtml(title)}" />`)
+    .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${escapeHtml(route.description)}" />`)
+    .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${canonicalUrl}" />`)
 
-  if (route.title) {
-    const fullTitle = `${route.title} — Chez Lina`
-    const canonicalUrl = `${siteUrl}${route.path}`
-    html = html
-      .replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(fullTitle)}</title>`)
-      .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${canonicalUrl}" />`)
-      .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${escapeHtml(route.description)}" />`)
-      .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${escapeHtml(fullTitle)}" />`)
-      .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${escapeHtml(route.description)}" />`)
-      .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${canonicalUrl}" />`)
-  }
-
-  if (route.jsonLd) {
-    const json = JSON.stringify(route.jsonLd).replace(/</g, '\\u003c')
-    html = html.replace('</head>', `    <script type="application/ld+json">${json}</script>\n  </head>`)
-  }
+  if (route.crumb) html = html.replace('</head>', jsonLdScript(breadcrumbJsonLd(route)))
+  if (route.jsonLd) html = html.replace('</head>', jsonLdScript(route.jsonLd))
 
   writeFileSync(join(distDir, route.path === '/' ? 'index.html' : `${route.path}.html`), html)
-  console.log(`Prerendered ${route.path}`)
+  console.log(`Prerendered ${route.path} -> ${title}`)
 }
 
 const notFoundHtml = injectApp(template, render('/__introuvable__'))

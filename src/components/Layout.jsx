@@ -5,9 +5,11 @@ import Footer from './Footer'
 import FloatingReserve from './FloatingReserve'
 import ConsentBanner from './ConsentBanner'
 import { initAnalyticsIfConsented } from '../lib/analytics'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export default function Layout() {
   const { pathname } = useLocation()
+  usePageMeta(pathname)
 
   useEffect(() => {
     initAnalyticsIfConsented()

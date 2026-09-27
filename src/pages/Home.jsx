@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import HeroCarousel from '../components/HeroCarousel'
 import RandomGoogleReviews from '../components/RandomGoogleReviews'
-import { usePageTitle } from '../hooks/usePageTitle'
 import { trackEvent } from '../lib/analytics'
 
 function getParisDayAndMinutes() {
@@ -63,7 +62,6 @@ function TodayStatusBar() {
 }
 
 export default function Home() {
-  usePageTitle(null, "L'héritage congolais de Mama Lina, porté par ses quatre filles dans un restaurant franco-africain contemporain à Brunoy.")
   return (
     <>
       <HeroCarousel />

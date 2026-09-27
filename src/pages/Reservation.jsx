@@ -111,19 +111,24 @@ const initial = {
 }
 
 export default function Reservation() {
-  const minimumDate = getParisDate()
-  const minimumPrivatisationDate = addDays(minimumDate, 3)
-  const [data, setData] = useState({ ...initial, date: minimumDate })
+  // Date du jour calculée dans le navigateur (et non figée au moment du pré-rendu)
+  const [minimumDate, setMinimumDate] = useState('')
+  const minimumPrivatisationDate = minimumDate ? addDays(minimumDate, 3) : ''
+  const [data, setData] = useState(initial)
   const [step, setStep] = useState(1)
   const [error, setError] = useState('')
   const [prepared, setPrepared] = useState(false)
 
   useEffect(() => {
+    const today = getParisDate()
+    setMinimumDate(today)
     const type = new URLSearchParams(window.location.search).get('type')
     if (type === 'emporter') {
-      setData((old) => ({ ...old, service: 'takeaway' }))
+      setData((old) => ({ ...old, service: 'takeaway', date: today }))
     } else if (type === 'privatisation') {
-      setData((old) => ({ ...old, service: 'privatisation', date: minimumPrivatisationDate }))
+      setData((old) => ({ ...old, service: 'privatisation', date: addDays(today, 3) }))
+    } else {
+      setData((old) => ({ ...old, date: today }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -141,7 +146,7 @@ export default function Reservation() {
   }, [availableTimeSlots])
 
   useEffect(() => {
-    if (data.service === 'privatisation' && data.date < minimumPrivatisationDate) {
+    if (minimumPrivatisationDate && data.service === 'privatisation' && data.date < minimumPrivatisationDate) {
       setData((old) => ({ ...old, date: minimumPrivatisationDate }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
