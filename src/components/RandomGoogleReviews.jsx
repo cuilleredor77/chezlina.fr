@@ -1,6 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
 import { reviews } from '../data/reviews'
 
+// Pastille avec l'initiale de l'auteur, couleur stable selon le nom (pas de photo Google reprise)
+const AVATAR_COLORS = ['#b95332', '#123b35', '#c47a2c', '#984027', '#1f5a50', '#8a5a2b']
+
+function getInitial(name) {
+  return name.trim().charAt(0).toLocaleUpperCase('fr-FR')
+}
+
+function getAvatarColor(name) {
+  let hash = 0
+  for (const char of name) hash = (hash * 31 + char.charCodeAt(0)) % 997
+  return AVATAR_COLORS[hash % AVATAR_COLORS.length]
+}
+
 function pickThree(exclude = []) {
   const pool = reviews.map((_, i) => i).filter((i) => !exclude.includes(i))
   for (let i = pool.length - 1; i > 0; i -= 1) {
@@ -29,7 +42,10 @@ export default function RandomGoogleReviews() {
           return (
             <figure key={`${r.name}-${i}`}>
               <div className="review-card-head">
-                <strong>{r.name}</strong>
+                <span className="review-author">
+                  <span className="review-avatar" aria-hidden="true" style={{ background: getAvatarColor(r.name) }}>{getInitial(r.name)}</span>
+                  <strong>{r.name}</strong>
+                </span>
                 <div className="proof-stars" aria-label="5 étoiles sur 5">★★★★★</div>
               </div>
               <blockquote>« {r.text} »</blockquote>

@@ -569,6 +569,20 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 10px;
 }
 .proof-grid blockquote { margin: 0 0 14px; font-size: 0.95rem; }
+.review-author { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
+.review-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1rem;
+  border: 1px solid rgba(244, 215, 167, 0.45);
+}
 .proof-grid figcaption { font-size: 0.78rem; opacity: 0.75; }
 .review-refresh {
   background: none;
