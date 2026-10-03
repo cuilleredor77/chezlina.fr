@@ -15,9 +15,18 @@ function createTimeSlots(startHour, startMinute, count) {
   })
 }
 
-// Créneaux jusqu'à l'heure de fermeture (11h45-14h45 / 18h45-23h45 du mardi au vendredi, 11h45-23h45 en continu le samedi)
-const weekdayTimeSlots = [...createTimeSlots(11, 45, 13), ...createTimeSlots(18, 45, 21)]
-const saturdayTimeSlots = createTimeSlots(11, 45, 49)
+// Services : 11h45-14h45 / 18h45-23h45 du mardi au vendredi, 11h45-23h45 en continu le samedi
+const WEEKDAY_SERVICES = [[11 * 60 + 45, 14 * 60 + 45], [18 * 60 + 45, 23 * 60 + 45]]
+const SATURDAY_SERVICES = [[11 * 60 + 45, 23 * 60 + 45]]
+// Dernière réservation 45 min avant la fermeture, dernier retrait à emporter 15 min avant
+const LAST_SLOT_BEFORE_CLOSING = { table: 45, takeaway: 15 }
+
+function createServiceSlots(services, minutesBeforeClosing) {
+  return services.flatMap(([open, close]) => {
+    const count = Math.floor((close - minutesBeforeClosing - open) / STEP_MINUTES) + 1
+    return createTimeSlots(Math.floor(open / 60), open % 60, count)
+  })
+}
 
 function getParisNow() {
   const parts = new Intl.DateTimeFormat('fr-FR', {
@@ -65,16 +74,16 @@ function isSaturday(date) {
   return new Date(year, month - 1, day).getDay() === 6
 }
 
-function getDaySlots(date) {
+function getDaySlots(date, service) {
   const [year, month, day] = date.split('-').map(Number)
   const dayOfWeek = new Date(year, month - 1, day).getDay() // 0 = dimanche, 1 = lundi
   if (dayOfWeek === 0 || dayOfWeek === 1) return [] // fermé le dimanche (privatisation possible) et le lundi
-  if (dayOfWeek === 6) return saturdayTimeSlots // samedi : service continu
-  return weekdayTimeSlots
+  const services = dayOfWeek === 6 ? SATURDAY_SERVICES : WEEKDAY_SERVICES // samedi : service continu
+  return createServiceSlots(services, LAST_SLOT_BEFORE_CLOSING[service])
 }
 
-function getAvailableTimeSlots(date, leadMinutes) {
-  const daySlots = getDaySlots(date)
+function getAvailableTimeSlots(date, leadMinutes, service) {
+  const daySlots = getDaySlots(date, service)
   const now = getParisNow()
   if (date !== now.date) return daySlots
   const firstPossibleMinute = Math.ceil((now.minutes + leadMinutes) / STEP_MINUTES) * STEP_MINUTES
@@ -85,11 +94,11 @@ function getAvailableTimeSlots(date, leadMinutes) {
 }
 
 function getTableTimeSlots(date) {
-  return getAvailableTimeSlots(date, 1)
+  return getAvailableTimeSlots(date, 1, 'table')
 }
 
 function getTakeawayTimeSlots(date) {
-  return getAvailableTimeSlots(date, 30)
+  return getAvailableTimeSlots(date, 30, 'takeaway')
 }
 
 function formatBookingDate(date) {
@@ -361,7 +370,7 @@ export default function Reservation() {
                           <select id="time" required value={data.time} disabled={availableTimeSlots.length === 0} onChange={(e) => update('time', e.target.value)}>
                             {availableTimeSlots.length === 0 ? (
                               <option value="">
-                                {getDaySlots(data.date).length === 0 ? 'Fermé ce jour-là' : (data.service === 'table' ? 'Plus de créneau disponible ce jour' : 'Plus de retrait disponible ce jour')}
+                                {getDaySlots(data.date, data.service).length === 0 ? 'Fermé ce jour-là' : (data.service === 'table' ? 'Plus de créneau disponible ce jour' : 'Plus de retrait disponible ce jour')}
                               </option>
                             ) : (
                               isSaturday(data.date) ? (
@@ -394,8 +403,8 @@ export default function Reservation() {
                             {OPENING_HOURS_NOTE}
                             <br />
                             {data.service === 'table'
-                              ? 'Créneaux proposés toutes les 15 minutes.'
-                              : 'Premier retrait au minimum 30 minutes après la demande, puis toutes les 15 minutes. Horaire soumis à confirmation.'}
+                              ? 'Créneaux proposés toutes les 15 minutes. Dernière réservation 45 minutes avant la fermeture.'
+                              : 'Premier retrait au minimum 30 minutes après la demande, puis toutes les 15 minutes, jusqu’à 15 minutes avant la fermeture. Horaire soumis à confirmation.'}
                           </span>
                         </div>
                       </div>
