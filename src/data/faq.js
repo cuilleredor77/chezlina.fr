@@ -15,7 +15,7 @@ export const faq = [
   {
     question: 'Comment réserver une table ?',
     answer: 'Depuis la page Réserver ou commander du site : le formulaire prépare votre demande et l’envoie sur WhatsApp. Vous pouvez aussi appeler le 06 51 19 77 51.',
-    pages: ['privatisation'],
+    pages: [],
   },
   {
     question: 'Jusqu’à quelle heure peut-on réserver une table ?',

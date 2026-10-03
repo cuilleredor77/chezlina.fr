@@ -5,7 +5,7 @@ import { faqFor } from '../data/faq'
 
 const signatures = [
   { src: '/images/mouton-chikwangue.jpg', alt: 'Mouton braisé et chikwangue', title: 'Mouton braisé, chikwangue', text: 'La braise lente et la chikwangue, pain de manioc emblématique du Congo.' },
-  { src: '/images/entree-signature.webp', alt: 'Tarte fine tomate, burrata et saka-saka', title: 'Tarte fine au saka-saka', text: 'Les feuilles de manioc du saka-saka rencontrent la tomate, le bissap et une burrata crémeuse.' },
+  { src: '/images/entree-signature.webp', alt: 'Tarte fine tomate, burrata et saka-saka', title: 'Tarte fine tomate et burrata', text: 'Les feuilles de manioc du saka-saka rencontrent la tomate, le bissap et une burrata crémeuse.' },
   { src: '/images/panga-braise.jpg', alt: 'Panga entier braisé et foutou banane', title: 'Panga braisé, foutou banane', text: 'Poisson braisé, sauce aux trois poivrons et foutou banane.' },
   { src: '/images/dorade-braisee.webp', alt: 'Dorade braisée et attiéké', title: 'Dorade braisée, attiéké', text: 'Sauce vierge à la mangue verte, herbes fraîches et attiéké.' },
 ]

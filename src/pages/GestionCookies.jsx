@@ -4,7 +4,7 @@ import { resetConsent } from '../lib/analytics'
 export default function GestionCookies() {
   return (
     <LegalLayout crumb="Cookies et services tiers" eyebrow="Navigation et confidentialité" title="Cookies et services tiers" lede="Notre utilisation des cookies et services tiers.">
-      <p><em>Dernière mise à jour : 26 septembre 2026.</em></p>
+      <p><em>Dernière mise à jour : 3 octobre 2026.</em></p>
 
       <h2>Modifier mon choix</h2>
       <p>
@@ -35,7 +35,7 @@ export default function GestionCookies() {
 
       <h2>Liens vers des services tiers</h2>
       <p>
-        WhatsApp, Google Maps, Google et Instagram s&rsquo;ouvrent uniquement lorsque vous activez volontairement le lien
+        WhatsApp, Google Maps, Google (avis), Waze, Instagram, TikTok, Facebook et votre messagerie e-mail s&rsquo;ouvrent uniquement lorsque vous activez volontairement le lien
         correspondant. À partir de ce moment, le service choisi applique ses propres règles de confidentialité et peut
         utiliser ses propres cookies.
       </p>

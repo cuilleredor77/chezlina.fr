@@ -1,5 +1,5 @@
-// Note et nombre d’avis relevés sur la fiche Google (41 × 5★ + 1 × 3★ = 4,95) — mis à jour le 3 octobre 2026
-export const reviewStats = { rating: '4,95', count: 42 }
+// Note et nombre d’avis relevés sur la fiche Google (42 × 5★ + 1 × 3★ = 4,95) — mis à jour le 3 octobre 2026
+export const reviewStats = { rating: '4,95', count: 43 }
 
 export const reviews = [
   { name: 'Barbara Etzenberger', text: 'Nous avons passé un très bon moment, une belle découverte : une cuisine excellente et raffinée, et une équipe au top. Merci !' },

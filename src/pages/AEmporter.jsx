@@ -52,7 +52,7 @@ export default function AEmporter() {
           <ul className="takeaway-list">
             {plats.map((p) => (
               <li key={p.name}>
-                <span><strong>{p.name}</strong> — {p.description}</span>
+                <span><strong>{p.name}</strong>{p.description && <> — {p.description}</>}</span>
                 <span className="formule-price">{p.price}</span>
               </li>
             ))}

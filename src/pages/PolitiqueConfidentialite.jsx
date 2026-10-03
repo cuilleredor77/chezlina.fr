@@ -4,7 +4,7 @@ import LegalLayout from '../components/LegalLayout'
 export default function PolitiqueConfidentialite() {
   return (
     <LegalLayout crumb="Politique de confidentialité" eyebrow="Vos données" title="Politique de confidentialité" lede="L’essentiel sur vos données.">
-      <p><em>Dernière mise à jour : 25 septembre 2026.</em></p>
+      <p><em>Dernière mise à jour : 3 octobre 2026.</em></p>
 
       <h2>Responsable du traitement</h2>
       <p>
@@ -15,10 +15,11 @@ export default function PolitiqueConfidentialite() {
 
       <h2>Données et finalités</h2>
       <p>
-        Le formulaire prépare un message contenant le type de demande, la date, l&rsquo;heure, le nombre de personnes ou de
-        portions, le prénom, le téléphone et les précisions utiles. Ces données servent uniquement à répondre à une
-        demande de réservation ou de commande et, si la case facultative est cochée, à adresser occasionnellement les
-        actualités et offres de Chez Lina par WhatsApp.
+        Le formulaire prépare un message contenant le type de demande, la date, l&rsquo;heure ou le créneau, le nombre de
+        personnes ou d&rsquo;invités, les plats commandés, le nom, le téléphone, l&rsquo;adresse e-mail si elle est indiquée et les
+        précisions utiles. Ces données servent uniquement à répondre à une demande de réservation, de commande à emporter
+        ou de privatisation et, si la case facultative est cochée, à adresser occasionnellement les actualités et offres
+        de Chez Lina par WhatsApp.
       </p>
 
       <h2>Bases légales</h2>
@@ -27,11 +28,13 @@ export default function PolitiqueConfidentialite() {
         L&rsquo;envoi d&rsquo;actualités et d&rsquo;offres repose sur un consentement distinct, facultatif et révocable à tout moment.
       </p>
 
-      <h2>Transmission à WhatsApp</h2>
+      <h2>Transmission par WhatsApp ou par e-mail</h2>
       <p>
-        Les informations saisies restent dans le navigateur tant que l&rsquo;utilisateur n&rsquo;envoie pas le message.
-        L&rsquo;ouverture de WhatsApp affiche le message préparé ; l&rsquo;utilisateur reste libre de le modifier ou de ne pas
-        l&rsquo;envoyer. Après l&rsquo;envoi, les données sont traitées dans la messagerie WhatsApp selon les conditions de Meta.
+        Les informations saisies restent dans le navigateur tant que l&rsquo;utilisateur n&rsquo;envoie pas le message. Les
+        réservations de table et les commandes à emporter ouvrent WhatsApp avec le message préparé ; les demandes de
+        privatisation ouvrent la messagerie e-mail de l&rsquo;utilisateur, adressée à contact@chezlina.fr. Dans les deux cas,
+        l&rsquo;utilisateur reste libre de modifier le message ou de ne pas l&rsquo;envoyer. Après l&rsquo;envoi, les données sont
+        traitées dans WhatsApp selon les conditions de Meta, ou dans la boîte e-mail de Chez Lina.
       </p>
 
       <h2>Destinataires et conservation</h2>
@@ -52,14 +55,15 @@ export default function PolitiqueConfidentialite() {
 
       <h2>Services externes</h2>
       <p>
-        Le site propose des liens vers WhatsApp, Google Maps et Instagram. Aucun contenu provenant de ces services
-        n&rsquo;est chargé avant que l&rsquo;utilisateur choisisse de suivre le lien. Ces services appliquent ensuite leurs
-        propres politiques de confidentialité.
+        Le site propose des liens vers WhatsApp, Google Maps, Google (avis), Waze, Instagram, TikTok et Facebook. Aucun
+        contenu provenant de ces services n&rsquo;est chargé avant que l&rsquo;utilisateur choisisse de suivre le lien. Ces
+        services appliquent ensuite leurs propres politiques de confidentialité.
       </p>
       <p>
         Le site utilise également Google Analytics pour mesurer sa fréquentation (pages consultées, provenance des
-        visites). Ce service, fourni par Google Ireland Limited, dépose des cookies de mesure d&rsquo;audience dès le
-        chargement du site. Voir notre page <Link to="/gestion-des-cookies">Cookies et services tiers</Link>.
+        visites). Ce service, fourni par Google Ireland Limited, ne se charge et ne dépose de cookies de mesure
+        d&rsquo;audience que si l&rsquo;utilisateur clique sur « Accepter » dans le bandeau ; en cas de refus ou d&rsquo;absence de
+        choix, aucun cookie de mesure n&rsquo;est déposé. Voir notre page <Link to="/gestion-des-cookies">Cookies et services tiers</Link>.
       </p>
     </LegalLayout>
   )

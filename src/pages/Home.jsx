@@ -161,7 +161,7 @@ export default function Home() {
               <p>Braise, épices, sauces, générosité et produits.</p>
             </div>
           </div>
-          <Link to="/galerie" className="button button-ghost-light" style={{ alignSelf: 'flex-start', marginTop: 8 }}>Voir nos réalisations</Link>
+          <Link to="/galerie" className="button button-ghost-light" style={{ alignSelf: 'flex-start', marginTop: 8 }}>Voir nos plats</Link>
         </div>
       </section>
 

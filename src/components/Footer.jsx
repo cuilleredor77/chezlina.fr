@@ -111,7 +111,7 @@ export default function Footer() {
       </div>
 
       <div className="shell footer-bottom">
-        <p>© {new Date().getFullYear()} Chez Lina · Site conçu par <a className="footer-credit-link" href="https://snap-me.fr" target="_blank" rel="noreferrer">Snap-me</a></p>
+        <p>© {new Date().getFullYear()} Chez Lina · Site conçu par <a className="footer-credit-link" href="https://snap-me.fr" target="_blank" rel="noreferrer">Snap-Me</a></p>
         <div className="footer-legal">
           <Link to="/mentions-legales">Mentions légales</Link>
           <Link to="/politique-confidentialite">Confidentialité</Link>

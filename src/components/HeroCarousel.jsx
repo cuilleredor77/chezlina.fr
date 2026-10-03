@@ -79,7 +79,7 @@ export default function HeroCarousel() {
           <p className="hero-signature">Deux cultures, une même table.</p>
           <div className="button-row">
             <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>
-            <Link to="/galerie" className="button button-ghost-light">Découvrir nos plats</Link>
+            <Link to="/la-carte" className="button button-ghost-light">Découvrir nos plats</Link>
           </div>
         </div>
       )}

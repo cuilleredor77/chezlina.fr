@@ -30,7 +30,7 @@ export default function NotreHistoire() {
           <span className="eyebrow">À l&rsquo;origine</span>
           <h2>Une mère, un prénom, une manière de recevoir.</h2>
           <p>
-            Chez Lina est née d&rsquo;une histoire familiale. Celle de Mama Lina et de quatre filles qui ont choisi de faire
+            Chez Lina est né d&rsquo;une histoire familiale. Celle de Mama Lina et de quatre filles qui ont choisi de faire
             vivre son sens du partage dans un restaurant à Brunoy.
           </p>
           <p>
