@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import FaqList from '../components/FaqList'
+import { faqFor } from '../data/faq'
 
 const signatures = [
   { src: '/images/mouton-chikwangue.jpg', alt: 'Mouton braisé et chikwangue', title: 'Mouton braisé, chikwangue', text: 'La braise lente et la chikwangue, pain de manioc emblématique du Congo.' },
@@ -89,6 +91,14 @@ export default function CuisineCongolaise() {
               <Link to="/a-emporter-brunoy" className="button button-outline">Plats à emporter</Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section section-cream">
+        <div className="shell">
+          <span className="eyebrow">Bon à savoir</span>
+          <h2>Questions fréquentes sur notre cuisine congolaise</h2>
+          <FaqList items={faqFor('cuisine')} />
         </div>
       </section>
     </>

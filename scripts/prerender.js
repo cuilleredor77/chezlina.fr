@@ -9,7 +9,7 @@ const siteUrl = 'https://chezlina.fr'
 
 const { render } = await import(pathToFileURL(join(rootDir, 'dist-ssr', 'entry-server.js')).href)
 const { pageMeta, fullTitle } = await import(pathToFileURL(join(rootDir, 'src', 'data', 'pageMeta.js')).href)
-const { faq } = await import(pathToFileURL(join(rootDir, 'src', 'data', 'faq.js')).href)
+const { faq, faqFor } = await import(pathToFileURL(join(rootDir, 'src', 'data', 'faq.js')).href)
 const { formules, menuSections } = await import(pathToFileURL(join(rootDir, 'src', 'data', 'menu.js')).href)
 
 function parsePrice(price) {
@@ -49,19 +49,24 @@ const menuJsonLd = {
   ],
 }
 
-const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((item) => ({
-    '@type': 'Question',
-    name: item.question,
-    acceptedAnswer: { '@type': 'Answer', text: item.answer },
-  })),
+function faqJsonLd(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
 }
 
 const extraJsonLd = {
   '/la-carte': menuJsonLd,
-  '/contact': faqJsonLd,
+  '/contact': faqJsonLd(faq),
+  '/privatisation-brunoy': faqJsonLd(faqFor('privatisation')),
+  '/a-emporter-brunoy': faqJsonLd(faqFor('emporter')),
+  '/cuisine-congolaise-essonne': faqJsonLd(faqFor('cuisine')),
 }
 
 const routes = Object.entries(pageMeta).map(([path, meta]) => ({ path, ...meta, jsonLd: extraJsonLd[path] }))

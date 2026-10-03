@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import FaqList from '../components/FaqList'
-import { faq } from '../data/faq'
+import { faqFor } from '../data/faq'
 import { trackEvent } from '../lib/analytics'
 
 const occasions = [
@@ -16,7 +16,7 @@ const steps = [
   'Nous vous envoyons un devis personnalisé sous 48 h, avec le menu choisi ensemble.',
 ]
 
-const privatisationFaq = faq.filter((item) => /privatiser|réserver une table|cuisine/i.test(item.question))
+const privatisationFaq = faqFor('privatisation')
 
 export default function Privatisation() {
   return (
@@ -93,7 +93,7 @@ export default function Privatisation() {
       <section className="section section-cream">
         <div className="shell">
           <span className="eyebrow">Bon à savoir</span>
-          <h2>Questions fréquentes</h2>
+          <h2>Questions fréquentes sur la privatisation</h2>
           <FaqList items={privatisationFaq} />
         </div>
       </section>

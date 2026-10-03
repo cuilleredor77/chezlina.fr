@@ -74,7 +74,7 @@ export default function Home() {
 
       <section className="section">
         <div className="shell">
-          <span className="eyebrow">Le restaurant</span>
+          <span className="eyebrow">Restaurant franco-africain à Brunoy</span>
           <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', maxWidth: 640 }}>Un héritage de famille, à table.</h2>
           <p style={{ maxWidth: 620, fontSize: '1.05rem' }}>
             Chez Lina vous accueille à Brunoy autour d&rsquo;une cuisine généreuse et contemporaine, héritée de Mama Lina
@@ -149,7 +149,7 @@ export default function Home() {
       <section className="split section-dark" style={{ padding: 0 }}>
         <img src="/images/geste-service.webp" alt="Dressage d’une assiette Chez Lina" />
         <div className="split-copy">
-          <span className="eyebrow light">Notre cuisine</span>
+          <span className="eyebrow light">Cuisine franco-africaine aux racines congolaises</span>
           <h2>Deux cultures.<br />Une cuisine.</h2>
           <div className="two-col-list">
             <div>
@@ -167,8 +167,8 @@ export default function Home() {
 
       <section className="section section-maroon">
         <div className="shell">
-          <span className="eyebrow light">Ils parlent de Chez Lina</span>
-          <h2 style={{ color: '#fff' }}>Ce qu&rsquo;ils en disent.</h2>
+          <span className="eyebrow light">Avis Google · Chez Lina Brunoy</span>
+          <h2 style={{ color: '#fff' }}>Les avis de nos clients.</h2>
           <div className="proof-summary">
             <span className="proof-score">{reviewStats.rating}/5</span>
             <div>
@@ -189,7 +189,7 @@ export default function Home() {
       <section className="section section-dark">
         <div className="shell privatisation-block">
           <span className="eyebrow light">Événements privés</span>
-          <h2>Privatiser Chez Lina</h2>
+          <h2>Privatiser le restaurant pour vos événements</h2>
           <p style={{ maxWidth: 560 }}>Un anniversaire, un baptême, un repas d&rsquo;entreprise ? Réservez la salle rien que pour vous.</p>
           <p className="privatisation-price">Location de salle à partir de <strong>450 €</strong>, repas en supplément selon le menu choisi.</p>
           <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>Disponibilités et capacité sur demande.</p>
@@ -205,7 +205,7 @@ export default function Home() {
         <img src="/images/plateau-bouchees-reportage.webp" alt="Planche à partager Chez Lina" />
         <div className="shell">
           <span className="eyebrow light">Votre prochaine table</span>
-          <h2>Préparer votre venue</h2>
+          <h2>Réserver une table ou commander à emporter</h2>
           <p style={{ maxWidth: 480, color: '#f0e4d8' }}>Choisissez une table ou préparez une commande à emporter.</p>
           <div className="hours-chip">
             <span className="hours-chip-icon" aria-hidden="true">🕒</span>

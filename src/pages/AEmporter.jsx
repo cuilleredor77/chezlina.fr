@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import FaqList from '../components/FaqList'
+import { faqFor } from '../data/faq'
 import { formules, menuSections } from '../data/menu'
 
 const plats = menuSections.filter((s) => s.title === 'Les viandes' || s.title === 'Les poissons').flatMap((s) => s.items)
@@ -74,6 +76,14 @@ export default function AEmporter() {
             <Link to="/la-carte" className="button button-outline">Voir toute la carte</Link>
             <Link to="/cuisine-congolaise-essonne" className="button button-outline">Notre cuisine congolaise</Link>
           </div>
+        </div>
+      </section>
+
+      <section className="section section-cream">
+        <div className="shell">
+          <span className="eyebrow">Bon à savoir</span>
+          <h2>Questions fréquentes sur la vente à emporter</h2>
+          <FaqList items={faqFor('emporter')} />
         </div>
       </section>
     </>

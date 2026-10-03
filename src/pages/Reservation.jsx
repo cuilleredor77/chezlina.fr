@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import { trackEvent } from '../lib/analytics'
+import { menuSections } from '../data/menu'
 
 const WHATSAPP_NUMBER = '33651197751'
 const STEP_MINUTES = 15
@@ -119,6 +120,40 @@ function formatPeriod(period) {
   return 'Midi'
 }
 
+// Commande à emporter : plats de la carte à cocher, regroupés comme sur la page menu
+const ORDER_GROUPS = [
+  { title: 'Entrées', sections: ['Les entrées'] },
+  { title: 'Plats', sections: ['Les viandes', 'Les poissons'] },
+  { title: 'Accompagnements en supplément', sections: ['Les accompagnements'] },
+  { title: 'Desserts', sections: ['Les desserts'] },
+]
+
+const orderGroups = ORDER_GROUPS.map((group) => ({
+  title: group.title,
+  items: menuSections
+    .filter((section) => group.sections.includes(section.title))
+    .flatMap((section) => section.items)
+    .flatMap((item) => (item.priceOptions
+      ? item.priceOptions.map((option) => ({ id: `${item.name} (${option.label})`, price: option.price }))
+      : [{ id: item.name, price: item.price }])),
+}))
+
+const orderItems = orderGroups.flatMap((group) => group.items)
+
+function parseEuro(price) {
+  return Number(price.replace(/[^\d,]/g, '').replace(',', '.'))
+}
+
+function formatEuro(amount) {
+  return `${amount.toLocaleString('fr-FR', { minimumFractionDigits: Number.isInteger(amount) ? 0 : 2, maximumFractionDigits: 2 })} €`
+}
+
+function getOrderLines(order) {
+  return orderItems
+    .filter((item) => order[item.id] > 0)
+    .map((item) => ({ ...item, qty: order[item.id], total: order[item.id] * parseEuro(item.price) }))
+}
+
 const initial = {
   service: 'table',
   date: '',
@@ -130,6 +165,7 @@ const initial = {
   phone: '',
   email: '',
   notes: '',
+  order: {},
   marketingOptIn: false,
 }
 
@@ -183,7 +219,23 @@ export default function Reservation() {
   const isPrivatisation = data.service === 'privatisation'
   const quantityLabel = isPrivatisation ? 'Nombre d’invités' : 'Nombre de personnes'
   const requestLabel = data.service === 'table' ? 'réserver une table' : data.service === 'takeaway' ? 'passer une commande à emporter' : 'privatiser la salle'
-  const notesLabel = data.service === 'table' ? 'Précisions' : data.service === 'takeaway' ? 'Commande souhaitée' : 'Précisions sur l’événement'
+  const notesLabel = data.service === 'table' ? 'Précisions' : data.service === 'takeaway' ? 'Commentaire' : 'Précisions sur l’événement'
+  const orderLines = getOrderLines(data.order)
+  const orderTotal = orderLines.reduce((sum, line) => sum + line.total, 0)
+  const orderCount = orderLines.reduce((sum, line) => sum + line.qty, 0)
+  const orderDetails = data.service === 'takeaway'
+    ? `\n\nCommande :\n${orderLines.map((line) => `- ${line.qty} × ${line.id} — ${formatEuro(line.total)}`).join('\n')}\nTotal estimé : ${formatEuro(orderTotal)}`
+    : ''
+
+  const setQty = (id, qty) => {
+    setPrepared(false)
+    setData((old) => {
+      const order = { ...old.order }
+      if (qty > 0) order[id] = qty
+      else delete order[id]
+      return { ...old, order }
+    })
+  }
   const visitDetails = data.service === 'table' || isPrivatisation ? `\n${quantityLabel} : ${data.guests}` : ''
   const privatisationDetails = isPrivatisation ? `\nType d’événement : ${data.eventType}` : ''
 
@@ -193,9 +245,9 @@ export default function Reservation() {
     const timeLabel = isPrivatisation ? 'Créneau souhaité' : data.service === 'table' ? 'Heure souhaitée' : 'Heure de retrait souhaitée'
     const timeValue = isPrivatisation ? formatPeriod(data.period) : formatBookingTime(data.time)
     const privatisationNote = isPrivatisation ? '\n\nLocation de salle à partir de 450 €, repas en supplément selon le menu choisi. Devis personnalisé sous 48 h.' : ''
-    return `Bonjour Chez Lina,\n\nJe souhaite ${requestLabel}.\n\n${dateLabel} : ${formatBookingDate(data.date)}\n${timeLabel} : ${timeValue}${visitDetails}${privatisationDetails}\n\nNom : ${data.firstName}\nTéléphone : ${data.phone}${emailLine}\n\n${notesLabel} : ${data.notes || 'Aucune'}${data.marketingOptIn ? '\n\nJe souhaite recevoir par WhatsApp les actualités et offres de Chez Lina.' : ''}${privatisationNote}\n\nMerci de me confirmer ma demande.\n\n${data.firstName}`
+    return `Bonjour Chez Lina,\n\nJe souhaite ${requestLabel}.\n\n${dateLabel} : ${formatBookingDate(data.date)}\n${timeLabel} : ${timeValue}${visitDetails}${privatisationDetails}${orderDetails}\n\nNom : ${data.firstName}\nTéléphone : ${data.phone}${emailLine}\n\n${notesLabel} : ${data.notes || (data.service === 'takeaway' ? 'Aucun' : 'Aucune')}${data.marketingOptIn ? '\n\nJe souhaite recevoir par WhatsApp les actualités et offres de Chez Lina.' : ''}${privatisationNote}\n\nMerci de me confirmer ma demande.\n\n${data.firstName}`
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, notesLabel, requestLabel, visitDetails, privatisationDetails, isPrivatisation])
+  }, [data, notesLabel, requestLabel, visitDetails, privatisationDetails, orderDetails, isPrivatisation])
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
   const mailtoUrl = `mailto:contact@chezlina.fr?subject=${encodeURIComponent('Demande de privatisation - Chez Lina')}&body=${encodeURIComponent(message)}`
@@ -237,6 +289,10 @@ export default function Reservation() {
       )
       return false
     }
+    if (data.service === 'takeaway' && orderLines.length === 0) {
+      setError('Cochez au moins un plat pour préparer votre commande.')
+      return false
+    }
     return true
   }
 
@@ -250,10 +306,6 @@ export default function Reservation() {
     }
     if (!data.firstName.trim() || !data.phone.trim()) {
       setError('Indiquez votre nom et votre numéro de téléphone.')
-      return
-    }
-    if (data.service === 'takeaway' && !data.notes.trim()) {
-      setError('Indiquez les plats et les quantités souhaités pour préparer votre commande.')
       return
     }
     setError('')
@@ -415,6 +467,43 @@ export default function Reservation() {
                         </div>
                       )}
 
+                      {data.service === 'takeaway' && (
+                        <fieldset className="order-picker">
+                          <legend>
+                            Votre commande <span className="req">*</span>
+                            <Link to="/la-carte" target="_blank" rel="noreferrer" className="order-picker-link">Voir la carte ↗</Link>
+                          </legend>
+                          {orderGroups.map((group) => (
+                            <div key={group.title} className="order-group">
+                              <h3>{group.title}</h3>
+                              {group.items.map((item) => {
+                                const qty = data.order[item.id] || 0
+                                return (
+                                  <div key={item.id} className={`order-item ${qty ? 'selected' : ''}`}>
+                                    <label>
+                                      <input type="checkbox" checked={qty > 0} onChange={(e) => setQty(item.id, e.target.checked ? 1 : 0)} />
+                                      <span className="order-item-name">{item.id}</span>
+                                      <span className="order-item-price">{item.price}</span>
+                                    </label>
+                                    {qty > 0 && (
+                                      <div className="order-qty">
+                                        <button type="button" aria-label={`Retirer un ${item.id}`} onClick={() => setQty(item.id, qty - 1)}>−</button>
+                                        <span aria-live="polite">{qty}</span>
+                                        <button type="button" aria-label={`Ajouter un ${item.id}`} onClick={() => setQty(item.id, qty + 1)}>+</button>
+                                      </div>
+                                    )}
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          ))}
+                          <div className="order-total">
+                            <span>{orderCount === 0 ? 'Aucun plat sélectionné' : `${orderCount} article${orderCount > 1 ? 's' : ''}`}</span>
+                            <strong>Total estimé : {formatEuro(orderTotal)}</strong>
+                          </div>
+                        </fieldset>
+                      )}
+
                       {data.service === 'table' && (
                         <div className="field" style={{ marginBottom: 24 }}>
                           <label htmlFor="guests">{quantityLabel} <span className="req">*</span></label>
@@ -433,6 +522,7 @@ export default function Reservation() {
                       <span style={{ fontSize: '0.8rem', color: 'var(--brown-muted)' }}>{data.service === 'table' ? 'Table' : data.service === 'takeaway' ? 'Retrait à emporter' : 'Privatisation de la salle'}</span>
                       <strong style={{ display: 'block' }}>{formatBookingDate(data.date)} · {isPrivatisation ? formatPeriod(data.period) : formatBookingTime(data.time)}</strong>
                       {(data.service === 'table' || isPrivatisation) && <small style={{ color: 'var(--brown-muted)' }}>{quantityLabel} : {data.guests}</small>}
+                      {data.service === 'takeaway' && <small style={{ color: 'var(--brown-muted)' }}>{orderCount} article{orderCount > 1 ? 's' : ''} · Total estimé : {formatEuro(orderTotal)}</small>}
                     </div>
                     <button type="button" className="button button-ghost" style={{ minHeight: 'auto', padding: '8px 16px' }} onClick={() => { setError(''); setStep(1) }}>Modifier</button>
                   </div>
@@ -455,17 +545,11 @@ export default function Reservation() {
 
                   <div className="field" style={{ marginBottom: 20 }}>
                     <label htmlFor="notes" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
-                      <span>{notesLabel}{data.service === 'takeaway' && <span className="req"> *</span>}</span>
-                      {data.service === 'takeaway' && (
-                        <Link to="/la-carte" target="_blank" rel="noreferrer" style={{ fontSize: '0.82rem', fontWeight: 400, textDecoration: 'underline' }}>
-                          Voir la carte ↗
-                        </Link>
-                      )}
+                      <span>{notesLabel}{data.service === 'takeaway' && <span style={{ color: 'var(--brown-muted)', fontWeight: 400 }}> (facultatif)</span>}</span>
                     </label>
                     <textarea
                       id="notes"
-                      required={data.service === 'takeaway'}
-                      placeholder={data.service === 'table' ? 'Allergies ou demande particulière…' : isPrivatisation ? 'Menu envisagé, horaires, disposition de la salle…' : 'Ex. 2 suprêmes de volaille, 1 panga, 2 bissaps…'}
+                      placeholder={data.service === 'table' ? 'Allergies ou demande particulière…' : isPrivatisation ? 'Menu envisagé, horaires, disposition de la salle…' : 'Boissons, cuisson, allergies, sauce à part…'}
                       value={data.notes}
                       onChange={(e) => update('notes', e.target.value)}
                     />
