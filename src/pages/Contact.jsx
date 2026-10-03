@@ -22,7 +22,7 @@ export default function Contact() {
             <p style={{ fontSize: '1.1rem' }}>29 rue de Montgeron<br />91800 Brunoy</p>
 
             <h3 style={{ fontSize: '1.1rem', marginTop: 32 }}>Horaires</h3>
-            <p>Du mardi au samedi<br />11 h 45–15 h · 18 h 30–23 h 45<br />Fermé le lundi<br />Dimanche : fermé, sauf privatisation ou réservation de groupe (20 personnes minimum)</p>
+            <p>Du mardi au vendredi<br />11 h 45–14 h 45 · 18 h 45–23 h 45<br />Samedi<br />11 h 45–23 h 45 (service continu)<br />Fermé le dimanche (privatisation possible) et le lundi</p>
 
             <div className="button-row" style={{ marginTop: 20 }}>
               <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>

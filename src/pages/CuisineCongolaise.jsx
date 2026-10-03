@@ -76,7 +76,7 @@ export default function CuisineCongolaise() {
             <span className="eyebrow">Venir chez nous</span>
             <h2>Chez Lina, Brunoy (91)</h2>
             <p style={{ fontSize: '1.1rem' }}>29 rue de Montgeron<br />91800 Brunoy</p>
-            <p>Du mardi au samedi, 11 h 45–15 h et 18 h 30–23 h 45<br />Fermé le lundi · Dimanche : sur privatisation ou réservation de groupe (20 personnes minimum)</p>
+            <p>Du mardi au vendredi, 11 h 45–14 h 45 et 18 h 45–23 h 45<br />Le samedi, 11 h 45–23 h 45 en service continu<br />Fermé le dimanche (privatisation possible) et le lundi</p>
           </div>
           <div>
             <span className="eyebrow">Sur place ou chez vous</span>

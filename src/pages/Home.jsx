@@ -22,11 +22,12 @@ function getParisDayAndMinutes() {
 function getTodayStatus() {
   const { day, minutes } = getParisDayAndMinutes()
   if (day === 1) return 'Fermé aujourd’hui (lundi) · réouvre demain à 11 h 45'
-  if (day === 0) return 'Fermé aujourd’hui (dimanche) · réouvre mardi à 11 h 45'
+  if (day === 0) return 'Fermé aujourd’hui (dimanche) · privatisation possible · réouvre mardi à 11 h 45'
   if (minutes < 11 * 60 + 45) return 'Ouvre aujourd’hui à 11 h 45'
-  if (minutes <= 15 * 60) return 'Ouvert aujourd’hui · jusqu’à 15 h'
-  if (minutes < 18 * 60 + 30) return 'Réouvre ce soir à 18 h 30'
-  if (minutes <= 23 * 60 + 45) return 'Ouvert aujourd’hui · jusqu’à 23 h 45'
+  // samedi : service continu de 11 h 45 à 23 h 45
+  if (day !== 6 && minutes <= 14 * 60 + 45) return 'Ouvert aujourd’hui · jusqu’à 14 h 45'
+  if (day !== 6 && minutes < 18 * 60 + 45) return 'Réouvre ce soir à 18 h 45'
+  if (minutes <= 23 * 60 + 45) return day === 6 ? 'Ouvert aujourd’hui en continu · jusqu’à 23 h 45' : 'Ouvert aujourd’hui · jusqu’à 23 h 45'
   return day === 6 ? 'Fermé pour aujourd’hui · réouvre mardi à 11 h 45' : 'Fermé pour aujourd’hui · réouvre demain à 11 h 45'
 }
 
@@ -202,9 +203,11 @@ export default function Home() {
           <div className="hours-chip">
             <span className="hours-chip-icon" aria-hidden="true">🕒</span>
             <div>
-              <strong>Mardi–samedi</strong> 11 h 45–15 h · 18 h 30–23 h 45
+              <strong>Mardi–vendredi</strong> 11 h 45–14 h 45 · 18 h 45–23 h 45
               <br />
-              <span className="hours-chip-closed">Fermé le lundi · dimanche sur privatisation ou groupe de 20 personnes minimum</span>
+              <strong>Samedi</strong> 11 h 45–23 h 45 (service continu)
+              <br />
+              <span className="hours-chip-closed">Fermé le dimanche (privatisation possible) et le lundi</span>
             </div>
           </div>
           <div className="button-row">

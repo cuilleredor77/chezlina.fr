@@ -15,9 +15,9 @@ function createTimeSlots(startHour, startMinute, count) {
   })
 }
 
-// Dernier créneau env. 30 min avant la fermeture effective (11h45-15h / 18h30-23h45 en semaine, 11h45-15h30 le dimanche pour les groupes)
-const weekdayTimeSlots = [...createTimeSlots(11, 45, 12), ...createTimeSlots(18, 30, 20)]
-const sundayTimeSlots = createTimeSlots(11, 45, 14)
+// Créneaux jusqu'à l'heure de fermeture (11h45-14h45 / 18h45-23h45 du mardi au vendredi, 11h45-23h45 en continu le samedi)
+const weekdayTimeSlots = [...createTimeSlots(11, 45, 13), ...createTimeSlots(18, 45, 21)]
+const saturdayTimeSlots = createTimeSlots(11, 45, 49)
 
 function getParisNow() {
   const parts = new Intl.DateTimeFormat('fr-FR', {
@@ -51,25 +51,30 @@ function addDays(dateStr, days) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
 }
 
-const SUNDAY_MIN_GUESTS = 20
-
 function isSunday(date) {
   if (!date) return false
   const [year, month, day] = date.split('-').map(Number)
   return new Date(year, month - 1, day).getDay() === 0
 }
 
-function getDaySlots(date, service) {
+const OPENING_HOURS_NOTE = 'Mardi–vendredi : 11 h 45–14 h 45 et 18 h 45–23 h 45 · Samedi : 11 h 45–23 h 45 en continu · Fermé le dimanche (privatisation possible) et le lundi.'
+
+function isSaturday(date) {
+  if (!date) return false
+  const [year, month, day] = date.split('-').map(Number)
+  return new Date(year, month - 1, day).getDay() === 6
+}
+
+function getDaySlots(date) {
   const [year, month, day] = date.split('-').map(Number)
   const dayOfWeek = new Date(year, month - 1, day).getDay() // 0 = dimanche, 1 = lundi
-  if (dayOfWeek === 1) return [] // fermé le lundi
-  // dimanche : fermé, sauf réservation de groupe (20 personnes minimum) ou privatisation
-  if (dayOfWeek === 0) return service === 'table' ? sundayTimeSlots : []
+  if (dayOfWeek === 0 || dayOfWeek === 1) return [] // fermé le dimanche (privatisation possible) et le lundi
+  if (dayOfWeek === 6) return saturdayTimeSlots // samedi : service continu
   return weekdayTimeSlots
 }
 
-function getAvailableTimeSlots(date, leadMinutes, service) {
-  const daySlots = getDaySlots(date, service)
+function getAvailableTimeSlots(date, leadMinutes) {
+  const daySlots = getDaySlots(date)
   const now = getParisNow()
   if (date !== now.date) return daySlots
   const firstPossibleMinute = Math.ceil((now.minutes + leadMinutes) / STEP_MINUTES) * STEP_MINUTES
@@ -80,11 +85,11 @@ function getAvailableTimeSlots(date, leadMinutes, service) {
 }
 
 function getTableTimeSlots(date) {
-  return getAvailableTimeSlots(date, 1, 'table')
+  return getAvailableTimeSlots(date, 1)
 }
 
 function getTakeawayTimeSlots(date) {
-  return getAvailableTimeSlots(date, 30, 'takeaway')
+  return getAvailableTimeSlots(date, 30)
 }
 
 function formatBookingDate(date) {
@@ -215,10 +220,6 @@ export default function Reservation() {
       setError('Merci de choisir une date à partir du jour même.')
       return false
     }
-    if (data.service === 'table' && isSunday(data.date) && Number(data.guests) < SUNDAY_MIN_GUESTS) {
-      setError(`Le dimanche, le restaurant est fermé sauf pour les groupes de ${SUNDAY_MIN_GUESTS} personnes minimum ou en privatisation. Choisissez un autre jour ou appelez-nous au 06 51 19 77 51.`)
-      return false
-    }
     if (!availableTimeSlots.includes(data.time)) {
       setError(
         data.service === 'takeaway'
@@ -315,6 +316,7 @@ export default function Reservation() {
                   {isPrivatisation && (
                     <div className="form-note" style={{ marginBottom: 20 }}>
                       Location de salle à partir de 450 €, repas en supplément selon le menu choisi. Devis personnalisé sous 48 h.
+                      <br />La salle peut aussi être privatisée le dimanche, jour de fermeture du restaurant.
                       <br />Demande à faire au moins 72 h à l&rsquo;avance. Besoin urgent ? Appelez-nous directement au <a href="tel:+33651197751">06 51 19 77 51</a>.
                     </div>
                   )}
@@ -359,9 +361,16 @@ export default function Reservation() {
                           <select id="time" required value={data.time} disabled={availableTimeSlots.length === 0} onChange={(e) => update('time', e.target.value)}>
                             {availableTimeSlots.length === 0 ? (
                               <option value="">
-                                {getDaySlots(data.date, data.service).length === 0 ? 'Fermé ce jour-là' : (data.service === 'table' ? 'Plus de créneau disponible ce jour' : 'Plus de retrait disponible ce jour')}
+                                {getDaySlots(data.date).length === 0 ? 'Fermé ce jour-là' : (data.service === 'table' ? 'Plus de créneau disponible ce jour' : 'Plus de retrait disponible ce jour')}
                               </option>
                             ) : (
+                              isSaturday(data.date) ? (
+                                <optgroup label="Service continu">
+                                  {availableTimeSlots.map((slot) => (
+                                    <option key={slot} value={slot}>{formatBookingTime(slot)}</option>
+                                  ))}
+                                </optgroup>
+                              ) : (
                               <>
                                 {availableTimeSlots.some((slot) => Number(slot.split(':')[0]) < 17) && (
                                   <optgroup label="Service du midi">
@@ -378,9 +387,12 @@ export default function Reservation() {
                                   </optgroup>
                                 )}
                               </>
+                              )
                             )}
                           </select>
                           <span style={{ fontSize: '0.78rem', color: 'var(--brown-muted)' }}>
+                            {OPENING_HOURS_NOTE}
+                            <br />
                             {data.service === 'table'
                               ? 'Créneaux proposés toutes les 15 minutes.'
                               : 'Premier retrait au minimum 30 minutes après la demande, puis toutes les 15 minutes. Horaire soumis à confirmation.'}
@@ -388,9 +400,9 @@ export default function Reservation() {
                         </div>
                       </div>
 
-                      {data.service === 'table' && isSunday(data.date) && (
+                      {isSunday(data.date) && (
                         <div className="form-note" style={{ marginBottom: 20 }}>
-                          Le dimanche, le restaurant est fermé sauf pour les groupes de {SUNDAY_MIN_GUESTS} personnes minimum ou en privatisation.
+                          Le restaurant est fermé le dimanche, mais il est possible de le privatiser ce jour-là : choisissez « Privatiser la salle » ou appelez-nous au <a href="tel:+33651197751">06 51 19 77 51</a>.
                         </div>
                       )}
 

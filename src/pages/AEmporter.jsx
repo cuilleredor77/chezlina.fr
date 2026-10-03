@@ -35,7 +35,8 @@ export default function AEmporter() {
           <div>
             <span className="eyebrow">Horaires de retrait</span>
             <h2>Quand passer ?</h2>
-            <p>Du mardi au samedi<br />11 h 45–15 h · 18 h 30–23 h 45</p>
+            <p>Du mardi au vendredi<br />11 h 45–14 h 45 · 18 h 45–23 h 45</p>
+            <p>Samedi<br />11 h 45–23 h 45 (service continu)</p>
             <p>Fermé le dimanche et le lundi</p>
             <p style={{ marginTop: 20 }}>Chez Lina · 29 rue de Montgeron, 91800 Brunoy</p>
           </div>

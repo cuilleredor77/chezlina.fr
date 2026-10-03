@@ -37,9 +37,9 @@ export default function Footer() {
           </a>
           <div className="footer-hours">
             <strong>Horaires</strong>
-            <p>Mardi–samedi<br />11 h 45–15 h · 18 h 30–23 h 45</p>
-            <p className="footer-hours-closed">Fermé le lundi</p>
-            <p className="footer-hours-closed">Dimanche : fermé, sauf privatisation ou groupe de 20 personnes minimum</p>
+            <p>Mardi–vendredi<br />11 h 45–14 h 45 · 18 h 45–23 h 45</p>
+            <p>Samedi<br />11 h 45–23 h 45 (service continu)</p>
+            <p className="footer-hours-closed">Fermé le dimanche (privatisation possible) et le lundi</p>
           </div>
         </div>
 
