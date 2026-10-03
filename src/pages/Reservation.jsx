@@ -67,7 +67,7 @@ function isSunday(date) {
   return new Date(year, month - 1, day).getDay() === 0
 }
 
-const OPENING_HOURS_NOTE = 'Mardi–vendredi : 11 h 45–14 h 45 et 18 h 45–23 h 45 · Samedi : 11 h 45–23 h 45 en continu · Fermé le dimanche (privatisation possible) et le lundi.'
+const OPENING_HOURS_NOTE = 'Mar–ven : 11 h 45–14 h 45 et 18 h 45–23 h 45 · Sam : 11 h 45–23 h 45 en continu · Fermé dim. (privatisation possible) et lun.'
 
 function isSaturday(date) {
   if (!date) return false
@@ -128,14 +128,17 @@ const ORDER_GROUPS = [
   { title: 'Desserts', sections: ['Les desserts'] },
 ]
 
+// Plat du jour : pas de prix fixe sur la carte, confirmé par le restaurant
+const DAILY_DISH = { id: 'Plat du jour', price: null }
+
 const orderGroups = ORDER_GROUPS.map((group) => ({
   title: group.title,
-  items: menuSections
+  items: [...(group.title === 'Plats' ? [DAILY_DISH] : []), ...menuSections
     .filter((section) => group.sections.includes(section.title))
     .flatMap((section) => section.items)
     .flatMap((item) => (item.priceOptions
       ? item.priceOptions.map((option) => ({ id: `${item.name} (${option.label})`, price: option.price }))
-      : [{ id: item.name, price: item.price }])),
+      : [{ id: item.name, price: item.price }]))],
 }))
 
 const orderItems = orderGroups.flatMap((group) => group.items)
@@ -148,10 +151,14 @@ function formatEuro(amount) {
   return `${amount.toLocaleString('fr-FR', { minimumFractionDigits: Number.isInteger(amount) ? 0 : 2, maximumFractionDigits: 2 })} €`
 }
 
+function formatLineTotal(line) {
+  return line.total === null ? 'prix confirmé par Chez Lina' : formatEuro(line.total)
+}
+
 function getOrderLines(order) {
   return orderItems
     .filter((item) => order[item.id] > 0)
-    .map((item) => ({ ...item, qty: order[item.id], total: order[item.id] * parseEuro(item.price) }))
+    .map((item) => ({ ...item, qty: order[item.id], total: item.price ? order[item.id] * parseEuro(item.price) : null }))
 }
 
 const initial = {
@@ -221,10 +228,12 @@ export default function Reservation() {
   const requestLabel = data.service === 'table' ? 'réserver une table' : data.service === 'takeaway' ? 'passer une commande à emporter' : 'privatiser la salle'
   const notesLabel = data.service === 'table' ? 'Précisions' : data.service === 'takeaway' ? 'Commentaire' : 'Précisions sur l’événement'
   const orderLines = getOrderLines(data.order)
-  const orderTotal = orderLines.reduce((sum, line) => sum + line.total, 0)
+  const orderTotal = orderLines.reduce((sum, line) => sum + (line.total || 0), 0)
   const orderCount = orderLines.reduce((sum, line) => sum + line.qty, 0)
+  const hasUnpricedLine = orderLines.some((line) => line.total === null)
+  const totalLabel = hasUnpricedLine ? 'Total estimé (hors plat du jour)' : 'Total estimé'
   const orderDetails = data.service === 'takeaway'
-    ? `\n\nCommande :\n${orderLines.map((line) => `- ${line.qty} × ${line.id} — ${formatEuro(line.total)}`).join('\n')}\nTotal estimé : ${formatEuro(orderTotal)}`
+    ? `\n\nCommande :\n${orderLines.map((line) => `- ${line.qty} × ${line.id} — ${formatLineTotal(line)}`).join('\n')}\n${totalLabel} : ${formatEuro(orderTotal)}`
     : ''
 
   const setQty = (id, qty) => {
@@ -352,7 +361,7 @@ export default function Reservation() {
                         <span className="service-icon" aria-hidden="true">🍴</span>
                         <span>
                           <strong>Réserver une table</strong>
-                          <div style={{ fontSize: '0.85rem', color: 'var(--brown-muted)' }}>Déjeuner ou dîner sur place</div>
+                          <div className="service-sub">Sur place</div>
                         </span>
                       </label>
                       <label className={`service-option ${data.service === 'takeaway' ? 'selected' : ''}`}>
@@ -360,7 +369,7 @@ export default function Reservation() {
                         <span className="service-icon" aria-hidden="true">🛍️</span>
                         <span>
                           <strong>Commander à emporter</strong>
-                          <div style={{ fontSize: '0.85rem', color: 'var(--brown-muted)' }}>Retirer votre commande chez Lina</div>
+                          <div className="service-sub">Retrait chez Lina</div>
                         </span>
                       </label>
                       <label className={`service-option ${isPrivatisation ? 'selected' : ''}`}>
@@ -368,7 +377,7 @@ export default function Reservation() {
                         <span className="service-icon" aria-hidden="true">🎉</span>
                         <span>
                           <strong>Privatiser la salle</strong>
-                          <div style={{ fontSize: '0.85rem', color: 'var(--brown-muted)' }}>Anniversaire, baptême, repas d’entreprise…</div>
+                          <div className="service-sub">Événements</div>
                         </span>
                       </label>
                     </div>
@@ -412,7 +421,7 @@ export default function Reservation() {
                     </>
                   ) : (
                     <>
-                      <div className="form-row">
+                      <div className={`form-row form-row-dt ${data.service === 'table' ? 'form-row-3' : ''}`} style={{ marginBottom: 8 }}>
                         <div className="field">
                           <label htmlFor="date">{data.service === 'table' ? 'Date' : 'Date de retrait'} <span className="req">*</span></label>
                           <input id="date" type="date" required min={minimumDate} value={data.date} onChange={(e) => update('date', e.target.value)} />
@@ -451,15 +460,20 @@ export default function Reservation() {
                               )
                             )}
                           </select>
-                          <span style={{ fontSize: '0.78rem', color: 'var(--brown-muted)' }}>
-                            {OPENING_HOURS_NOTE}
-                            <br />
-                            {data.service === 'table'
-                              ? 'Créneaux proposés toutes les 15 minutes. Dernière réservation 45 minutes avant la fermeture.'
-                              : 'Premier retrait au minimum 30 minutes après la demande, puis toutes les 15 minutes, jusqu’à 15 minutes avant la fermeture. Horaire soumis à confirmation.'}
-                          </span>
                         </div>
+                        {data.service === 'table' && (
+                          <div className="field">
+                            <label htmlFor="guests">Personnes <span className="req">*</span></label>
+                            <input id="guests" type="number" inputMode="numeric" min="1" max="30" required value={data.guests} onChange={(e) => update('guests', e.target.value)} />
+                          </div>
+                        )}
                       </div>
+                      <p className="hours-hint">
+                        {OPENING_HOURS_NOTE}{' '}
+                        {data.service === 'table'
+                          ? 'Dernière réservation 45 min avant la fermeture.'
+                          : 'Retrait dès 30 min après la commande, jusqu’à 15 min avant la fermeture.'}
+                      </p>
 
                       {isSunday(data.date) && (
                         <div className="form-note" style={{ marginBottom: 20 }}>
@@ -483,7 +497,7 @@ export default function Reservation() {
                                     <label>
                                       <input type="checkbox" checked={qty > 0} onChange={(e) => setQty(item.id, e.target.checked ? 1 : 0)} />
                                       <span className="order-item-name">{item.id}</span>
-                                      <span className="order-item-price">{item.price}</span>
+                                      <span className="order-item-price">{item.price || 'Prix du jour'}</span>
                                     </label>
                                     {qty > 0 && (
                                       <div className="order-qty">
@@ -499,17 +513,11 @@ export default function Reservation() {
                           ))}
                           <div className="order-total">
                             <span>{orderCount === 0 ? 'Aucun plat sélectionné' : `${orderCount} article${orderCount > 1 ? 's' : ''}`}</span>
-                            <strong>Total estimé : {formatEuro(orderTotal)}</strong>
+                            <strong>{totalLabel} : {formatEuro(orderTotal)}</strong>
                           </div>
                         </fieldset>
                       )}
 
-                      {data.service === 'table' && (
-                        <div className="field" style={{ marginBottom: 24 }}>
-                          <label htmlFor="guests">{quantityLabel} <span className="req">*</span></label>
-                          <input id="guests" type="number" inputMode="numeric" min="1" max="30" required value={data.guests} onChange={(e) => update('guests', e.target.value)} />
-                        </div>
-                      )}
                     </>
                   )}
 
@@ -522,10 +530,28 @@ export default function Reservation() {
                       <span style={{ fontSize: '0.8rem', color: 'var(--brown-muted)' }}>{data.service === 'table' ? 'Table' : data.service === 'takeaway' ? 'Retrait à emporter' : 'Privatisation de la salle'}</span>
                       <strong style={{ display: 'block' }}>{formatBookingDate(data.date)} · {isPrivatisation ? formatPeriod(data.period) : formatBookingTime(data.time)}</strong>
                       {(data.service === 'table' || isPrivatisation) && <small style={{ color: 'var(--brown-muted)' }}>{quantityLabel} : {data.guests}</small>}
-                      {data.service === 'takeaway' && <small style={{ color: 'var(--brown-muted)' }}>{orderCount} article{orderCount > 1 ? 's' : ''} · Total estimé : {formatEuro(orderTotal)}</small>}
+                      {data.service === 'takeaway' && <small style={{ color: 'var(--brown-muted)' }}>{orderCount} article{orderCount > 1 ? 's' : ''} · {totalLabel} : {formatEuro(orderTotal)}</small>}
                     </div>
                     <button type="button" className="button button-ghost" style={{ minHeight: 'auto', padding: '8px 16px' }} onClick={() => { setError(''); setStep(1) }}>Modifier</button>
                   </div>
+
+                  {data.service === 'takeaway' && orderLines.length > 0 && (
+                    <div className="order-recap">
+                      <strong>Récapitulatif de votre commande</strong>
+                      <ul>
+                        {orderLines.map((line) => (
+                          <li key={line.id}>
+                            <span>{line.qty} × {line.id}</span>
+                            <span>{formatLineTotal(line)}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="order-recap-total">
+                        <span>{totalLabel}</span>
+                        <strong>{formatEuro(orderTotal)}</strong>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="field" style={{ marginBottom: 20 }}>
                     <label htmlFor="name">Nom <span className="req">*</span></label>
