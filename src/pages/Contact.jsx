@@ -39,6 +39,7 @@ export default function Contact() {
               <a href="mailto:contact@chezlina.fr"><span>Écrire</span><strong>E-mail</strong></a>
               <a href="https://www.instagram.com/chezlina.brunoy/" target="_blank" rel="noreferrer"><span>Nous suivre</span><strong>Instagram</strong></a>
               <a href="https://www.tiktok.com/@chezlina.brunoy" target="_blank" rel="noreferrer"><span>Nous suivre</span><strong>TikTok</strong></a>
+              <a href="https://www.facebook.com/chezlina.brunoy" target="_blank" rel="noreferrer"><span>Nous suivre</span><strong>Facebook</strong></a>
             </nav>
           </div>
         </div>
