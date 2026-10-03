@@ -39,7 +39,7 @@ export const menuSections = [
     items: [
       { name: 'Suprême de volaille', description: 'Sauce poulette, riz délicatement parfumé au gingembre, à la noix de coco et au citron.', price: '19 €', image: '/images/poulet-braise-riz-rouge-detail.jpeg' },
       { name: 'Mouton braisé', description: 'Chikwangue.', price: '20 €', image: '/images/mouton-braise.webp' },
-      { name: '4 brochettes de bœuf', description: 'Servies avec riz.', price: '18 €', image: '/images/brochettes-boeuf.webp' },
+      { name: '4 brochettes de bœuf et riz', price: '18 €', image: '/images/brochettes-boeuf.webp' },
     ],
   },
   {
@@ -82,7 +82,7 @@ export const menuSections = [
     dark: true,
     items: [
       { name: 'Beignets, sauce à l’arachide', description: 'Une douceur chaude à partager.', price: '6 €' },
-      { name: 'Riz au lait revisité', description: 'Flan, ananas rôti, mouture de nère, caramel et poivre blanc de Penja.', price: '8 €' },
+      { name: 'Riz au lait revisité', description: 'Pâte filo croustillante, ananas rôti, mousse de riz, caramel et poivre blanc de Penja.', price: '8 €' },
       { name: 'Moelleux au chocolat', description: 'Glace vanille.', price: '10,50 €' },
       { name: 'Café ou thé gourmand', description: 'Une sélection de mignardises de la maison.', price: '11 €' },
     ],
