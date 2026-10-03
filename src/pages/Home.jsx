@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import HeroCarousel from '../components/HeroCarousel'
 import RandomGoogleReviews from '../components/RandomGoogleReviews'
 import { trackEvent } from '../lib/analytics'
+import { reviewStats } from '../data/reviews'
 
 function getParisDayAndMinutes() {
   const parts = new Intl.DateTimeFormat('fr-FR', {
@@ -161,10 +162,10 @@ export default function Home() {
           <span className="eyebrow light">Ils parlent de Chez Lina</span>
           <h2 style={{ color: '#fff' }}>Ce qu&rsquo;ils en disent.</h2>
           <div className="proof-summary">
-            <span className="proof-score">5,0/5</span>
+            <span className="proof-score">{reviewStats.rating}/5</span>
             <div>
               <div className="proof-stars">★★★★★</div>
-              <span>29 avis Google</span>
+              <span>{reviewStats.count} avis Google</span>
             </div>
           </div>
           <RandomGoogleReviews />

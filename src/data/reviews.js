@@ -1,4 +1,24 @@
+// Note et nombre d’avis relevés sur la fiche Google (41 × 5★ + 1 × 3★ = 4,95) — mis à jour le 3 octobre 2026
+export const reviewStats = { rating: '4,95', count: 42 }
+
 export const reviews = [
+  { name: 'Barbara Etzenberger', text: 'Nous avons passé un très bon moment, une belle découverte : une cuisine excellente et raffinée, et une équipe au top. Merci !' },
+  { name: 'Soilhat Mohamed', text: 'Délicieux ! Nous reviendrons très certainement.' },
+  { name: 'Julie Oli', text: 'Service parfait, plat copieux et savoureux ! On a passé un agréable moment.' },
+  { name: 'Nouria Hadji', text: 'Magnifique restaurant, la décoration est très belle. Les plats sont très goûteux et généreux. La serveuse est très sympathique. Je reviendrai avec grand plaisir.' },
+  { name: 'Léa Granghon', text: 'Une très belle nouvelle expérience. Je cherchais depuis un moment un bon restaurant africain et je l’ai trouvé chez Lina. Les plats sont généreux, les saveurs justes et bien assaisonnées. Un vrai régal !' },
+  { name: 'Elsa Pagenel', text: 'Restaurant très agréable visuellement mais aussi culinairement. Une belle variété de plats et un large choix. Des présentations soignées et raffinées. Je recommande vivement !' },
+  { name: 'Fabienne Fortune', text: 'Très bel accueil, très beau cadre également avec une petite terrasse. Les repas étaient très bons.' },
+  { name: 'Gabriel Toledano', text: 'Excellente cuisine et le restaurant est très accueillant, tout comme l’équipe. Merci à Jérémy de s’être si bien occupé de nous, on reviendra !' },
+  { name: 'Johanne', text: 'J’ai mis 5 étoiles car je ne pouvais pas mettre plus. Une ambiance et une déco chaleureuses pour un repas en amoureux, et tout était excellent. Les plats sont une parfaite alliance entre cuisine afro et française, avec une présentation soignée qui ravit autant les yeux que les papilles.' },
+  { name: 'Nicolas', text: 'Je suis passé chez Lina avec des amis et franchement, super expérience ! La nourriture était vraiment très bonne. L’accueil était super chaleureux et convivial, on s’est vraiment sentis à l’aise dès notre arrivée.' },
+  { name: 'Maureen', text: 'Franchement, si je peux vous conseiller un restaurant abordable et surtout excellent, c’est bien celui-ci. Les plats sont excellents et je ne parle même pas des boissons.' },
+  { name: 'Sandra Hustache', text: 'Super moment, très belle découverte et de nouvelles saveurs à apprécier. Je recommande.' },
+  { name: 'Stéphanie Frazao', text: 'Très sympa, la décoration. Accueil chaleureux. On a très bien mangé, on reviendra !' },
+  { name: 'Dominique Kaseki', text: 'Incroyable, le restaurant ! Je suis allé à l’ouverture et tout était incroyable, vraiment à refaire.' },
+  { name: 'Ombeline L.', text: 'Super restaurant, le dîner est bon et l’équipe hyper sympa. Je recommande +++ !' },
+  { name: 'Liza Lanos', text: 'Belle expérience pour cette première soirée : nous avons très bien mangé et été très bien accueillis. Nous reviendrons, c’est sûr !' },
+  { name: 'Nigel Junior', text: 'Un moment absolument merveilleux ! La cuisine était exceptionnelle, le service impeccable et, dès notre arrivée, nous nous sommes sentis incroyablement bien accueillis.' },
   { name: 'Anaïs Genty', text: 'Super restaurant ! Une cuisine excellente et très copieuse, avec des plats savoureux. L’ambiance est vraiment top et le personnel très agréable.' },
   { name: 'Nesyl', text: 'Rapport qualité-prix impeccable. Accueil et ambiance au top.' },
   { name: 'Nathalie Trobrillant', text: 'Les saveurs sont au rendez-vous ! Samour’bœuf, croquette de morue, riz, brochette de bœuf… zéro fausse note.' },

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { reviewStats } from '../data/reviews'
 
 const slides = [
   { src: '/images/table-reportage.webp', alt: 'Table dressée au restaurant Chez Lina à Brunoy' },
@@ -74,7 +75,7 @@ export default function HeroCarousel() {
             Chez Lina<span className="sr-only">, </span>
             <span className="eyebrow light hero-title-note">Restaurant franco-africain à Brunoy</span>
           </h1>
-          <div className="hero-rating-badge">★ 5,0 · 29 avis Google</div>
+          <div className="hero-rating-badge">★ {reviewStats.rating} · {reviewStats.count} avis Google</div>
           <p className="hero-signature">Deux cultures, une même table.</p>
           <div className="button-row">
             <Link to="/reservation" className="button button-primary">Réserver ou commander</Link>
