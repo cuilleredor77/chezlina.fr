@@ -19,20 +19,21 @@ function getParisDayAndMinutes() {
   return { day, minutes: Number(value.hour) * 60 + Number(value.minute) }
 }
 
+// state : 'open' (vert animé), 'soon' (orange : ouvre plus tard dans la journée), 'closed' (rouge)
 function getTodayStatus() {
   const { day, minutes } = getParisDayAndMinutes()
-  if (day === 1) return 'Fermé aujourd’hui (lundi) · réouvre demain à 11 h 45'
-  if (day === 0) return 'Fermé aujourd’hui (dimanche) · privatisation possible · réouvre mardi à 11 h 45'
-  if (minutes < 11 * 60 + 45) return 'Ouvre aujourd’hui à 11 h 45'
+  if (day === 1) return { state: 'closed', label: 'Fermé', detail: 'lundi · réouvre demain à 11 h 45' }
+  if (day === 0) return { state: 'closed', label: 'Fermé', detail: 'dimanche (privatisation possible) · réouvre mardi à 11 h 45' }
+  if (minutes < 11 * 60 + 45) return { state: 'soon', label: 'Fermé', detail: 'ouvre aujourd’hui à 11 h 45' }
   // samedi : service continu de 11 h 45 à 23 h 45
-  if (day !== 6 && minutes <= 14 * 60 + 45) return 'Ouvert aujourd’hui · jusqu’à 14 h 45'
-  if (day !== 6 && minutes < 18 * 60 + 45) return 'Réouvre ce soir à 18 h 45'
-  if (minutes <= 23 * 60 + 45) return day === 6 ? 'Ouvert aujourd’hui en continu · jusqu’à 23 h 45' : 'Ouvert aujourd’hui · jusqu’à 23 h 45'
-  return day === 6 ? 'Fermé pour aujourd’hui · réouvre mardi à 11 h 45' : 'Fermé pour aujourd’hui · réouvre demain à 11 h 45'
+  if (day !== 6 && minutes <= 14 * 60 + 45) return { state: 'open', label: 'Ouvert', detail: 'jusqu’à 14 h 45' }
+  if (day !== 6 && minutes < 18 * 60 + 45) return { state: 'soon', label: 'Fermé', detail: 'réouvre ce soir à 18 h 45' }
+  if (minutes <= 23 * 60 + 45) return { state: 'open', label: 'Ouvert', detail: day === 6 ? 'en continu · jusqu’à 23 h 45' : 'jusqu’à 23 h 45' }
+  return { state: 'closed', label: 'Fermé', detail: day === 6 ? 'réouvre mardi à 11 h 45' : 'réouvre demain à 11 h 45' }
 }
 
 function TodayStatusBar() {
-  const [status, setStatus] = useState('')
+  const [status, setStatus] = useState(null)
 
   useEffect(() => {
     setStatus(getTodayStatus())
@@ -45,7 +46,13 @@ function TodayStatusBar() {
   return (
     <div className="today-status-bar">
       <div className="shell today-status-inner">
-        <span className="today-status-text"><span aria-hidden="true">🕒</span> {status}</span>
+        <span className="today-status-text" role="status">
+          <span className={`status-pill status-${status.state}`}>
+            <span className="status-dot" aria-hidden="true" />
+            {status.label}
+          </span>
+          <span>{status.detail}</span>
+        </span>
         <a
           href="https://www.google.com/maps/dir/?api=1&destination=29+rue+de+Montgeron+91800+Brunoy"
           target="_blank"
