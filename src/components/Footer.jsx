@@ -70,7 +70,10 @@ export default function Footer() {
                   <circle className="social-icon-dot" cx="17.5" cy="6.7" r="1" fill="currentColor" />
                 </svg>
               </span>
-              <span>Chez Lina</span>
+              <span>
+                @chezlina.brunoy
+                <small style={{ display: 'block', fontWeight: 400, opacity: 0.75 }}>Instagram</small>
+              </span>
             </a>
             <a className="social-link" href="https://www.tiktok.com/@chezlina.brunoy" target="_blank" rel="noreferrer" aria-label="TikTok de Chez Lina">
               <span className="social-logo-frame">
@@ -78,7 +81,10 @@ export default function Footer() {
                   <path d="M15.5 3c.3 2.2 1.7 3.8 3.9 4v2.6a6.6 6.6 0 0 1-3.9-1.3v6.1A5.4 5.4 0 1 1 10.1 9v2.7a2.7 2.7 0 1 0 2.7 2.7V3h2.7z" fill="currentColor" />
                 </svg>
               </span>
-              <span>TikTok</span>
+              <span>
+                @chezlina.brunoy
+                <small style={{ display: 'block', fontWeight: 400, opacity: 0.75 }}>TikTok</small>
+              </span>
             </a>
             <a className="social-link social-link-partner" href="https://www.instagram.com/cuillere.dor/" target="_blank" rel="noreferrer" aria-label="Cuillère d&rsquo;Or, traiteur événementiel (Instagram)">
               <span className="social-logo-frame social-logo-partner">
