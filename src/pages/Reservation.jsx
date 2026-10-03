@@ -427,7 +427,7 @@ export default function Reservation() {
                           <input id="date" type="date" required min={minimumDate} value={data.date} onChange={(e) => update('date', e.target.value)} />
                         </div>
                         <div className="field">
-                          <label htmlFor="time">{data.service === 'table' ? 'Heure' : 'Heure de retrait'} <span className="req">*</span></label>
+                          <label htmlFor="time">{data.service === 'table' ? 'Heure' : 'Heure de retrait souhaitée'} <span className="req">*</span></label>
                           <select id="time" required value={data.time} disabled={availableTimeSlots.length === 0} onChange={(e) => update('time', e.target.value)}>
                             {availableTimeSlots.length === 0 ? (
                               <option value="">
