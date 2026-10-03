@@ -15,7 +15,7 @@ function createTimeSlots(startHour, startMinute, count) {
   })
 }
 
-// Dernier créneau env. 30 min avant la fermeture effective (11h45-15h / 18h30-23h45 en semaine, 11h45-15h30 le dimanche)
+// Dernier créneau env. 30 min avant la fermeture effective (11h45-15h / 18h30-23h45 en semaine, 11h45-15h30 le dimanche pour les groupes)
 const weekdayTimeSlots = [...createTimeSlots(11, 45, 12), ...createTimeSlots(18, 30, 20)]
 const sundayTimeSlots = createTimeSlots(11, 45, 14)
 
@@ -51,16 +51,25 @@ function addDays(dateStr, days) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
 }
 
-function getDaySlots(date) {
+const SUNDAY_MIN_GUESTS = 20
+
+function isSunday(date) {
+  if (!date) return false
+  const [year, month, day] = date.split('-').map(Number)
+  return new Date(year, month - 1, day).getDay() === 0
+}
+
+function getDaySlots(date, service) {
   const [year, month, day] = date.split('-').map(Number)
   const dayOfWeek = new Date(year, month - 1, day).getDay() // 0 = dimanche, 1 = lundi
   if (dayOfWeek === 1) return [] // fermé le lundi
-  if (dayOfWeek === 0) return sundayTimeSlots // dimanche : midi uniquement, jusqu'à 15h30
+  // dimanche : fermé, sauf réservation de groupe (20 personnes minimum) ou privatisation
+  if (dayOfWeek === 0) return service === 'table' ? sundayTimeSlots : []
   return weekdayTimeSlots
 }
 
-function getAvailableTimeSlots(date, leadMinutes) {
-  const daySlots = getDaySlots(date)
+function getAvailableTimeSlots(date, leadMinutes, service) {
+  const daySlots = getDaySlots(date, service)
   const now = getParisNow()
   if (date !== now.date) return daySlots
   const firstPossibleMinute = Math.ceil((now.minutes + leadMinutes) / STEP_MINUTES) * STEP_MINUTES
@@ -71,11 +80,11 @@ function getAvailableTimeSlots(date, leadMinutes) {
 }
 
 function getTableTimeSlots(date) {
-  return getAvailableTimeSlots(date, 1)
+  return getAvailableTimeSlots(date, 1, 'table')
 }
 
 function getTakeawayTimeSlots(date) {
-  return getAvailableTimeSlots(date, 30)
+  return getAvailableTimeSlots(date, 30, 'takeaway')
 }
 
 function formatBookingDate(date) {
@@ -204,6 +213,10 @@ export default function Reservation() {
     }
     if (data.date < minimumDate) {
       setError('Merci de choisir une date à partir du jour même.')
+      return false
+    }
+    if (data.service === 'table' && isSunday(data.date) && Number(data.guests) < SUNDAY_MIN_GUESTS) {
+      setError(`Le dimanche, le restaurant est fermé sauf pour les groupes de ${SUNDAY_MIN_GUESTS} personnes minimum ou en privatisation. Choisissez un autre jour ou appelez-nous au 06 51 19 77 51.`)
       return false
     }
     if (!availableTimeSlots.includes(data.time)) {
@@ -346,7 +359,7 @@ export default function Reservation() {
                           <select id="time" required value={data.time} disabled={availableTimeSlots.length === 0} onChange={(e) => update('time', e.target.value)}>
                             {availableTimeSlots.length === 0 ? (
                               <option value="">
-                                {getDaySlots(data.date).length === 0 ? 'Fermé ce jour-là' : (data.service === 'table' ? 'Plus de créneau disponible ce jour' : 'Plus de retrait disponible ce jour')}
+                                {getDaySlots(data.date, data.service).length === 0 ? 'Fermé ce jour-là' : (data.service === 'table' ? 'Plus de créneau disponible ce jour' : 'Plus de retrait disponible ce jour')}
                               </option>
                             ) : (
                               <>
@@ -374,6 +387,12 @@ export default function Reservation() {
                           </span>
                         </div>
                       </div>
+
+                      {data.service === 'table' && isSunday(data.date) && (
+                        <div className="form-note" style={{ marginBottom: 20 }}>
+                          Le dimanche, le restaurant est fermé sauf pour les groupes de {SUNDAY_MIN_GUESTS} personnes minimum ou en privatisation.
+                        </div>
+                      )}
 
                       {data.service === 'table' && (
                         <div className="field" style={{ marginBottom: 24 }}>

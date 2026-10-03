@@ -35,7 +35,7 @@ export const pageMeta = {
   '/a-emporter-brunoy': {
     title: 'Plats à emporter à Brunoy',
     crumb: 'À emporter à Brunoy',
-    description: 'Plats à emporter chez Chez Lina, 29 rue de Montgeron à Brunoy : viandes et poissons braisés, formules dès 9 €. Retrait du mardi au dimanche.',
+    description: 'Plats à emporter chez Chez Lina, 29 rue de Montgeron à Brunoy : viandes et poissons braisés, formules dès 9 €. Retrait du mardi au samedi.',
   },
   '/privatisation-brunoy': {
     title: 'Privatiser un restaurant à Brunoy',

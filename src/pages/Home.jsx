@@ -21,16 +21,12 @@ function getParisDayAndMinutes() {
 function getTodayStatus() {
   const { day, minutes } = getParisDayAndMinutes()
   if (day === 1) return 'Fermé aujourd’hui (lundi) · réouvre demain à 11 h 45'
-  if (day === 0) {
-    if (minutes < 11 * 60 + 45) return 'Ouvre aujourd’hui à 11 h 45'
-    if (minutes <= 15 * 60 + 30) return 'Ouvert aujourd’hui · jusqu’à 15 h 30'
-    return 'Fermé pour aujourd’hui · réouvre mardi à 11 h 45'
-  }
+  if (day === 0) return 'Fermé aujourd’hui (dimanche) · réouvre mardi à 11 h 45'
   if (minutes < 11 * 60 + 45) return 'Ouvre aujourd’hui à 11 h 45'
   if (minutes <= 15 * 60) return 'Ouvert aujourd’hui · jusqu’à 15 h'
   if (minutes < 18 * 60 + 30) return 'Réouvre ce soir à 18 h 30'
   if (minutes <= 23 * 60 + 45) return 'Ouvert aujourd’hui · jusqu’à 23 h 45'
-  return day === 6 ? 'Fermé pour aujourd’hui · réouvre dimanche à 11 h 45' : 'Fermé pour aujourd’hui · réouvre demain à 11 h 45'
+  return day === 6 ? 'Fermé pour aujourd’hui · réouvre mardi à 11 h 45' : 'Fermé pour aujourd’hui · réouvre demain à 11 h 45'
 }
 
 function TodayStatusBar() {
@@ -207,8 +203,7 @@ export default function Home() {
             <div>
               <strong>Mardi–samedi</strong> 11 h 45–15 h · 18 h 30–23 h 45
               <br />
-              <strong>Dimanche</strong> 11 h 45–15 h 30 (midi uniquement)
-              <span className="hours-chip-closed"> · Fermé le lundi</span>
+              <span className="hours-chip-closed">Fermé le lundi · dimanche sur privatisation ou groupe de 20 personnes minimum</span>
             </div>
           </div>
           <div className="button-row">

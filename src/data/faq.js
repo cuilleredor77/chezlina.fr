@@ -3,7 +3,7 @@
 export const faq = [
   {
     question: 'Quels sont les horaires du restaurant Chez Lina à Brunoy ?',
-    answer: 'Du mardi au samedi de 11 h 45 à 15 h et de 18 h 30 à 23 h 45, le dimanche de 11 h 45 à 15 h 30 (midi uniquement). Le restaurant est fermé le lundi.',
+    answer: 'Du mardi au samedi de 11 h 45 à 15 h et de 18 h 30 à 23 h 45. Le restaurant est fermé le lundi. Le dimanche, il est fermé sauf pour une privatisation ou une réservation de groupe à partir de 20 personnes.',
   },
   {
     question: 'Où se trouve Chez Lina ?',
