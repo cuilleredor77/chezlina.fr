@@ -73,7 +73,6 @@ export const menuSections = [
       { name: 'Alloco makemba', price: '5 €' },
       { name: 'Foutou banane', price: '5 €' },
       { name: 'Riz rouge', price: '5 €' },
-      { name: 'Brochettes seules ×2 (une paire)', price: '3 €' },
     ],
   },
   {
