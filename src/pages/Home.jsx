@@ -191,7 +191,7 @@ export default function Home() {
           <span className="eyebrow light">Événements privés</span>
           <h2>Privatiser le restaurant pour vos événements</h2>
           <p style={{ maxWidth: 560 }}>Un anniversaire, un baptême, un repas d&rsquo;entreprise ? Réservez la salle rien que pour vous.</p>
-          <p className="privatisation-price">Location de salle à partir de <strong>450 €</strong>, repas en supplément selon le menu choisi.</p>
+          <p className="privatisation-price">Devis personnalisé, repas en supplément selon le menu choisi.</p>
           <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>Disponibilités et capacité sur demande.</p>
           <div className="button-row" style={{ marginTop: 8 }}>
             <Link to="/reservation?type=privatisation" className="button button-primary" onClick={() => trackEvent('click_privatisation')}>Demander un devis</Link>

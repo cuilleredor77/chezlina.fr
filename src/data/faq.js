@@ -49,7 +49,7 @@ export const faq = [
   },
   {
     question: 'Peut-on privatiser le restaurant ?',
-    answer: 'Oui, pour un anniversaire, un baptême ou un repas d’entreprise, le midi, le soir ou toute la journée. La location de la salle démarre à 450 €, le repas est en supplément selon le menu choisi. Les demandes se font au moins 72 h à l’avance ; un devis personnalisé est envoyé sous 48 h.',
+    answer: 'Oui, pour un anniversaire, un baptême ou un repas d’entreprise, le midi, le soir ou toute la journée. Le tarif est établi sur devis personnalisé, le repas est en supplément selon le menu choisi. Les demandes se font au moins 72 h à l’avance ; pour un besoin urgent, appelez-nous directement.',
     pages: ['privatisation'],
   },
   {

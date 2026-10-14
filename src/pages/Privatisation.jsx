@@ -13,7 +13,7 @@ const occasions = [
 const steps = [
   'Remplissez le formulaire en choisissant « Privatiser la salle » : date, créneau (midi, soir ou toute la journée), nombre d’invités et type d’événement.',
   'Votre demande part par e-mail. Faites-la au moins 72 h à l’avance ; pour un besoin urgent, appelez-nous au 06 51 19 77 51.',
-  'Nous vous envoyons un devis personnalisé sous 48 h, avec le menu choisi ensemble.',
+  'Nous vous envoyons un devis personnalisé, avec le menu choisi ensemble.',
 ]
 
 const privatisationFaq = faqFor('privatisation')
@@ -52,8 +52,8 @@ export default function Privatisation() {
 
       <section className="section section-dark">
         <div className="shell privatisation-block">
-          <span className="eyebrow light">Tarif</span>
-          <h2>Location de salle à partir de 450 €</h2>
+          <span className="eyebrow light">Devis</span>
+          <h2>Un devis personnalisé pour votre événement</h2>
           <p style={{ maxWidth: 560 }}>
             Le repas est en supplément, selon le menu choisi. Capacité et disponibilités sur demande, au midi, au soir ou
             pour toute la journée.

@@ -40,7 +40,7 @@ export const pageMeta = {
   '/privatisation-brunoy': {
     title: 'Privatiser un restaurant à Brunoy',
     crumb: 'Privatisation et événements',
-    description: 'Privatisez Chez Lina à Brunoy pour un anniversaire, un baptême ou un repas d’entreprise : location de salle dès 450 €, devis sous 48 h.',
+    description: 'Privatisez Chez Lina à Brunoy pour un anniversaire, un baptême ou un repas d’entreprise : salle rien que pour vous, devis personnalisé.',
   },
   '/reservation': {
     title: 'Réserver ou commander à Brunoy',

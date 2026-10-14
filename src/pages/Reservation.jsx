@@ -253,8 +253,7 @@ export default function Reservation() {
     const dateLabel = data.service === 'table' ? 'Date souhaitée' : data.service === 'takeaway' ? 'Date de retrait souhaitée' : 'Date souhaitée'
     const timeLabel = isPrivatisation ? 'Créneau souhaité' : data.service === 'table' ? 'Heure souhaitée' : 'Heure de retrait souhaitée'
     const timeValue = isPrivatisation ? formatPeriod(data.period) : formatBookingTime(data.time)
-    const privatisationNote = isPrivatisation ? '\n\nLocation de salle à partir de 450 €, repas en supplément selon le menu choisi. Devis personnalisé sous 48 h.' : ''
-    return `Bonjour Chez Lina,\n\nJe souhaite ${requestLabel}.\n\n${dateLabel} : ${formatBookingDate(data.date)}\n${timeLabel} : ${timeValue}${visitDetails}${privatisationDetails}${orderDetails}\n\nNom : ${data.firstName}\nTéléphone : ${data.phone}${emailLine}\n\n${notesLabel} : ${data.notes || (data.service === 'takeaway' ? 'Aucun' : 'Aucune')}${data.marketingOptIn ? '\n\nJe souhaite recevoir par WhatsApp les actualités et offres de Chez Lina.' : ''}${privatisationNote}\n\nMerci de me confirmer ma demande.\n\n${data.firstName}`
+    return `Bonjour Chez Lina,\n\nJe souhaite ${requestLabel}.\n\n${dateLabel} : ${formatBookingDate(data.date)}\n${timeLabel} : ${timeValue}${visitDetails}${privatisationDetails}${orderDetails}\n\nNom : ${data.firstName}\nTéléphone : ${data.phone}${emailLine}\n\n${notesLabel} : ${data.notes || (data.service === 'takeaway' ? 'Aucun' : 'Aucune')}${data.marketingOptIn ? '\n\nJe souhaite recevoir par WhatsApp les actualités et offres de Chez Lina.' : ''}\n\nMerci de me confirmer ma demande.\n\n${data.firstName}`
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, notesLabel, requestLabel, visitDetails, privatisationDetails, orderDetails, isPrivatisation])
 
@@ -385,7 +384,7 @@ export default function Reservation() {
 
                   {isPrivatisation && (
                     <div className="form-note" style={{ marginBottom: 20 }}>
-                      Location de salle à partir de 450 €, repas en supplément selon le menu choisi. Devis personnalisé sous 48 h.
+                      Devis personnalisé, repas en supplément selon le menu choisi.
                       <br />La salle peut aussi être privatisée le dimanche, jour de fermeture du restaurant.
                       <br />Demande à faire au moins 72 h à l&rsquo;avance. Besoin urgent ? Appelez-nous directement au <a href="tel:+33651197751">06 51 19 77 51</a>.
                     </div>
