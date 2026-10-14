@@ -5,7 +5,6 @@ import PageHero from '../components/PageHero'
 const photos = [
   { src: '/images/table-reportage.webp', alt: 'Une table réunissant plusieurs plats Chez Lina', tag: 'La table', title: 'Plusieurs saveurs, un même moment de partage' },
   { src: '/images/dorade-braisee.webp', alt: 'Dorade braisée et condiment frais', tag: 'La braise', title: 'Dorade braisée et condiment frais' },
-  { src: '/images/brochettes-boeuf.webp', alt: 'Brochettes, alloco et sauce maison', tag: 'À partager', title: 'Brochettes, alloco et sauce maison' },
   { src: '/images/mouton-braise.webp', alt: 'Mouton braisé servi avec de la chikwangue', title: 'Mouton braisé' },
   { src: '/images/entree-signature.webp', alt: 'Entrée signature portée à deux mains', title: 'Entrée signature' },
   { src: '/images/aubergine-signature.webp', alt: 'Aubergine grillée sur sauce crémeuse', title: 'Création végétale' },
