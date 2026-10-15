@@ -50,7 +50,7 @@ export const menuSections = [
     items: [
       { name: 'Dorade braisée et attiéké', description: 'Sauce vierge, tomate, mangue verte et herbes fraîches.', price: '20 €', image: '/images/dorade-braisee.webp' },
       { name: 'Panga braisé et foutou banane', description: 'Sauce aux trois poivrons.', price: '25 €', image: '/images/panga-braise.jpg' },
-      { name: 'Morue frite et riz blanc', description: 'Sauce de poivron rouge.', price: '18 €' },
+      { name: 'Morue frite et riz blanc', description: 'Sauce de poivron rouge.', price: '18 €', image: '/images/morue-frite.webp' },
     ],
   },
   {
@@ -58,7 +58,7 @@ export const menuSections = [
     title: 'Les entrées',
     column: 'right',
     items: [
-      { name: 'Tempura de manioc', description: 'Mayonnaise au basilic frais.', price: '7 €', image: '/images/morue-frite.webp' },
+      { name: 'Tempura de manioc', description: 'Mayonnaise au basilic frais.', price: '7 €', image: '/images/tempura-manioc-detail.jpg' },
       { name: 'Aubergine braisée en brochette', description: 'Crème de maïs onctueuse, salade d’herbes fraîches et confiture de tamarin.', price: '7 €', image: '/images/aubergine-signature.webp' },
       { name: 'Tarte fine tomate et burrata', description: 'Saka-saka, sauce vierge à la tomate et au bissap, salade d’herbes fraîches et burrata crémeuse.', price: '10 €', image: '/images/entree-signature.webp' },
       { name: 'Planche à partager', description: 'Sélection du chef.', priceOptions: [{ label: '10 pièces', price: '15 €' }, { label: '25 pièces', price: '28 €' }], image: '/images/plateau-bouchees-reportage.webp' },
@@ -136,9 +136,9 @@ export const cocktailSections = [
       { name: 'Spritz Campari', tag: 'Corsé et vibrant.', price: '11 €', image: '/images/cocktails/spritz-campari.jpg' },
       { name: 'Pornstar Martini', tag: 'Glamour et passion.', price: '13 €', image: '/images/cocktails/pornstar.jpg' },
       { name: 'Sex on the Beach', tag: 'Sucré et solaire.', price: '12 €', image: '/images/cocktails/sex-on-the-beach.jpg' },
-      { name: 'Joséphine Baker', tag: 'Passion, fraîcheur, caractère.', price: '8 € sans alcool · 12 € avec alcool', image: '/images/cocktails/josephine-baker.jpg' },
+      { name: 'Joséphine Baker', tag: 'Passion, fraîcheur, caractère.', price: '12 €', image: '/images/cocktails/josephine-baker.jpg' },
       { name: 'Mimosa', tag: 'L’élégance à toute heure.', price: '9 €', image: '/images/cocktails/mimosa.jpg' },
-      { name: 'Punch maison', tag: 'Généreux et convivial.', price: '8 € sans alcool · 12 € avec alcool', image: '/images/cocktails/punch-maison.jpg' },
+      { name: 'Punch maison', tag: 'Généreux et convivial.', price: '12 €', image: '/images/cocktails/punch-maison.jpg' },
     ],
   },
   {
@@ -149,6 +149,8 @@ export const cocktailSections = [
       { name: 'Sex on the Beach sans alcool', tag: 'Plaisir sans alcool.', price: '9 €', image: '/images/cocktails/sex-on-the-beach-sans-alcool.jpg' },
       { name: 'Gingembre maison', tag: 'Piquant et vivifiant.', price: '7 €', image: '/images/cocktails/gingembre-maison.jpg' },
       { name: 'Bissap maison', tag: 'L’authenticité autrement.', price: '7 €', image: '/images/cocktails/bissap-maison.jpg' },
+      { name: 'Joséphine Baker sans alcool', tag: 'Passion et fraîcheur, sans alcool.', price: '8 €', image: '/images/cocktails/josephine-baker.jpg' },
+      { name: 'Punch maison sans alcool', tag: 'Généreux et convivial, sans alcool.', price: '8 €', image: '/images/cocktails/punch-maison.jpg' },
     ],
   },
 ]
