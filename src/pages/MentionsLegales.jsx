@@ -16,7 +16,7 @@ export default function MentionsLegales() {
       </p>
 
       <h2>Responsable de publication</h2>
-      <p>La direction de Chez Lina — identité nominative à confirmer.</p>
+      <p>Jose MIYA, pour LES QUATRE FILLES LINA.</p>
 
       <h2>Hébergement</h2>
       <p>
