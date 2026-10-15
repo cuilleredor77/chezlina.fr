@@ -24,13 +24,6 @@ export default function MentionsLegales() {
         Cloudflare Pages. Code source géré sur GitHub, Inc.
       </p>
 
-      <h2>Médiation de la consommation</h2>
-      <p>
-        Après une réclamation écrite préalable auprès de Chez Lina restée sans solution, le consommateur peut recourir
-        gratuitement au médiateur de la consommation dont relève le restaurant. Les coordonnées du médiateur seront
-        publiées ici dès confirmation de l&rsquo;adhésion.
-      </p>
-
       <h2>Propriété intellectuelle</h2>
       <p>
         Les textes, photographies, créations culinaires, logos et éléments de marque publiés sur ce site sont protégés.
