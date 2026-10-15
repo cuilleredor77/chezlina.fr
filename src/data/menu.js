@@ -40,6 +40,7 @@ export const menuSections = [
       { name: 'Suprême de volaille et riz parfumé', description: 'Sauce poulette, riz délicatement parfumé au gingembre, à la noix de coco et au citron.', price: '19 €', image: '/images/poulet-braise-riz-rouge-detail.jpeg' },
       { name: 'Mouton braisé et chikwangue', price: '20 €', image: '/images/mouton-braise.webp' },
       { name: '4 brochettes de bœuf et riz rouge', price: '18 €', image: '/images/brochettes-boeuf.webp' },
+      { name: 'Entrecôte sauce au poivre', description: 'Frites maison au paprika fumé et purée d’ail.', price: '26 €', image: '/images/entrecote-grillee.jpg' },
     ],
   },
   {
@@ -49,6 +50,7 @@ export const menuSections = [
     items: [
       { name: 'Dorade braisée et attiéké', description: 'Sauce vierge, tomate, mangue verte et herbes fraîches.', price: '20 €', image: '/images/dorade-braisee.webp' },
       { name: 'Panga braisé et foutou banane', description: 'Sauce aux trois poivrons.', price: '25 €', image: '/images/panga-braise.jpg' },
+      { name: 'Morue frite et riz blanc', description: 'Sauce de poivron rouge.', price: '18 €' },
     ],
   },
   {
@@ -101,8 +103,10 @@ export const drinksSections = [
     title: 'Softs',
     items: [
       { name: 'Coca', price: '4 €' },
+      { name: 'Coca Zéro', price: '4 €' },
       { name: 'Fanta', price: '4 €' },
       { name: 'Ice Tea', price: '4 €' },
+      { name: 'Oasis', price: '4 €' },
     ],
   },
   {
@@ -111,6 +115,7 @@ export const drinksSections = [
       { name: 'Heineken 33 cl', price: '5 €' },
       { name: 'Desperados 33 cl', price: '5 €' },
       { name: 'Guinness 33 cl', price: '5 €' },
+      { name: 'Leffe 33 cl', price: '5 €' },
       { name: 'Bière pression 25 cl', price: '5 €' },
       { name: 'Bière pression 50 cl', price: '9 €' },
     ],
@@ -131,9 +136,9 @@ export const cocktailSections = [
       { name: 'Spritz Campari', tag: 'Corsé et vibrant.', price: '11 €', image: '/images/cocktails/spritz-campari.jpg' },
       { name: 'Pornstar Martini', tag: 'Glamour et passion.', price: '13 €', image: '/images/cocktails/pornstar.jpg' },
       { name: 'Sex on the Beach', tag: 'Sucré et solaire.', price: '12 €', image: '/images/cocktails/sex-on-the-beach.jpg' },
-      { name: 'Joséphine Baker', tag: 'Passion, fraîcheur, caractère.', price: '12 €', image: '/images/cocktails/josephine-baker.jpg' },
+      { name: 'Joséphine Baker', tag: 'Passion, fraîcheur, caractère.', price: '8 € sans alcool · 12 € avec alcool', image: '/images/cocktails/josephine-baker.jpg' },
       { name: 'Mimosa', tag: 'L’élégance à toute heure.', price: '9 €', image: '/images/cocktails/mimosa.jpg' },
-      { name: 'Punch maison', tag: 'Généreux et convivial.', price: '8 €', image: '/images/cocktails/punch-maison.jpg' },
+      { name: 'Punch maison', tag: 'Généreux et convivial.', price: '8 € sans alcool · 12 € avec alcool', image: '/images/cocktails/punch-maison.jpg' },
     ],
   },
   {
