@@ -1,5 +1,5 @@
 // Note et nombre d’avis relevés sur la fiche Google — mis à jour le 15 octobre 2026
-export const reviewStats = { rating: '4,8', count: 68 }
+export const reviewStats = { rating: '4,80', count: 68 }
 
 export const reviews = [
   { name: 'Barbara Etzenberger', text: 'Nous avons passé un très bon moment, une belle découverte : une cuisine excellente et raffinée, et une équipe au top. Merci !' },
