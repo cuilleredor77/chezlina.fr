@@ -50,7 +50,7 @@ export const menuSections = [
     items: [
       { name: 'Dorade braisée et attiéké', description: 'Sauce vierge, tomate, mangue verte et herbes fraîches.', price: '20 €', image: '/images/dorade-braisee.webp' },
       { name: 'Panga braisé et foutou banane', description: 'Sauce aux trois poivrons.', price: '25 €', image: '/images/panga-braise.jpg' },
-      { name: 'Morue frite et riz blanc', description: 'Sauce de poivron rouge.', price: '18 €', image: '/images/morue-frite.webp' },
+      { name: 'Morue frite et riz blanc', description: 'Sauce de poivron rouge.', price: '18 €', image: '/images/placeholder-chez-lina.webp' },
     ],
   },
   {
@@ -58,7 +58,7 @@ export const menuSections = [
     title: 'Les entrées',
     column: 'right',
     items: [
-      { name: 'Tempura de manioc', description: 'Mayonnaise au basilic frais.', price: '7 €', image: '/images/tempura-manioc-detail.jpg' },
+      { name: 'Tempura de manioc', description: 'Mayonnaise au basilic frais.', price: '7 €', image: '/images/morue-frite.webp' },
       { name: 'Aubergine braisée en brochette', description: 'Crème de maïs onctueuse, salade d’herbes fraîches et confiture de tamarin.', price: '7 €', image: '/images/aubergine-signature.webp' },
       { name: 'Tarte fine tomate et burrata', description: 'Saka-saka, sauce vierge à la tomate et au bissap, salade d’herbes fraîches et burrata crémeuse.', price: '10 €', image: '/images/entree-signature.webp' },
       { name: 'Planche à partager', description: 'Sélection du chef.', priceOptions: [{ label: '10 pièces', price: '15 €' }, { label: '25 pièces', price: '28 €' }], image: '/images/plateau-bouchees-reportage.webp' },
