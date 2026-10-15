@@ -83,7 +83,7 @@ export default function Home() {
 
           <div className="grid grid-3" style={{ marginTop: 40 }}>
             <div className="card">
-              <img src="/images/morue-frite.webp" alt="Croquettes de morue Chez Lina" />
+              <img src="/images/morue-frite.webp" alt="Tempura de manioc Chez Lina" />
               <div className="card-body">
                 <h3>Cuisine franco-africaine</h3>
                 <p>Des saveurs africaines travaillées avec les gestes de la cuisine française, héritées d&rsquo;une <Link to="/cuisine-congolaise-essonne">cuisine congolaise</Link> familiale.</p>

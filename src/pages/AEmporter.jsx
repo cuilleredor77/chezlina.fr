@@ -15,7 +15,7 @@ export default function AEmporter() {
         eyebrow="Commande · Retrait sur place"
         title="Plats à emporter à Brunoy"
         titleNote="Cuisine franco-africaine et congolaise"
-        lede="Commandez vos plats braisés et récupérez-les au 29 rue de Montgeron."
+        lede="Commandez vos plats et récupérez-les au 29 rue de Montgeron."
         photo={{ src: '/images/brochettes-boeuf.webp', tint: '#1d1411', position: '50% 50%' }}
       />
 
@@ -48,7 +48,7 @@ export default function AEmporter() {
       <section className="section section-cream">
         <div className="shell">
           <span className="eyebrow">À emporter</span>
-          <h2>Les plats braisés de la maison</h2>
+          <h2>Les plats de la maison</h2>
           <ul className="takeaway-list">
             {plats.map((p) => (
               <li key={p.name}>
