@@ -1,7 +1,21 @@
-// Note et nombre d’avis relevés sur la fiche Google (65 × 5★ + 6 × 4★ + 1 × 3★ + 1 × 1★ = 353 / 73 = 4,84) — mis à jour le 16 octobre 2026
-export const reviewStats = { rating: '4,84', count: 73 }
+// Note et nombre d’avis relevés sur la fiche Google (84 × 5★ + 8 × 4★ + 1 × 3★ + 1 × 1★ = 456 / 94 = 4,85) — mis à jour le 29 octobre 2026
+// Seuls des avis 5★ sont repris (la carte affiche 5 étoiles). Fautes de frappe corrigées, prénom du serveur écrit « Gérémy ».
+export const reviewStats = { rating: '4,85', count: 94 }
 
 export const reviews = [
+  { name: 'Laureen Floquet', text: 'Super restaurant ! Super accueil ! Gérémy est d’un professionnalisme incroyable : il nous a conseillés, apporté des petites attentions, et toute la cuisine a été aux petits soins. Je recommande à 1000 % ce nouveau restaurant.' },
+  { name: 'Carolle Gegu', text: 'Très bonne découverte et très belle histoire de famille. Nous avons été servis par Gérémy, attentionné et à l’écoute. Cadre agréable et chaleureux. À faire au plus vite !' },
+  { name: 'Patricia Napias', text: 'Je ne peux que recommander. Gérémy est au top ! Le service, la cuisine, l’accueil… tout est parfait. Vous pouvez y aller les yeux fermés.' },
+  { name: 'Paulette Goujon', text: 'Très bonne surprise. Une cuisine métissée de qualité, appréciable par tous. Le poisson notamment est délicieux et les plats sont bien présentés. Et si vous craignez la cuisine épicée, n’ayez aucune crainte : vous ne serez pas déçus.' },
+  { name: 'Eva Salgueiro', text: 'Nous avons passé une super soirée Chez Lina ! Les plats étaient très bons, je recommande fortement. Merci à Gérémy pour son accueil et ses cocktails !' },
+  { name: 'Rayan Orcen', text: 'Une très belle découverte ! Chez Lina propose une cuisine franco-africaine savoureuse, généreuse et pleine de saveurs. Un grand merci à Laure, notre serveuse, pour son accueil chaleureux, son sourire et son professionnalisme.' },
+  { name: 'al Madi', text: 'Le service était très rapide, les plats trop bons et de très bonne qualité. Les boissons étaient très bien préparées et très bien présentées. J’ai passé une très bonne soirée et je reviendrai : c’est une très belle découverte.' },
+  { name: 'Marie-Thérèse Carli', text: 'Nous avons passé un excellent moment ! Tout était parfait, la qualité comme l’accueil et le service. Un grand merci à Laure, notre serveuse, adorable, souriante, professionnelle et très attentionnée. Nous reviendrons avec grand plaisir.' },
+  { name: 'Karen Chan', text: 'Endroit charmant ! La nourriture était délicieuse. Gérémy a été vraiment très gentil et accueillant, même si nous sommes arrivés tard un mercredi soir. Il a tout fait pour que nous passions un bon moment.' },
+  { name: 'James Leachy', text: 'Nous nous sommes arrêtés ici en traversant la France. La nourriture était délicieuse, les boissons excellentes et Gérémy un serveur formidable. J’y retournerai avec plaisir !' },
+  { name: 'Annik Gachon', text: 'Nous sommes venus ce midi entre collègues et avons été agréablement surpris par la cuisine : le goût est dans l’assiette et c’est très bien présenté. Nous étions pressés et les délais ont bien été respectés. Je recommande.' },
+  { name: 'Ludivine', text: 'Excellent service de Gérémy, cuisine au top, très bon moment en famille. Nous reviendrons vite !' },
+  { name: 'Nahomie Prisca Mulumba', text: 'Tout s’est très bien passé : accueil, ambiance, nourriture. Nous reviendrons très prochainement.' },
   { name: 'Barbara Etzenberger', text: 'Nous avons passé un très bon moment, une belle découverte : une cuisine excellente et raffinée, et une équipe au top. Merci !' },
   { name: 'Soilhat Mohamed', text: 'Délicieux ! Nous reviendrons très certainement.' },
   { name: 'Julie Oli', text: 'Service parfait, plat copieux et savoureux ! On a passé un agréable moment.' },
@@ -9,7 +23,7 @@ export const reviews = [
   { name: 'Léa Granghon', text: 'Une très belle nouvelle expérience. Je cherchais depuis un moment un bon restaurant africain et je l’ai trouvé chez Lina. Les plats sont généreux, les saveurs justes et bien assaisonnées. Un vrai régal !' },
   { name: 'Elsa Pagenel', text: 'Restaurant très agréable visuellement mais aussi culinairement. Une belle variété de plats et un large choix. Des présentations soignées et raffinées. Je recommande vivement !' },
   { name: 'Fabienne Fortune', text: 'Très bel accueil, très beau cadre également avec une petite terrasse. Les repas étaient très bons.' },
-  { name: 'Gabriel Toledano', text: 'Excellente cuisine et le restaurant est très accueillant, tout comme l’équipe. Merci à Jérémy de s’être si bien occupé de nous, on reviendra !' },
+  { name: 'Gabriel Toledano', text: 'Excellente cuisine et le restaurant est très accueillant, tout comme l’équipe. Merci à Gérémy de s’être si bien occupé de nous, on reviendra !' },
   { name: 'Johanne', text: 'J’ai mis 5 étoiles car je ne pouvais pas mettre plus. Une ambiance et une déco chaleureuses pour un repas en amoureux, et tout était excellent. Les plats sont une parfaite alliance entre cuisine afro et française, avec une présentation soignée qui ravit autant les yeux que les papilles.' },
   { name: 'Nicolas', text: 'Je suis passé chez Lina avec des amis et franchement, super expérience ! La nourriture était vraiment très bonne. L’accueil était super chaleureux et convivial, on s’est vraiment sentis à l’aise dès notre arrivée.' },
   { name: 'Maureen', text: 'Franchement, si je peux vous conseiller un restaurant abordable et surtout excellent, c’est bien celui-ci. Les plats sont excellents et je ne parle même pas des boissons.' },
