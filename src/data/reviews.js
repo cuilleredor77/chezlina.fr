@@ -1,8 +1,26 @@
-// Note et nombre d’avis relevés sur la fiche Google (84 × 5★ + 8 × 4★ + 1 × 3★ + 1 × 1★ = 456 / 94 = 4,85) — mis à jour le 29 octobre 2026
+// Note et nombre d’avis relevés sur la fiche Google (102 × 5★ + 10 × 4★ + 1 × 3★ + 1 × 1★ = 554 / 114 = 4,86) — mis à jour le 9 novembre 2026
 // Seuls des avis 5★ sont repris (la carte affiche 5 étoiles). Fautes de frappe corrigées, prénom du serveur écrit « Gérémy ».
-export const reviewStats = { rating: '4,85', count: 94 }
+export const reviewStats = { rating: '4,86', count: 114 }
 
 export const reviews = [
+  { name: 'Izzy', text: 'Un réel plaisir d’avoir dîné Chez Lina. Un service très agréable, une salle élégante et joliment décorée, une cuisine savoureuse, parfaitement maîtrisée et sublimement dressée. La morue frite était délicieuse. Excellent rapport qualité-prix : n’hésitez pas, courez-y !' },
+  { name: 'Antony H', text: 'Une excellente adresse à Brunoy ! Tout était parfait, du début à la fin. L’accueil est chaleureux, le personnel souriant, attentionné et très professionnel. Les plats sont délicieux, généreux et préparés avec soin. Une très belle découverte que je recommande les yeux fermés !' },
+  { name: 'Wendy Leroy', text: 'J’y suis allée pour mon anniversaire, un midi, avec mon mari. En plus d’un accueil très agréable, nous avons super bien mangé : des plats bien servis et délicieux, nous nous sommes régalés ! Nous reviendrons avec plaisir.' },
+  { name: 'Fabien Biguet', text: 'Quel régal ! Un rapport qualité-prix exceptionnel. Bravo au chef, c’est rare de voir une telle qualité dans les plats dans cette gamme de prix.' },
+  { name: 'Solange Okandzi', text: 'Superbe restaurant africain : cuisine raffinée, décoration élégante et épurée, service chaleureux et pro. J’aurais mis une 6e étoile si c’était possible. Tarifs abordables. Je vous le recommande sans hésiter.' },
+  { name: 'Marième Mbaye', text: 'Longue vie à ce restaurant où nous avons très bien mangé, avec surtout un service de qualité par Gérémy. Mention spéciale pour la planche à partager !' },
+  { name: 'Gwen Pintat', text: 'Trop bon et bonne ambiance ! Gérémy et Laure se sont bien occupés de nous et nous ont donné de bons conseils. Bravo au chef, et mention spéciale pour le DJ !' },
+  { name: 'Prune François', text: 'Très bon restaurant, très bon service, avec de belles quantités. Tout est fait maison. Je recommande à 1000 % !' },
+  { name: 'Aude Caillat', text: 'Une très belle expérience : accueil au top, cuisine délicieuse, et tout ça dans un cadre vraiment agréable.' },
+  { name: 'Emmanuel Petit', text: 'Nous avons passé un très bon moment. Les plats sont réussis, et un grand merci à Gérémy pour le service !' },
+  { name: 'Moi Moi', text: 'La cuisine est délicieuse, le personnel sympathique. Les allocos fondants à souhait, les chikwangues tendres… Nous reviendrons, c’est sûr !' },
+  { name: 'Joy-Ana Maury', text: 'Le DJ était super, les serveurs aussi. Et bravo au cuisinier, parce que c’est super bon !' },
+  { name: 'Nicolas Hounton Bacchieri', text: 'Au top, je recommande ! Merci à Clara et Gérémy pour le service.' },
+  { name: 'Evanovateur', text: 'Service sympathique, merci Gérémy ! Portions généreuses et menu délicieux.' },
+  { name: 'Aurélie Serrurier-Corandi', text: 'Très bonne expérience, cuisine originale et de qualité.' },
+  { name: 'Prashanti', text: 'Le personnel est très agréable et le repas excellent !' },
+  { name: 'Hugo Alves', text: 'Très, très bon. Merci à Gérémy pour ce service au top !' },
+  { name: 'Davina Parmanum', text: 'Très belle expérience culinaire ! Je vous recommande à 1000 %.' },
   { name: 'Laureen Floquet', text: 'Super restaurant ! Super accueil ! Gérémy est d’un professionnalisme incroyable : il nous a conseillés, apporté des petites attentions, et toute la cuisine a été aux petits soins. Je recommande à 1000 % ce nouveau restaurant.' },
   { name: 'Carolle Gegu', text: 'Très bonne découverte et très belle histoire de famille. Nous avons été servis par Gérémy, attentionné et à l’écoute. Cadre agréable et chaleureux. À faire au plus vite !' },
   { name: 'Patricia Napias', text: 'Je ne peux que recommander. Gérémy est au top ! Le service, la cuisine, l’accueil… tout est parfait. Vous pouvez y aller les yeux fermés.' },
