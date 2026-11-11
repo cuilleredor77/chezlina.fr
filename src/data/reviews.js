@@ -1,6 +1,6 @@
-// Note et nombre d’avis relevés sur la fiche Google (102 × 5★ + 10 × 4★ + 1 × 3★ + 1 × 1★ = 554 / 114 = 4,86) — mis à jour le 9 novembre 2026
+// Note et nombre d’avis relevés sur la fiche Google (103 × 5★ + 11 × 4★ + 2 × 3★ + 1 × 1★ = 566 / 117 = 4,84) — mis à jour le 11 novembre 2026
 // Seuls des avis 5★ sont repris (la carte affiche 5 étoiles). Fautes de frappe corrigées, prénom du serveur écrit « Gérémy ».
-export const reviewStats = { rating: '4,86', count: 114 }
+export const reviewStats = { rating: '4,84', count: 117 }
 
 export const reviews = [
   { name: 'Izzy', text: 'Un réel plaisir d’avoir dîné Chez Lina. Un service très agréable, une salle élégante et joliment décorée, une cuisine savoureuse, parfaitement maîtrisée et sublimement dressée. La morue frite était délicieuse. Excellent rapport qualité-prix : n’hésitez pas, courez-y !' },
