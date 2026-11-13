@@ -45,6 +45,7 @@ export const pageMeta = {
   '/demande-de-devis': {
     title: 'Demande de devis : privatisation et groupes',
     crumb: 'Demande de devis',
+    noindex: true, // page sans lien depuis le site, non indexée (comme les pages privées de Cuillère d'Or)
     description: 'Demandez un devis à Chez Lina, à Brunoy : privatisation de la salle, repas de groupe, traiteur ou grande commande à emporter pour vos événements.',
   },
   '/reservation': {

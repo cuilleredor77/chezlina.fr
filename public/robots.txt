@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /demande-de-devis
 
 Sitemap: https://chezlina.fr/sitemap.xml

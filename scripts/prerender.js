@@ -108,7 +108,8 @@ for (const route of routes) {
     .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${escapeHtml(route.description)}" />`)
     .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${canonicalUrl}" />`)
 
-  if (route.crumb) html = html.replace('</head>', jsonLdScript(breadcrumbJsonLd(route)))
+  if (route.noindex) html = html.replace(/<link rel="canonical" href="[^"]*" \/>/, '<meta name="robots" content="noindex, nofollow" />')
+  if (route.crumb && !route.noindex) html = html.replace('</head>', jsonLdScript(breadcrumbJsonLd(route)))
   if (route.jsonLd) html = html.replace('</head>', jsonLdScript(route.jsonLd))
 
   writeFileSync(join(distDir, route.path === '/' ? 'index.html' : `${route.path}.html`), html)

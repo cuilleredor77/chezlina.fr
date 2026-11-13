@@ -47,6 +47,10 @@ export default function DemandeDevis() {
   const [error, setError] = useState('')
   const [prepared, setPrepared] = useState(false)
   const [copied, setCopied] = useState(false)
+  // Anti-robots, comme sur Cuillère d'Or : champ piège invisible (rempli seulement par les robots) et délai minimal de saisie.
+  const [trap, setTrap] = useState('')
+  const [openedAt] = useState(() => Date.now())
+  const [blocked, setBlocked] = useState(false)
   const update = (k, v) => { setData((old) => ({ ...old, [k]: v })); setError('') }
 
   const day = data.date ? new Date(`${data.date}T12:00:00`).getDay() : null
@@ -98,6 +102,8 @@ export default function DemandeDevis() {
 
   function submit(e) {
     e.preventDefault()
+    // Robot probable (champ piège rempli ou formulaire envoyé en moins de 4 s) : rien n'est envoyé, sans le signaler.
+    if (trap || Date.now() - openedAt < 4000) { setBlocked(true); return }
     const err = validate()
     if (err) { setError(err); return }
     trackEvent('submit_demande_devis', { type: data.type })
@@ -227,6 +233,12 @@ export default function DemandeDevis() {
                 <input id="dd-email" type="email" autoComplete="email" placeholder="Pour recevoir le devis" value={data.email} onChange={(e) => update('email', e.target.value)} />
               </div>
 
+              {/* Champ piège : invisible pour les personnes, rempli par les robots. */}
+              <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+                <label htmlFor="dd-website">Site web</label>
+                <input id="dd-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={trap} onChange={(e) => setTrap(e.target.value)} />
+              </div>
+
               <div className="form-note">
                 Rien n&rsquo;est transmis avant que vous envoyiez l&rsquo;e-mail. Vos coordonnées servent uniquement à vous répondre. <Link to="/politique-confidentialite" style={{ textDecoration: 'underline' }}>Données personnelles</Link>.
               </div>
@@ -237,7 +249,9 @@ export default function DemandeDevis() {
                 </button>
               </div>
 
-              {prepared && (
+              {blocked && <div className="reservation-prepared" role="status"><strong>Merci.</strong></div>}
+
+              {prepared && !blocked && (
                 <div className="reservation-prepared" role="status">
                   <strong>Votre demande est prête.</strong>
                   <span>Dans votre messagerie, vérifiez le message puis appuyez sur « Envoyer ». Si elle ne s&rsquo;est pas ouverte, utilisez un des liens ci-dessous ou appelez le 06 51 19 77 51.</span>
