@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Chez Lina · Demandes et devis</title>
+<link rel="icon" href="logo-chez-lina.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fffaf2; --cream-soft:#fff4ea; --cream-card:#f3ebdd; --line:#eadfd2;
+  --gold:#f4d7a7; --bronze:#c79a52; --espresso:#3a271f; --espresso-dark:#261b16;
+  --brown:#625049; --muted:#75645c; --rust:#b95332; --forest:#123b35; --white:#fff;
+  --ok:#2f7d4f; --warn:#b7791f; --bad:#b42318;
+  --serif:'EB Garamond', Georgia, 'Times New Roman', serif;
+  --sans:'Avenir Next', Avenir, 'Segoe UI', Arial, sans-serif;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--cream);color:var(--espresso);font:15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;color:var(--espresso)}
+a{color:var(--rust)}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* Barre du haut */
+.top{background:var(--espresso);color:var(--cream);position:sticky;top:0;z-index:10}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--cream)}
+.brand img{width:34px;height:34px;object-fit:cover;border-radius:6px}
+.brand b{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:.02em}
+.brand span{font-size:12px;color:var(--gold);display:block;margin-top:-4px}
+.nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.nav a{color:var(--cream);text-decoration:none;padding:8px 12px;border-radius:999px;font-size:14px}
+.nav a.on,.nav a:hover{background:rgba(255,250,242,.12)}
+
+/* Boutons */
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--white);border-radius:999px;padding:8px 14px;cursor:pointer;text-decoration:none;color:var(--espresso);font-size:14px;min-height:38px}
+.btn:hover{border-color:var(--bronze)}
+.btn.primary{background:var(--rust);border-color:var(--rust);color:var(--white)}
+.btn.primary:hover{background:#984027}
+.btn.dark{background:var(--espresso);border-color:var(--espresso);color:var(--cream)}
+.btn.small{padding:4px 10px;min-height:30px;font-size:13px}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--bad)}
+.btn[disabled]{opacity:.45;cursor:default}
+
+main{padding:22px 0 60px}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.head h1{font-size:30px}
+.head p{margin:2px 0 0;color:var(--muted)}
+
+/* Onglets de tri */
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px}
+.tab{white-space:nowrap;border:1px solid var(--line);background:var(--white);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:14px}
+.tab.on{background:var(--espresso);color:var(--cream);border-color:var(--espresso)}
+.tab .n{display:inline-block;min-width:20px;text-align:center;margin-left:6px;font-size:12px;background:var(--cream-card);color:var(--espresso);border-radius:999px;padding:0 6px}
+.tab.on .n{background:var(--bronze);color:var(--espresso-dark)}
+.tabhint{color:var(--muted);font-size:13px;margin:-4px 0 12px}
+.search{width:100%;max-width:360px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--white)}
+
+/* Liste */
+.list{display:flex;flex-direction:column;gap:8px}
+.row{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px;text-decoration:none;color:inherit}
+.row:hover{border-color:var(--bronze)}
+.tile{width:64px;height:64px;border-radius:12px;background:var(--cream-card);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.tile b{font-family:var(--serif);font-size:26px}
+.tile small{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.tile.signed{background:var(--forest);color:var(--cream)}
+.tile.signed small{color:var(--gold)}
+.row h3{font-size:19px}
+.meta{color:var(--muted);font-size:13px;display:flex;gap:4px 12px;flex-wrap:wrap}
+.right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.amount{font-weight:600}
+.badge{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;background:var(--cream-card);color:var(--espresso)}
+.s-nouvelle{background:#fde7d9;color:#8a3a1c}
+.s-devis_pret{background:#fff0c7;color:#7a5a00}
+.s-envoye{background:#e4eefc;color:#1f4f8f}
+.s-signe,.s-acompte{background:#dff3e6;color:#1f6a3d}
+.s-solde{background:var(--forest);color:var(--cream)}
+.s-archivee,.s-abandonnee,.s-refus{background:#eee;color:#666}
+.type{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--brown)}
+.empty{padding:40px;text-align:center;color:var(--muted);background:var(--white);border:1px dashed var(--line);border-radius:var(--radius)}
+
+/* Cartes et formulaires */
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.card h2{font-size:22px;margin-bottom:10px}
+.card h3{font-size:18px;margin:14px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
+.grid .full{grid-column:1/-1}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 14px}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--brown);font-weight:600}
+label.f input,label.f select,label.f textarea,.inp{border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--cream);font-weight:400;color:var(--espresso);width:100%}
+label.f textarea{min-height:76px;resize:vertical}
+label.f input:focus,label.f select:focus,label.f textarea:focus,.inp:focus{outline:2px solid var(--bronze);outline-offset:0;background:var(--white)}
+.req::after{content:" *";color:var(--rust)}
+.choices{display:flex;gap:6px;flex-wrap:wrap}
+.choice{border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;background:var(--cream);font-size:14px}
+.choice input{display:none}
+.choice:has(input:checked){background:var(--espresso);color:var(--cream);border-color:var(--espresso)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+
+/* Fiche */
+.fiche{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:16px;align-items:start}
+.stack{display:flex;flex-direction:column;gap:16px}
+.alerts{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.alert{border-radius:10px;padding:8px 12px;font-size:14px;background:#fff4e0;color:#7a4b00;border:1px solid #f3d9a4}
+.alert.bad{background:#fdecea;color:#8a1c12;border-color:#f5c2bc}
+.alert.info{background:#eef4f2;color:var(--forest);border-color:#cfe1db}
+.hist{font-size:13px;color:var(--muted);margin:0;padding-left:18px}
+.quick{display:flex;gap:6px;flex-wrap:wrap}
+
+/* Lignes du devis */
+table.lines{width:100%;border-collapse:collapse;font-size:14px}
+table.lines th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;padding:6px 4px;border-bottom:1px solid var(--line)}
+table.lines td{padding:6px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+table.lines .inp{padding:6px 8px;background:var(--white)}
+table.lines .num{width:72px;text-align:right}
+table.lines .price{width:92px;text-align:right}
+table.lines .tot{width:96px;text-align:right;white-space:nowrap;padding-top:12px}
+table.lines .sec td{background:var(--cream-card);font-weight:700;font-size:13px}
+.detail{margin-top:4px;font-size:13px;min-height:34px}
+.totals{margin-top:12px;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.totals .big{font-family:var(--serif);font-size:26px;font-weight:600}
+.composer{background:var(--cream-soft);border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px}
+.composer h3{margin-top:0}
+.inline{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
+.inline > *{flex:1 1 160px}
+.inline .btn{flex:0 0 auto}
+
+/* Agenda */
+.month{font-family:var(--serif);font-size:22px;margin:18px 0 8px}
+
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--espresso);color:var(--cream);padding:10px 18px;border-radius:999px;font-size:14px;z-index:50;box-shadow:0 10px 30px -10px rgba(0,0,0,.4)}
+.mailbox{white-space:pre-wrap;background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:14px;max-height:360px;overflow:auto}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+
+@media (max-width: 900px){
+  .fiche{grid-template-columns:1fr}
+}
+@media (max-width: 640px){
+  .grid,.grid3{grid-template-columns:1fr}
+  .row{grid-template-columns:52px 1fr}
+  .row .right{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center}
+  .tile{width:52px;height:52px}.tile b{font-size:21px}
+  .head h1{font-size:25px}
+  table.lines thead{display:none}
+  table.lines tr.ln{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:6px;border-bottom:1px solid var(--line);padding:6px 0}
+  table.lines tr.ln td{border:0;padding:0}
+  table.lines tr.ln td.lbl{grid-column:1/-1}
+  table.lines .num,table.lines .price{width:100%}
+  table.lines .tot{padding-top:8px}
+  .nav{margin-left:0}
+}
+
+/* Contrat */
+.doc.contract{min-height:0}
+.c-body{font-size:12px}
+.c-body h3{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--rust);margin:14px 0 4px;border-bottom:1px solid var(--line);padding-bottom:3px}
+.c-body h4{font-family:var(--sans);font-size:12px;font-weight:700;margin:8px 0 2px;color:var(--espresso)}
+.c-body p{margin:3px 0}
+.c-body ul{margin:3px 0;padding-left:18px}
+.c-body table.d-tab{margin:6px 0}
+.c-check .box{display:inline-block;width:11px;height:11px;border:1px solid var(--espresso);vertical-align:-1px;margin:0 3px 0 8px}
+@page contrat{size:A4;margin:12mm 0 12mm}
+@media print{ .doc.contract{min-height:0;page:contrat;padding-top:0;padding-bottom:0} .c-body h3,.c-body h4{break-after:avoid} .c-body p,.c-body li{break-inside:avoid} .c-check{break-before:avoid} .d-sign{break-inside:avoid} }
+
+/* ======== Document devis (A4) ======== */
+.doc-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.doc{background:var(--white);width:210mm;max-width:100%;min-height:297mm;margin:0 auto;padding:16mm 15mm 14mm;box-shadow:0 18px 40px -20px rgba(38,27,22,.45);color:var(--espresso);font-size:12.5px;line-height:1.45;display:flex;flex-direction:column}
+.doc h1,.doc h2{font-family:var(--serif)}
+.d-head{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;border-bottom:2px solid var(--bronze);padding-bottom:12px}
+.d-head img{width:86px;height:auto;display:block;border-radius:4px}
+.d-co{font-size:11.5px;color:var(--brown)}
+.d-co b{font-family:var(--serif);font-size:20px;color:var(--espresso);display:block;font-weight:600}
+.d-title{text-align:right}
+.d-title h1{font-size:34px;letter-spacing:.08em;line-height:1}
+.d-title div{font-size:11.5px;color:var(--brown)}
+.d-blocks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 10px}
+.d-box{background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.d-box h2{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--rust);font-family:var(--sans);font-weight:700;margin-bottom:4px}
+.d-box p{margin:0}
+.d-intro{margin:4px 0 10px}
+.d-intro p{margin:2px 0}
+table.d-tab{width:100%;border-collapse:collapse;margin-top:6px}
+table.d-tab th{background:var(--espresso);color:var(--cream);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding:7px 8px;text-align:left}
+table.d-tab th.r,table.d-tab td.r{text-align:right;white-space:nowrap}
+table.d-tab td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+table.d-tab tr.dsec td{background:var(--cream-card);font-family:var(--serif);font-weight:600;font-size:13.5px;padding:5px 8px}
+table.d-tab .dd{color:var(--muted);font-size:11.5px;white-space:pre-line}
+.d-total{display:flex;justify-content:flex-end;margin-top:10px}
+.d-total table{border-collapse:collapse;min-width:300px}
+.d-total td{padding:5px 10px}
+.d-total tr.grand td{background:var(--espresso);color:var(--cream);font-family:var(--serif);font-size:17px;font-weight:600}
+.d-total td.r{text-align:right;white-space:nowrap}
+.d-cond{margin-top:14px;font-size:11.5px;color:var(--brown)}
+.d-cond h2{font-size:15px;color:var(--espresso);margin-bottom:4px}
+.d-cond ul{margin:0;padding-left:18px}
+.d-sign{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.d-sign div{border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-height:92px;font-size:11.5px}
+.d-sign b{font-family:var(--serif);font-size:14px;display:block;margin-bottom:2px}
+.d-foot{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:10px;color:var(--muted);text-align:center;line-height:1.5}
+.d-foot b{color:var(--espresso)}
+
+@media print{
+  @page{size:A4;margin:0}
+  body{background:var(--white)}
+  .top,.doc-bar,.no-print,.toast{display:none !important}
+  main{padding:0}
+  .wrap{max-width:none;padding:0}
+  .doc{box-shadow:none;margin:0;width:210mm;min-height:296mm;padding:11mm 13mm 9mm;font-size:11.5px;line-height:1.4}
+  .d-blocks{margin:10px 0 8px}
+  table.d-tab td{padding:5px 8px}
+  .d-total td{padding:4px 10px}
+  .d-cond{margin-top:10px}
+  .d-sign{margin-top:12px}
+  .d-sign div{min-height:72px}
+  .d-foot{break-inside:avoid;padding-top:8px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  table.d-tab tr{break-inside:avoid}
+}
+@media (max-width: 640px){
+  .doc{padding:18px 14px;min-height:0}
+  .d-head{grid-template-columns:auto 1fr}
+  .d-title{grid-column:1/-1;text-align:left}
+  .d-blocks,.d-sign{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="top no-print">
+  <div class="wrap">
+    <a class="brand" href="#/"><img src="logo-chez-lina.png" alt=""><div><b>Chez Lina</b><span>Demandes et devis</span></div></a>
+    <nav class="nav" id="nav">
+      <a href="#/" data-nav="list">Demandes</a>
+      <a href="#/agenda" data-nav="agenda">Agenda</a>
+      <a href="#/nouvelle" data-nav="nouvelle">Nouvelle demande</a>
+      <a href="#/reglages" data-nav="reglages">Réglages</a>
+    </nav>
+  </div>
+</header>
+<main><div class="wrap" id="app"></div></main>
+<script src="carte.js"></script>
+<script src="en-ligne.js"></script>
+<script src="app.js"></script>
+<script src="contrat.js"></script>
+</body>
+</html>
