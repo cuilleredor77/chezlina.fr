@@ -20,7 +20,7 @@
       cache: 'no-store',
       keepalive: !!keepalive,
     });
-    if (res.status === 401) { location.href = '/admin/'; throw new Error('connexion expirée'); } // Cloudflare Access redemande le code
+    if (res.status === 401) { location.href = '/admin/connexion'; throw new Error('connexion expirée'); }
     const data = await res.json().catch(() => ({}));
     if (!res.ok) { const err = new Error(data.error || ('erreur ' + res.status)); err.status = res.status; err.data = data; throw err; }
     return data;
@@ -72,7 +72,10 @@
       });
       return chain;
     },
-    logout() { location.href = '/cdn-cgi/access/logout'; },
+    async logout() {
+      await call('POST', '/deconnexion');
+      location.href = '/admin/connexion';
+    },
   };
 
   // Lien « Déconnexion » dans la barre du haut.
@@ -80,7 +83,7 @@
   if (nav) {
     const a = document.createElement('a');
     a.href = '#'; a.textContent = 'Déconnexion';
-    a.onclick = (e) => { e.preventDefault(); window.CRM_API.logout(); };
+    a.onclick = (e) => { e.preventDefault(); window.CRM_API.logout().catch(() => { location.href = '/admin/connexion'; }); };
     nav.appendChild(a);
   }
 })();

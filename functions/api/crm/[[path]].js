@@ -3,7 +3,8 @@
 //   PUT    /api/crm/demandes/:id    enregistre une demande { data, base } (base = updated_at lu ; 409 si modifiée ailleurs)
 //   DELETE /api/crm/demandes/:id    supprime une demande
 //   PUT    /api/crm/reglages        { settings, seq } ; les numéros de devis gardent le plus grand
-import { db, ensureSchema, json } from '../../_crm/lib.js'
+//   POST   /api/crm/deconnexion     ferme la connexion
+import { db, ensureSchema, json, logout } from '../../_crm/lib.js'
 
 const MAX_BYTES = 500_000
 
@@ -66,6 +67,10 @@ export async function onRequest({ request, env, params }) {
       }
       await writeKv(env, 'seq', merged)
       return json({ ok: true, seq: merged })
+    }
+
+    if (method === 'POST' && resource === 'deconnexion' && !id) {
+      return new Response(JSON.stringify({ ok: true }), { headers: { 'content-type': 'application/json', 'set-cookie': await logout(env, request), 'cache-control': 'no-store' } })
     }
 
     return json({ error: 'Introuvable.' }, 404)
