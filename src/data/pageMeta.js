@@ -42,6 +42,11 @@ export const pageMeta = {
     crumb: 'Privatisation et événements',
     description: 'Privatisez Chez Lina à Brunoy pour un anniversaire, un baptême ou un repas d’entreprise : salle rien que pour vous, devis personnalisé.',
   },
+  '/demande-de-devis': {
+    title: 'Demande de devis : privatisation et groupes',
+    crumb: 'Demande de devis',
+    description: 'Demandez un devis à Chez Lina, à Brunoy : privatisation de la salle, repas de groupe, traiteur ou grande commande à emporter pour vos événements.',
+  },
   '/reservation': {
     title: 'Réserver ou commander à Brunoy',
     crumb: 'Réserver ou commander',
